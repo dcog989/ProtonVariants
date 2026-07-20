@@ -24,9 +24,9 @@ function optionFor(variantId: string, name: string) {
 
 <a href="{base}/" class="text-xs text-sky-400 hover:underline">← All variants</a>
 <h1 class="mb-1 mt-2 text-2xl font-bold">Compare Variants</h1>
-<p class="mb-4 text-sm text-neutral-400">
+<p class="mb-4 text-sm text-neutral-600 dark:text-neutral-400">
   All {data.allNames.length} environment variables across variants. Rows highlighted in
-  <span class="text-amber-400">amber</span> are unique to a single variant.
+  <span class="text-amber-600 dark:text-amber-400">amber</span> are unique to a single variant.
 </p>
 
 <div class="mb-4">
@@ -34,14 +34,14 @@ function optionFor(variantId: string, name: string) {
     type="search"
     bind:value={query}
     placeholder="Filter by variable name…"
-    class="w-72 rounded border border-neutral-700 bg-neutral-900 px-3 py-1.5 text-sm outline-none focus:border-sky-500"
+    class="w-72 rounded border border-neutral-300 bg-white px-3 py-1.5 text-sm outline-none focus:border-sky-500 dark:border-neutral-700 dark:bg-neutral-900"
   />
 </div>
 
 <div class="overflow-x-auto">
   <table class="w-full border-collapse text-sm">
     <thead>
-      <tr class="border-b border-neutral-800 text-left text-neutral-400">
+      <tr class="border-b border-neutral-200 text-left text-neutral-500 dark:border-neutral-800 dark:text-neutral-400">
         <th class="py-2 pr-4 font-medium">Env Var</th>
         {#each data.variants as v (v.id)}
           <th class="py-2 pr-4 font-medium">{displayName(v.id)}</th>
@@ -51,15 +51,15 @@ function optionFor(variantId: string, name: string) {
     <tbody>
       {#each filteredNames as name (name)}
         {@const unique = isUnique(name)}
-        <tr class="border-b border-neutral-900 align-top" class:text-amber-400={unique}>
-          <td class="py-2 pr-4 font-mono">{name}</td>
+        <tr class="border-b border-neutral-200 align-top dark:border-neutral-900" class:text-amber-600={unique} class:dark:text-amber-400={unique}>
+          <td class="py-2 pr-4 font-mono text-neutral-900 dark:text-neutral-100">{name}</td>
           {#each data.variants as v (v.id)}
             {@const opt = optionFor(v.id, name)}
-            <td class="py-2 pr-4 text-neutral-300">
+            <td class="py-2 pr-4 text-neutral-700 dark:text-neutral-300">
               {#if opt}
                 {opt.type}{opt.default ? ` · ${opt.default}` : ""}
               {:else}
-                <span class="text-neutral-700">—</span>
+                <span class="text-neutral-400 dark:text-neutral-700">—</span>
               {/if}
             </td>
           {/each}
@@ -69,19 +69,19 @@ function optionFor(variantId: string, name: string) {
   </table>
 </div>
 
-<div class="mt-6 text-sm text-neutral-400">
-  <h2 class="mb-2 font-semibold text-neutral-200">Unique per variant</h2>
+<div class="mt-6 text-sm text-neutral-600 dark:text-neutral-400">
+  <h2 class="mb-2 font-semibold text-neutral-900 dark:text-neutral-200">Unique per variant</h2>
   <ul class="space-y-1">
     {#each data.variants as v (v.id)}
       {@const uniques = v.options.filter(
         (o) => isUnique(o.name) && (!query || o.name.toLowerCase().includes(query.toLowerCase())),
       )}
       <li>
-        <span class="font-medium text-neutral-200">{displayName(v.id)}:</span>
+        <span class="font-medium text-neutral-900 dark:text-neutral-200">{displayName(v.id)}:</span>
         {#if uniques.length}
-          <span class="font-mono text-amber-400">{uniques.map((o) => o.name).join(", ")}</span>
+          <span class="font-mono text-amber-600 dark:text-amber-400">{uniques.map((o) => o.name).join(", ")}</span>
         {:else}
-          <span class="text-neutral-600">none</span>
+          <span class="text-neutral-500 dark:text-neutral-600">none</span>
         {/if}
       </li>
     {/each}
