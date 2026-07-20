@@ -1,6 +1,5 @@
 <script lang="ts">
   let { data } = $props();
-  const { variants, registry } = data;
 </script>
 
 <svelte:head><title>ProtonNexus — Variants</title></svelte:head>
@@ -11,8 +10,8 @@
 </p>
 
 <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-  {#each registry as ref (ref.id)}
-    {@const v = variants.find((x) => x.id === ref.id)}
+  {#each data.registry as ref (ref.id)}
+    {@const v = data.variants.find((x) => x.id === ref.id)}
     <a
       href={`/variant/${ref.id}`}
       class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition hover:border-neutral-600"
