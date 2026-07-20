@@ -174,7 +174,7 @@
         "source": "valve"
       }
     ],
-    "scrapedAt": "2026-07-20T14:24:07.625Z",
+    "scrapedAt": "2026-07-20T17:34:07.392Z",
     "release": "proton-11.0-1",
     "releaseDate": "2026-07-07T20:55:03Z",
     "etag": "W/\"ede1ede7595a7180522a8cea3b3ee3a65ab9411b284673051def764f2bb59725\""
@@ -618,7 +618,7 @@
         "source": "cachyos"
       }
     ],
-    "scrapedAt": "2026-07-20T14:24:07.625Z",
+    "scrapedAt": "2026-07-20T17:34:07.392Z",
     "release": "cachyos-11.0-20260702-slr",
     "releaseDate": "2026-07-12T13:17:12Z",
     "etag": "W/\"35b72a6af7928c3ecac9d9f0bcbc030ca5da28ba97486607cecfafd8d22ab917\""
@@ -672,7 +672,7 @@
         "source": "em"
       }
     ],
-    "scrapedAt": "2026-07-20T14:24:07.625Z",
+    "scrapedAt": "2026-07-20T17:34:07.392Z",
     "release": "EM-10.0-37-HDR",
     "releaseDate": "2026-04-11T18:58:28Z",
     "etag": "W/\"766bddc776911fbb0b8c305a8aa011eb850e0ac49fe056ef0c1f880e01efd5c6\""
@@ -786,7 +786,7 @@
         "source": "ge"
       }
     ],
-    "scrapedAt": "2026-07-20T14:24:07.625Z",
+    "scrapedAt": "2026-07-20T17:34:07.392Z",
     "release": "GE-Proton11-1",
     "releaseDate": "2026-06-24T02:06:49Z",
     "etag": "W/\"a19c57609ee7d7e0c1583f372cbb67fb127af0efab83c4f1c8ea89a44e54ad6a\""
@@ -954,7 +954,7 @@
         "source": "dwproton"
       }
     ],
-    "scrapedAt": "2026-07-20T14:24:07.625Z",
+    "scrapedAt": "2026-07-20T17:34:07.392Z",
     "release": "15.0.3",
     "releaseDate": "2026-07-15",
     "etag": "W/\"54362e4c92d26a054a7d5b2d88272143d2d54cff\"",
