@@ -20,7 +20,7 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
 
 <svelte:head><title>Proton Variants</title></svelte:head>
 
-<h2 class="mb-4 text-xl font-semibold">Compare selected…</h2>
+<p class="mb-4 text-sm text-neutral-600 dark:text-neutral-400">Click to view or compare the following…</p>
 
 <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
   {#each data.registry as ref (ref.id)}
