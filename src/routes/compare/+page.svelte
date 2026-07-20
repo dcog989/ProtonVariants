@@ -77,11 +77,15 @@ function optionFor(variantId: string, name: string) {
           </td>
           {#each visibleVariants as v (v.id)}
             {@const opt = optionFor(v.id, name)}
-            <td class="py-2 pr-4 text-neutral-700 dark:text-neutral-300">
+            <td
+              class="py-2 pr-4 text-neutral-700 dark:text-neutral-300"
+              class:text-amber-600={unique}
+              class:dark:text-amber-400={unique}
+            >
               {#if opt}
                 {opt.type}
               {:else}
-                <span class="text-neutral-400 dark:text-neutral-700">—</span>
+                <span class="text-neutral-400 dark:text-neutral-700" class:text-amber-600={unique} class:dark:text-amber-400={unique}>—</span>
               {/if}
             </td>
           {/each}
