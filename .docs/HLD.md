@@ -157,9 +157,22 @@ ProtonNexus/
 - Decompose files > 500 lines.
 - Fail fast on scrape/parse errors.
 
-## 10. Open Questions
+## 10. Resolved Decisions
 
-- Commit generated JSON to the repo, or treat as build artifact only?
-- Exact scheduling mechanism (GitHub Actions vs host cron).
-- Search/filter requirements (full-text vs simple substring).
-- Handling variants whose README has no parseable options table.
+- **Generated JSON:** `src/data/proton.json` is committed to the repo. The
+  scraper auto-commits it when any variant's upstream content changed.
+- **Scheduling mechanism:** GitHub Actions scheduled workflow
+  (`cron: "0 0 * * *"`), not host cron.
+- **Search/filter:** Per-variant page offers a free-text search box plus a
+  type dropdown (all/bool/string/int/enum/path/unknown) and a "has default"
+  toggle. Compare page highlights env vars unique to a single variant.
+- **Unparseable variants:** If a README yields no env vars, the variant still
+  renders with a "0 env vars" / empty-state message rather than failing the
+  build. The scrape fail-fasts only on fetch/parse *errors*, not on an empty
+  result.
+- **Smart scrape:** Conditional GET using upstream `ETag` / `Last-Modified`;
+  unchanged sources are skipped and the prior parsed result is reused.
+- **Tooling:** TypeScript 6, Biome 2.5 for lint/format, lefthook for local and
+  CI git hooks. CI runs `lefthook run pre-commit` (biome) and
+  `lefthook run pre-push` (build) instead of invoking bun scripts directly.
+- **Hosting:** GitHub Pages, base path `/ProtonNexus/`.
