@@ -5,14 +5,13 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "check": "biome check .",
+    "check": "biome check . && bun run typecheck",
     "clean": "rm -rf .context node_modules .vitest bun.lock",
     "dev": "vite dev",
     "format": "biome format --write .",
     "prepare": "svelte-kit sync",
     "preview": "vite preview",
     "scrape": "bun run scripts/scrape.ts",
-    "typecheck": "svelte-check --tsconfig ./tsconfig.json",
     "update": "bun update --latest"
   },
   "devDependencies": {
