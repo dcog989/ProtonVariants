@@ -1,6 +1,7 @@
 <script lang="ts">
 import "../app.css";
 import { base } from "$app/paths";
+import { version } from "../../package.json";
 
 let { children } = $props();
 </script>
@@ -18,6 +19,6 @@ let { children } = $props();
     {@render children()}
   </main>
   <footer class="border-t border-neutral-200 dark:border-neutral-800 py-4 text-center text-xs text-neutral-500">
-    Proton Variants v0.2.0 | <a href="https://github.com/dcog989/ProtonVariants" class="underline hover:text-neutral-700 dark:hover:text-neutral-300">GitHub</a>
+    Proton Variants v{version} | <a href="https://github.com/dcog989/ProtonVariants" class="underline hover:text-neutral-700 dark:hover:text-neutral-300">GitHub</a>
   </footer>
 </div>

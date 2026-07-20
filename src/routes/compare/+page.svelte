@@ -68,14 +68,30 @@ function optionFor(variantId: string, name: string) {
       {#each filteredNames as name (name)}
         {@const unique = data.uniqueNames.includes(name)}
         <tr class="border-b border-neutral-200 align-top dark:border-neutral-900">
-          <td
+           <td
             class="py-2 pr-4 font-mono"
             class:text-neutral-900={!unique}
             class:dark:text-neutral-100={!unique}
             class:text-amber-600={unique}
             class:dark:text-amber-400={unique}
           >
-            {name}
+            <span class="group relative inline-flex items-center gap-0.5">
+              {name}
+              {#if data.descriptions[name]}
+                <span
+                  class="cursor-help pl-1 text-neutral-400 hover:text-sky-500 dark:text-neutral-600 dark:hover:text-sky-400"
+                  aria-label={data.descriptions[name]}
+                  role="note"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4">
+                    <path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM7.25 5.25a.75.75 0 0 0 1.5 0 .75.75 0 0 0-1.5 0ZM8 7a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 7Z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <span
+                  class="pointer-events-none absolute left-0 top-full z-10 mt-1 hidden w-64 rounded bg-neutral-900 px-2 py-1 text-xs font-normal normal-case text-neutral-100 shadow-lg group-hover:block dark:bg-neutral-700"
+                >{data.descriptions[name]}</span>
+              {/if}
+            </span>
           </td>
           {#each visibleVariants as v (v.id)}
             {@const opt = optionFor(v.id, name)}

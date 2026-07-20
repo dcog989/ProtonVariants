@@ -12,7 +12,11 @@ const formatDate = (iso: string) => {
     : d.toLocaleDateString("en-GB", { year: "numeric", month: "short", day: "numeric" });
 };
 
-let selected = $state<Set<string>>(new Set(data.registry.map((r) => r.id)));
+function initialSelected() {
+  return new Set(data.registry.map((r) => r.id));
+}
+
+let selected = $state(initialSelected());
 
 const selectedIds = $derived([...selected]);
 const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selectedIds.join(",")}` : `${base}/compare`);
