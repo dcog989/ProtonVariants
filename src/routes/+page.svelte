@@ -2,25 +2,49 @@
 import { base } from "$app/paths";
 
 let { data } = $props();
+
+let selected = $state<Set<string>>(new Set(data.registry.map((r) => r.id)));
+
+const selectedIds = $derived([...selected]);
+const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selectedIds.join(",")}` : `${base}/compare`);
 </script>
 
 <svelte:head><title>Proton Variants</title></svelte:head>
 
-<h1 class="mb-2 text-2xl font-bold">Proton Variants</h1>
-<p class="mb-6 text-sm text-neutral-600 dark:text-neutral-400">
-  Runtime environment variables compiled from each variant's README. Refreshed daily.
-</p>
+<h2 class="mb-4 text-xl font-semibold">Compare selected…</h2>
 
 <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
   {#each data.registry as ref (ref.id)}
     {@const v = data.variants.find((x) => x.id === ref.id)}
-    <a
-      href={`${base}/variant/${ref.id}`}
-      class="block rounded-lg border border-neutral-200 bg-neutral-100 p-4 transition hover:border-neutral-400 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-600"
+    <div
+      class="flex items-start gap-3 rounded-lg border border-neutral-200 bg-neutral-100 p-4 dark:border-neutral-800 dark:bg-neutral-900"
     >
-      <h2 class="text-base font-semibold">{ref.displayName}</h2>
-      <p class="mt-1 text-xs text-neutral-500">{v ? `${v.options.length} env vars` : "pending scrape"}</p>
-      <p class="mt-2 truncate text-xs text-sky-400">{ref.repoUrl}</p>
-    </a>
+      <input
+        type="checkbox"
+        checked={selected.has(ref.id)}
+        onchange={(e) => {
+          const next = new Set(selected);
+          if (e.currentTarget.checked) next.add(ref.id);
+          else next.delete(ref.id);
+          selected = next;
+        }}
+        class="mt-1"
+        aria-label={`Select ${ref.displayName}`}
+      />
+      <a href={`${base}/variant/${ref.id}`} class="min-w-0 flex-1">
+        <h3 class="text-base font-semibold">{ref.displayName}</h3>
+        <p class="mt-1 text-xs text-neutral-500">{v ? `${v.options.length} env vars` : "pending scrape"}</p>
+        <p class="mt-2 truncate text-xs text-sky-400">{ref.repoUrl}</p>
+      </a>
+    </div>
   {/each}
+</div>
+
+<div class="mt-6">
+  <a
+    href={compareHref}
+    class="inline-block rounded bg-sky-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-sky-500"
+  >
+    Compare {selectedIds.length} selected
+  </a>
 </div>

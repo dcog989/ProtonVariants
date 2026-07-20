@@ -10,8 +10,6 @@ let { children } = $props();
     <nav class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
       <a href="{base}/" class="text-lg font-semibold tracking-tight">Proton Variants</a>
       <div class="flex gap-4 text-sm text-neutral-500 dark:text-neutral-400">
-        <a href="{base}/" class="hover:text-neutral-900 dark:hover:text-neutral-100">Variants</a>
-        <a href="{base}/compare" class="hover:text-neutral-900 dark:hover:text-neutral-100">Compare</a>
         <a href="{base}/about" class="hover:text-neutral-900 dark:hover:text-neutral-100">About</a>
       </div>
     </nav>
