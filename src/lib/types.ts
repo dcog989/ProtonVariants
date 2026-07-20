@@ -4,7 +4,6 @@ export interface RuntimeOption {
   name: string;
   description: string;
   type: OptionType;
-  default?: string;
   values?: string[];
   source: string;
 }

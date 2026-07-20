@@ -57,7 +57,7 @@ function optionFor(variantId: string, name: string) {
             {@const opt = optionFor(v.id, name)}
             <td class="py-2 pr-4 text-neutral-700 dark:text-neutral-300">
               {#if opt}
-                {opt.type}{opt.default ? ` · ${opt.default}` : ""}
+                {opt.type}
               {:else}
                 <span class="text-neutral-400 dark:text-neutral-700">—</span>
               {/if}

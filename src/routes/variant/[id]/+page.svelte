@@ -5,7 +5,6 @@ import type { OptionType } from "$lib/types";
 let { data } = $props();
 let query = $state("");
 let typeFilter = $state<OptionType | "all">("all");
-let hasDefault = $state(false);
 let uniqueOnly = $state(false);
 
 const types: Array<OptionType | "all"> = ["all", "bool", "string", "int", "enum", "path", "unknown"];
@@ -15,7 +14,6 @@ const typeLabel = (t: OptionType | "all") => (t === "unknown" ? "other" : t);
 const filtered = $derived(
   data.options.filter((o) => {
     if (typeFilter !== "all" && o.type !== typeFilter) return false;
-    if (hasDefault && !o.default) return false;
     if (uniqueOnly && !o.unique) return false;
     if (query && !`${o.name} ${o.description}`.toLowerCase().includes(query.toLowerCase())) return false;
     return true;
@@ -48,9 +46,6 @@ const filtered = $derived(
     {/each}
   </select>
   <label class="flex items-center gap-1.5 text-sm text-neutral-700 dark:text-neutral-300">
-    <input type="checkbox" bind:checked={hasDefault} /> has default
-  </label>
-  <label class="flex items-center gap-1.5 text-sm text-neutral-700 dark:text-neutral-300">
     <input type="checkbox" bind:checked={uniqueOnly} /> unique only
   </label>
 </div>
@@ -63,7 +58,6 @@ const filtered = $derived(
       <tr class="border-b border-neutral-200 text-left text-neutral-500 dark:border-neutral-800 dark:text-neutral-400">
         <th class="py-2 pr-4 font-medium">Name</th>
         <th class="py-2 pr-4 font-medium">Type</th>
-        <th class="py-2 pr-4 font-medium">Default</th>
         <th class="py-2 font-medium">Description</th>
       </tr>
     </thead>
@@ -77,7 +71,6 @@ const filtered = $derived(
             {/if}
           </td>
           <td class="py-2 pr-4 text-neutral-500 dark:text-neutral-400">{o.type}</td>
-          <td class="py-2 pr-4 font-mono text-neutral-700 dark:text-neutral-300">{o.default ?? "—"}</td>
           <td class="py-2 text-neutral-700 dark:text-neutral-300">{o.description}</td>
         </tr>
       {/each}

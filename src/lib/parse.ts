@@ -52,13 +52,11 @@ export function parseEnvVars(markdown: string, source: string): RuntimeOption[] 
     seen.add(name);
     const type = inferType(name, description);
     const values = type === "enum" ? extractValues(description) : undefined;
-    const def = extractDefault(description);
 
     options.push({
       name,
       description: description.trim(),
       type,
-      default: def,
       values,
       source,
     });
@@ -118,7 +116,3 @@ function stripMarkdown(text: string): string {
     .trim();
 }
 
-function extractDefault(description: string): string | undefined {
-  const match = description.match(/default(?:s to)?[:\s]+([`'"]?[\w./-]+['`"]?)/i);
-  return match?.[1]?.replace(/[`'"]/g, "");
-}
