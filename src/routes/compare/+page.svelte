@@ -13,7 +13,7 @@ const filteredNames = $derived(
 );
 
 function isUnique(name: string): boolean {
-  return (data.nameToVariants.get(name)?.length ?? 0) === 1;
+  return (data.nameToVariants.get(name) ?? 0) === 1;
 }
 function optionFor(variantId: string, name: string) {
   return variantById.get(variantId)?.options.find((o) => o.name === name);
