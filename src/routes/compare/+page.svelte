@@ -35,7 +35,7 @@ function optionFor(variantId: string, name: string) {
 
 <svelte:head><title>Compare — Proton Variants</title></svelte:head>
 
-<nav class="mb-2 text-2xl text-neutral-500 dark:text-neutral-400">
+<nav class="mb-4 text-2xl text-neutral-500 dark:text-neutral-400">
   <a href="{base}/" class="text-sky-400 hover:underline">All variants</a>
   <span class="px-2">→</span>
   <span class="font-bold text-neutral-900 dark:text-neutral-100">Compare</span>
