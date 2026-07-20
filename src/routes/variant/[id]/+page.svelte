@@ -1,4 +1,5 @@
 <script lang="ts">
+import { base } from "$app/paths";
 import type { OptionType } from "$lib/types";
 
 let { data } = $props();
@@ -29,7 +30,7 @@ const filtered = $derived(
 
 <svelte:head><title>{data.ref.displayName} — ProtonNexus</title></svelte:head>
 
-<a href="/" class="text-xs text-sky-400 hover:underline">← All variants</a>
+<a href="{base}/" class="text-xs text-sky-400 hover:underline">← All variants</a>
 <h1 class="mb-1 mt-2 text-2xl font-bold">{data.ref.displayName}</h1>
 <p class="mb-4 text-xs text-neutral-500">
   {data.options.length} env vars · scraped {data.variant?.scrapedAt ?? "n/a"}

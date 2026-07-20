@@ -1,4 +1,6 @@
 <script lang="ts">
+import { base } from "$app/paths";
+
 let { data } = $props();
 </script>
 
@@ -13,7 +15,7 @@ let { data } = $props();
   {#each data.registry as ref (ref.id)}
     {@const v = data.variants.find((x) => x.id === ref.id)}
     <a
-      href={`/variant/${ref.id}`}
+      href={`${base}/variant/${ref.id}`}
       class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition hover:border-neutral-600"
     >
       <h2 class="text-base font-semibold">{ref.displayName}</h2>

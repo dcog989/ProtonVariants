@@ -1,5 +1,6 @@
 <script lang="ts">
 import "../app.css";
+import { base } from "$app/paths";
 
 let { children } = $props();
 </script>
@@ -7,11 +8,11 @@ let { children } = $props();
 <div class="min-h-screen bg-neutral-950 text-neutral-100">
   <header class="border-b border-neutral-800">
     <nav class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-      <a href="/" class="text-lg font-semibold tracking-tight">ProtonNexus</a>
+      <a href="{base}/" class="text-lg font-semibold tracking-tight">ProtonNexus</a>
       <div class="flex gap-4 text-sm text-neutral-400">
-        <a href="/" class="hover:text-neutral-100">Variants</a>
-        <a href="/compare" class="hover:text-neutral-100">Compare</a>
-        <a href="/about" class="hover:text-neutral-100">About</a>
+        <a href="{base}/" class="hover:text-neutral-100">Variants</a>
+        <a href="{base}/compare" class="hover:text-neutral-100">Compare</a>
+        <a href="{base}/about" class="hover:text-neutral-100">About</a>
       </div>
     </nav>
   </header>

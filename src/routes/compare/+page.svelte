@@ -1,4 +1,6 @@
 <script lang="ts">
+import { base } from "$app/paths";
+
 let { data } = $props();
 
 const variantById = new Map(data.variants.map((v) => [v.id, v]));
@@ -17,7 +19,7 @@ function optionFor(variantId: string, name: string) {
 
 <svelte:head><title>Compare — ProtonNexus</title></svelte:head>
 
-<a href="/" class="text-xs text-sky-400 hover:underline">← All variants</a>
+<a href="{base}/" class="text-xs text-sky-400 hover:underline">← All variants</a>
 <h1 class="mb-1 mt-2 text-2xl font-bold">Compare Variants</h1>
 <p class="mb-4 text-sm text-neutral-400">
   All {data.allNames.length} environment variables across variants. Rows highlighted in

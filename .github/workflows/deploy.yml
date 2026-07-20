@@ -29,6 +29,8 @@ jobs:
       - name: Lint & format check (lefthook)
         run: bun lefthook run pre-commit
       - name: Build (lefthook)
+        env:
+          BASE_PATH: /ProtonNexus
         run: bun lefthook run pre-push
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
