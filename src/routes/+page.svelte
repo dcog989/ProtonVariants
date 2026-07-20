@@ -38,9 +38,10 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
         <h3 class="text-base font-semibold">{ref.displayName}</h3>
         {#if variantOf(ref.id)?.release}
           {@const vInfo = variantOf(ref.id)!}
-          <p class="mt-1 text-xs text-neutral-400">
-            {vInfo.release}{vInfo.releaseDate ? ` · ${vInfo.releaseDate}` : ""}
-          </p>
+          <p class="mt-1 text-xs text-neutral-400">{vInfo.release}</p>
+          {#if vInfo.releaseDate}
+            <p class="text-xs text-neutral-500">{vInfo.releaseDate}</p>
+          {/if}
         {/if}
         <p class="mt-1 text-xs text-neutral-500">{v ? `${v.options.length} env vars` : "pending scrape"}</p>
         <a
