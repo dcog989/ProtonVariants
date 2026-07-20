@@ -5,6 +5,13 @@ let { data } = $props();
 
 const variantOf = (id: string) => data.variants.find((x) => x.id === id);
 
+const formatDate = (iso: string) => {
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime())
+    ? iso
+    : d.toLocaleDateString("en-GB", { year: "numeric", month: "short", day: "numeric" });
+};
+
 let selected = $state<Set<string>>(new Set(data.registry.map((r) => r.id)));
 
 const selectedIds = $derived([...selected]);
@@ -40,7 +47,7 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
           {@const vInfo = variantOf(ref.id)!}
           <p class="mt-1 text-xs text-neutral-400">{vInfo.release}</p>
           {#if vInfo.releaseDate}
-            <p class="text-xs text-neutral-500">{vInfo.releaseDate}</p>
+            <p class="text-xs text-neutral-500">{formatDate(vInfo.releaseDate)}</p>
           {/if}
         {/if}
         <p class="mt-1 text-xs text-neutral-500">{v ? `${v.options.length} env vars` : "pending scrape"}</p>
