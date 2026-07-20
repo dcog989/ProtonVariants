@@ -7,7 +7,8 @@ const TYPE_HINTS: Array<[RegExp, OptionType]> = [
   [/enum|one of|comma[- ]separated list|list of/i, "enum"],
 ];
 
-const BOOL_NAME = /^(PROTON_)?(NO_|USE_|ENABLE_|DISABLE_|HIDE_|SET_|FORCE_|PREFER_|EMULATE_|ALLOW_|REQUIRE_)/;
+const BOOL_NAME =
+  /^(PROTON_)?(NO_|USE_|ENABLE_|DISABLE_|HIDE_|SET_|FORCE_|PREFER_|EMULATE_|ALLOW_|REQUIRE_|UPGRADE|RDNA3_|DLSS|NVAPI|OPTISCALER)/;
 
 function inferType(name: string, description: string): OptionType {
   const text = `${name} ${description}`;
@@ -16,6 +17,7 @@ function inferType(name: string, description: string): OptionType {
   }
   if (/set to `?(1|0|true|false)`?|=1\b|=0\b|when set|if set|if enabled/i.test(text)) return "bool";
   if (BOOL_NAME.test(name)) return "bool";
+  if (/^PROTON_/.test(name)) return "bool";
   return "unknown";
 }
 
@@ -44,8 +46,8 @@ export function parseEnvVars(markdown: string, source: string): RuntimeOption[] 
     if (!name || seen.has(name)) continue;
     if (!envRe.test(name)) continue;
 
-    const description = collectDescription(lines, i, line);
-    if (!description.trim()) continue;
+    const description = collectDescription(lines, i, line, name);
+    if (!name) continue;
 
     seen.add(name);
     const type = inferType(name, description);
@@ -86,14 +88,16 @@ function isTableRow(line: string): boolean {
   return line.trim().startsWith("|") && line.includes("|", 1);
 }
 
-function collectDescription(lines: string[], i: number, line: string): string {
+function collectDescription(lines: string[], i: number, line: string, name: string): string {
   if (isTableRow(line)) {
     const cells = line
       .split("|")
       .map((c) => c.trim())
       .filter(Boolean);
     const last = cells[cells.length - 1] ?? "";
-    return stripMarkdown(last);
+    const cleaned = stripMarkdown(last);
+    if (!cleaned || cleaned === name) return "";
+    return cleaned;
   }
 
   const parts: string[] = [];
