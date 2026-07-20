@@ -6,9 +6,138 @@
     "readmeUrl": "https://raw.githubusercontent.com/ValveSoftware/Proton/HEAD/README.md",
     "options": [
       {
+        "name": "HOST_LC_ALL",
+        "description": "Set value to a locale to override all other system locale settings for a game.  This variable should be used instead of LC_ALL.",
+        "type": "unknown",
+        "source": "valve"
+      },
+      {
         "name": "LICENSE",
         "description": "See the LICENSE files here, as well as the LICENSE, COPYING, etc files in each submodule and directory for details. If you distribute a built version of Proton to other users, you must adhere to the terms of these licenses.",
         "type": "path",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_CRASH_REPORT_DIR",
+        "description": "Write crash logs into this directory. Does not clean up old logs, so may eat all your disk space eventually.",
+        "type": "path",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_DISABLE_NVAPI",
+        "description": "Disable NVIDIA's NVAPI GPU support library.",
+        "type": "bool",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_DXVK_D3D8",
+        "description": "Use DXVK's d3d8.dll.",
+        "type": "unknown",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_FORCE_LARGE_ADDRESS_AWARE",
+        "description": "Force Wine to enable the LARGE_ADDRESS_AWARE flag for all executables. Enabled by default.",
+        "type": "bool",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_HEAP_DELAY_FREE",
+        "description": "Delay freeing some memory, to work around application use-after-free bugs.",
+        "type": "unknown",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_HIDE_NVIDIA_GPU",
+        "description": "Force Nvidia GPUs to always be reported as AMD GPUs. Some games require this if they depend on Windows-only Nvidia driver functionality. See also DXVK's nvapiHack config, which only affects reporting from Direct3D.",
+        "type": "unknown",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_LOG",
+        "description": "Convenience method for dumping a useful debug log to $PROTON_LOG_DIR/steam-$APPID.log. Set to 1 to enable default logging, or set to a string to be appended to the default WINEDEBUG channels.",
+        "type": "bool",
+        "default": "logging",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_LOG_DIR",
+        "description": "Output log files into the directory specified. Defaults to your home directory.",
+        "type": "path",
+        "default": "your",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_NO_D3D10",
+        "description": "Disable d3d10.dll and dxgi.dll, for d3d10 games which can fall back to and run better with d3d9.",
+        "type": "bool",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_NO_D3D11",
+        "description": "Disable d3d11.dll, for d3d11 games which can fall back to and run better with d3d9.",
+        "type": "bool",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_NO_ESYNC",
+        "description": "Note: Obsoleted in Proton 11.0. In older versions, do not use eventfd-based in-process synchronization primitives.",
+        "type": "unknown",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_NO_FSYNC",
+        "description": "Do not use futex-based in-process synchronization primitives. (Automatically disabled on systems with no FUTEX_WAIT_MULTIPLE support.)",
+        "type": "bool",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_NO_NTSYNC",
+        "description": "Do not use ntsync.",
+        "type": "unknown",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_OLD_GL_STRING",
+        "description": "Set some driver overrides to limit the length of the GL extension string, for old games that crash on very long extension strings.",
+        "type": "unknown",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_SET_GAME_DRIVE",
+        "description": "Create an S: drive which points to the Steam Library which contains the game.",
+        "type": "unknown",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_USE_D9VK",
+        "description": "Note: Obsoleted in Proton 5.0. In older versions, use Vulkan-based DXVK instead of OpenGL-based wined3d for d3d9.",
+        "type": "unknown",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_USE_SECCOMP",
+        "description": "Note: Obsoleted in Proton 5.13. In older versions, enable seccomp-bpf filter to emulate native syscalls, required for some DRM protections to work.",
+        "type": "bool",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_USE_WINED3D",
+        "description": "Use OpenGL-based wined3d instead of Vulkan-based DXVK for d3d11, d3d10, and d3d9.",
+        "type": "unknown",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_USE_XALIA",
+        "description": "Enable Xalia, a program that can add a gamepad UI for some keyboard/mouse interfaces, or set to 0 to disable. The default is to enable it dynamically based on window contents.",
+        "type": "bool",
+        "default": "is",
+        "source": "valve"
+      },
+      {
+        "name": "PROTON_WAIT_ATTACH",
+        "description": "Wait for a debugger to attach to steam.exe before launching the game process. To attach to the game process at startup, debuggers should be set to follow child processes.",
+        "type": "unknown",
         "source": "valve"
       },
       {
@@ -16,9 +145,39 @@
         "description": "some options for known games using the STEAM_COMPAT_CONFIG variable. You can override these options using the environment variables described below. The best way to set these environment overrides for all games is by renaming user_settings.sample.py to user_settings.py and modifying it appropriately. This file is located in the Proton installation directory in your Steam library",
         "type": "path",
         "source": "valve"
+      },
+      {
+        "name": "VKD3D_CONFIG",
+        "description": "Put force_bindless_texel_buffer into VKD3D_CONFIG.",
+        "type": "unknown",
+        "source": "valve"
+      },
+      {
+        "name": "WINE_DISABLE_VULKAN_OPWR",
+        "description": "Enable hack to disable Vulkan other process window rendering which sometimes causes issues on Wayland due to blit being one frame behind.",
+        "type": "bool",
+        "source": "valve"
+      },
+      {
+        "name": "WINE_DO_NOT_CREATE_DXGI_DEVICE_MANAGER",
+        "description": "Enable hack to work around video issues in some games due to incomplete IMFDXGIDeviceManager support.",
+        "type": "bool",
+        "source": "valve"
+      },
+      {
+        "name": "WINE_FULLSCREEN_INTEGER_SCALING",
+        "description": "Enable integer scaling mode, to give sharp pixels when upscaling.",
+        "type": "bool",
+        "source": "valve"
+      },
+      {
+        "name": "WINE_USE_KWIN_HACKS",
+        "description": "Enable KDE-specific windowing hacks that may improve experience with KDE older than 6.4 on Wayland and KDE older than 6.6 on X11.",
+        "type": "bool",
+        "source": "valve"
       }
     ],
-    "scrapedAt": "2026-07-20T11:20:24.093Z",
+    "scrapedAt": "2026-07-20T11:21:11.336Z",
     "etag": "W/\"ede1ede7595a7180522a8cea3b3ee3a65ab9411b284673051def764f2bb59725\""
   },
   {
@@ -28,10 +187,277 @@
     "readmeUrl": "https://raw.githubusercontent.com/CachyOS/proton-cachyos/HEAD/README.md",
     "options": [
       {
+        "name": "DXVK_HDR",
+        "description": "Enables HDR when set to DXVK_HDR=1, optionally combined with ENABLE_HDR_WSI=1 if required, on Nvidia driver versions older than 595.x.x.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "DXVK_NO_HDR",
+        "description": "The opposite of DXVK_HDR=1, forcefully disables HDR if it is automatically enabled. NOTE: Presently Gnome does not support enough color management features to expose HDR automatically.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "DXVK_NVAPI_VKREFLEX",
+        "description": "Enables DXVK-NVAPI's Vulkan Reflex layer to support Reflex in Vulkan games. It's meant to enable Reflex in games such as Portal RTX, Path of Exile 1 and 2 and Doom TDA, etc.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "GST_GL_WINDOW",
+        "description": "GST_GL_WINDOW",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "HOST_LC_ALL",
+        "description": "Set value to a locale to override all other system locale settings for a game.  This variable should be used instead of LC_ALL.",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "LOW_LATENCY_LAYER",
+        "description": "Enables low_latency_layer, for more information and and configuration options refer to the projects README.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
         "name": "PIPEWIRE_LATENCY",
         "description": "Setting PIPEWIRE_LATENCY does nothing here, use the quantum above. * Choose output device - games follow your PipeWire default sink. Change it in your sound settings, pavucontrol (Playback tab), or wpctl set-default . The game shows up named after itself or as winepipewire. * You can make sure the game uses winepipewire.drv either through pw-top or by looking at the audio device names in the game itself which should include (Pipewire) in their name.",
         "type": "unknown",
         "default": "sink.",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_CRASH_REPORT_DIR",
+        "description": "Write crash logs into this directory. Does not clean up old logs, so may eat all your disk space eventually.",
+        "type": "path",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_D7VK_DDRAW",
+        "description": "Use ddraw.dll from the D7VK project for DirectX 7-or-lower games.",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_DISABLE_NVAPI",
+        "description": "Disable NVIDIA's NVAPI GPU support library.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_DISCORD_BRIDGE",
+        "description": "Enables rpc-bridge to allow games running in Proton to set Discord's Rich Presence.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_DLSS_INDICATOR",
+        "description": "Enable the DLSS overlay at the bottom left portion of the screen.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_DLSS_UPGRADE",
+        "description": "g).dll DLLs. Version to download can be specified by supplying it as a value, like so PROTON_DLSS_UPGRADE=\"310.2\", instead of 1, to download version 310.2.1.0. This option also sets DXVK_NVAPI_DRS_SETTINGS` to use the latest preset. If you provide your own configuration through this environment variable, your configuration will override the defaults.",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_DXVK_D3D8",
+        "description": "Use DXVK's d3d8.dll.",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_DXVK_LOWLATENCY",
+        "description": "Enable the alternative dxvk-low-latency fork, which enhances the original dxvk with low-latency frame pacing capabilities to improve game responsiveness and input lag. It also improves latency stability over time, usually resulting in a more accurate playback speed of the generated video. Refer to the project's documentation for in-depth configuration.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_DXVK_SAREK",
+        "description": "Use the dxvk-sarek fork as DXVK replacement for older GPUs that don't properly support Vulkan 1.3 (supported Vulkan 1.1.x to 1.2.x). It is using the async branch, so it SHOULD NOT to be used with games using anti-cheat or multiplayer games in general. You have been warned.",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_ENABLE_HDR",
+        "description": "DXVK_HDR",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_ENABLE_MEDIACONV",
+        "description": "For debugging purposes, do not use.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_ENABLE_WAYLAND",
+        "description": "Enable Wayland support. winewayland is experimental and work-in-progress, expect issues. When reporting issues ALWAYS mention if you using this environment variable, and make sure the issue still happens without it. Valve's Protons do not include winewayland.drv, they always use winex11.drv. For more information refer to this section",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_FFX3_UPGRADE",
+        "description": "PROTON_FFX3_UPGRADE",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_FFX4_UPGRADE",
+        "description": "PROTON_FFX4_UPGRADE",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_FORCE_LARGE_ADDRESS_AWARE",
+        "description": "Force Wine to enable the LARGE_ADDRESS_AWARE flag for all executables. Enabled by default.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_FSR4_INDICATOR",
+        "description": "Enable the FSR4 watermark at the top left portion of the screen. This is a shorthand option for setting FSR_WATERMARK=1 and FSR_FG_WATERMARK=1.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_FSR4_UPGRADE",
+        "description": "Automatically download amdxcffx64.dll and upgrade games with FSR 3.1 to use FSR 4. Version to download can be specified by supplying it as a value, like so PROTON_FSR4_UPGRADE=\"4.0.1\", instead of 1. Downloads the latest available and known-good version of the required DLL by default.",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_GST_VIDEO_ORIENTATION",
+        "description": "Change the orientation (rotation) of videos rendered using gstreamer. The accepted values are the same as gstreamer's videoflip plugin",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_HEAP_DELAY_FREE",
+        "description": "Delay freeing some memory, to work around application use-after-free bugs.",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_HIDE_NVIDIA_GPU",
+        "description": "Force Nvidia GPUs to always be reported as AMD GPUs. Some games require this if they depend on Windows-only Nvidia driver functionality. See also DXVK's nvapiHack config, which only affects reporting from Direct3D.",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_LOCAL_SHADER_CACHE",
+        "description": "Enable per-game shader cache even if \"Shader Pre-caching\" is disabled. Any configuration set by this option can be overriden, i.e. if one of the environment variables is already set, the user-set value will be used. The default configuration is set up to mimic Steam's \"Shader Pre-Caching\", with shaders being cached under /shadercache/ for each game.",
+        "type": "bool",
+        "default": "configuration",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_LOG",
+        "description": "Convenience method for dumping a useful debug log to $PROTON_LOG_DIR/steam-$APPID.log. Set to 1 to enable default logging, or set to a string to be appended to the default WINEDEBUG channels.",
+        "type": "bool",
+        "default": "logging",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_LOG_DIR",
+        "description": "Output log files into the directory specified. Defaults to your home directory.",
+        "type": "path",
+        "default": "your",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_MEDIA_FORCE_GST",
+        "description": "Fixes video/audio playback in cutscenes in some cases.",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_MEDIA_USE_GST",
+        "description": "Fixes video/audio playback in cutscenes in some cases.",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_MLFG_UPGRADE",
+        "description": "Enables the use of MLFG with FSR4 >= 4.0.3.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_NO_D3D10",
+        "description": "Disable d3d10.dll and dxgi.dll, for d3d10 games which can fall back to and run better with d3d9.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_NO_D3D11",
+        "description": "Disable d3d11.dll, for d3d11 games which can fall back to and run better with d3d9.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_NO_FSYNC",
+        "description": "Do not use futex-based in-process synchronization primitives. (Automatically disabled on systems with no FUTEX_WAIT_MULTIPLE support.)",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_NO_STEAMINPUT",
+        "description": "PROTON_NO_STEAMINPUT",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_NO_WM_DECORATION",
+        "description": "Disable window decorations by the the window manager, use wine's own window decorations.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_NVIDIA_LIBS",
+        "description": "Enable alternative implementations of Nvidia libraries missing from Proton. Allows things like hardware-accelerated PhysX to function and should be use only when needed. This option enables all of nvcuda, nvenc, nvml and nvoptix. These are incompatible with wow64 and thus disabled when PROTON_USE_WOW64=1 is set.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_NVIDIA_LIBS_NO_32BIT",
+        "description": "Use with the previous option, to enable only the 64bit nvidia libraries. Useful if you are using RTX series 4000 or 5000 GPUs and you had bad performance or crashes when enabling these with 32bit games.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_NVIDIA_NVCUDA",
+        "description": "Enable alternative nvcuda.dll from nvidia-libs only.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_NVIDIA_NVENC",
+        "description": "Enable alternative nvcencodeapi(64).dll from nvidia-libs only.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_NVIDIA_NVML",
+        "description": "Enable alternative nvml.dll from nvidia-libs only. This option is enabled by default.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_NVIDIA_NVOPTIX",
+        "description": "Enable alternative nvoptix.dll from nvidia-libs only.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_OLD_GL_STRING",
+        "description": "Set some driver overrides to limit the length of the GL extension string, for old games that crash on very long extension strings.",
+        "type": "unknown",
         "source": "cachyos"
       },
       {
@@ -48,20 +474,161 @@
         "source": "cachyos"
       },
       {
+        "name": "PROTON_PREFER_SDL",
+        "description": "Uses SDL input instead of HIDRAW/Steam Input",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_SET_GAME_DRIVE",
+        "description": "Create an S: drive which points to the Steam Library which contains the game.",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_USE_D9VK",
+        "description": "Note: Obsoleted in Proton 5.0. In older versions, use Vulkan-based DXVK instead of OpenGL-based wined3d for d3d9.",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_USE_OPTISCALER",
+        "description": "Enables automatic OptiScaler injection. For more information refer to this section",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_USE_PIPEWIRE",
+        "description": "Enable the winepipewire.drv audio driver. This audio driver is enabled by default and can be disabled with PROTON_USE_PIPEWIRE=0. For more information and further configuration refer to this section",
+        "type": "bool",
+        "default": "and",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_USE_SDL",
+        "description": "Alias of PROTON_PREFER_SDL",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_USE_SECCOMP",
+        "description": "Note: Obsoleted in Proton 5.13. In older versions, enable seccomp-bpf filter to emulate native syscalls, required for some DRM protections to work.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_USE_WAYLAND",
+        "description": "Alias of PROTON_ENABLE_WAYLAND",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_USE_WINED3D",
+        "description": "Use OpenGL-based wined3d instead of Vulkan-based DXVK for d3d11, d3d10, and d3d9.",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_USE_XALIA",
+        "description": "Enable Xalia, a program that can add a gamepad UI for some keyboard/mouse interfaces, or set to 0 to disable. The default is to enable it dynamically based on window contents.",
+        "type": "bool",
+        "default": "is",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_VKD3D_HEAP",
+        "description": "N/A",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_VKREFLEX",
+        "description": "Enables DXVK-NVAPI's Vulkan Reflex layer to support Reflex in Vulkan games. It's meant to enable Reflex in games such as Portal RTX, Path of Exile 1 and 2 and Doom TDA, etc.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_WAIT_ATTACH",
+        "description": "Wait for a debugger to attach to steam.exe before launching the game process. To attach to the game process at startup, debuggers should be set to follow child processes.",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
+        "name": "PROTON_XESS_UPGRADE",
+        "description": "PROTON_XESS_UPGRADE",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
         "name": "STEAM_COMPAT_CONFIG",
         "description": "some options for known games using the STEAM_COMPAT_CONFIG variable. You can override these options using the environment variables described below. The best way to set these environment overrides for all games is by renaming user_settings.sample.py to user_settings.py and modifying it appropriately. This file is located in the Proton installation directory in your Steam library",
         "type": "path",
         "source": "cachyos"
       },
       {
+        "name": "VKD3D_CONFIG",
+        "description": "Put force_bindless_texel_buffer into VKD3D_CONFIG.",
+        "type": "unknown",
+        "source": "cachyos"
+      },
+      {
         "name": "WINE_AUDIO_DRIVER",
-        "description": "* You can also use WINE_AUDIO_DRIVER to set the list of audio drivers for wine to choose from. The default list is pipewire,pulse,alsa. For example WINE_AUDIO_DRIVER=pulse will use winepulse.drv exclusively. * When reporting issues with winepipewire.drv remember to use PROTON_LOG=warn+pipewire,warn+mmdevapi %command% to create meaningful logs. Make sure to leep the logging level at warn+ as shown. Full tracing (+pipewire,+mmdevapi) floods the log and perturbs audio timing enough to cause crackling, so only use it for a short capture and remove it for normal play.",
+        "description": "Comma-separated list of audio drivers for wine to choose from. The default list is pipewire,pulse,alsa. For example WINE_AUDIO_DRIVER=pulse will use winepulse.drv exclusively.",
         "type": "enum",
         "default": "list",
         "source": "cachyos"
+      },
+      {
+        "name": "WINE_BLOCK_HOSTS",
+        "description": "Provides a list of hosts for Wine to not connect to. The list can be either comma (,) or semicolon (;) separated, i.e WINE_BLOCK_HOSTS=host1.org,host2.net. The maximum number of hosts is 16 and the maximum length of each host is 256 characters.",
+        "type": "int",
+        "source": "cachyos"
+      },
+      {
+        "name": "WINE_DISABLE_VULKAN_OPWR",
+        "description": "Enable hack to disable Vulkan other process window rendering which sometimes causes issues on Wayland due to blit being one frame behind.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "WINE_DO_NOT_CREATE_DXGI_DEVICE_MANAGER",
+        "description": "Enable hack to work around video issues in some games due to incomplete IMFDXGIDeviceManager support.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "WINE_FULLSCREEN_INTEGER_SCALING",
+        "description": "Enable integer scaling mode, to give sharp pixels when upscaling.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "WINE_USE_KWIN_HACKS",
+        "description": "Enable KDE-specific windowing hacks that may improve experience with KDE older than 6.4 on Wayland and KDE older than 6.6 on X11.",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "WINEALSA_CHANNELS",
+        "description": "Allows to select more than two channels with the winealsa driver as well as force disable spatial audio in games. Can be useful with surround setups or when the sounds come out wrong positionally (like dialogue coming out only from the left speaker). Possible values is the number of speakers, such as 2 (to disable spatial audio), such as 4 (2 front, 2 rear), 6 (5.1) or 8 (7.1).",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "WINEALSA_SPATIAL",
+        "description": "Properly downmixes spatial with winealsa and includes the height channels. Use 1 to enable, 0 to disable (default). Recommended only if there are spatial audio errors with the WINEALSA_CHANNELS variable",
+        "type": "bool",
+        "source": "cachyos"
+      },
+      {
+        "name": "WINEPULSE_FAST_POLLING",
+        "description": "Can help eliminate crackling with the default audio driver. Use 1 to enable, 0 to disable (default). Can cause rare crackling in God of War Ragnarok with the power of two quants (e.g. 512/768/1024)",
+        "type": "bool",
+        "default": "audio",
+        "source": "cachyos"
       }
     ],
-    "scrapedAt": "2026-07-20T11:20:24.093Z",
+    "scrapedAt": "2026-07-20T11:21:11.336Z",
     "etag": "W/\"35b72a6af7928c3ecac9d9f0bcbc030ca5da28ba97486607cecfafd8d22ab917\""
   },
   {
@@ -69,8 +636,51 @@
     "displayName": "Proton EM",
     "repoUrl": "https://github.com/Etaash-mathamsetty/Proton",
     "readmeUrl": "https://raw.githubusercontent.com/Etaash-mathamsetty/Proton/HEAD/README.md",
-    "options": [],
-    "scrapedAt": "2026-07-20T11:20:24.093Z",
+    "options": [
+      {
+        "name": "FSR_WATERMARK",
+        "description": "Enables watermarks for FSR Upscaling and FG. FG watermark is incorrect on 4.1.1 (reports MLFG even when FP8 is not supported). Upscaling watermark works correctly. You can use this to determine which FSR3/4 type you are using (I8 or FP8)",
+        "type": "bool",
+        "source": "etaash"
+      },
+      {
+        "name": "FSR4_UPGRADE",
+        "description": "Upgrade FSR3/4 to newer FSR4 (FP8 or I8) using AMD's FSR 4.1.1 amdxcffx64.dll taken from Proton Experimental. This option is not needed on RDNA2-4 discrete GPUs",
+        "type": "unknown",
+        "source": "etaash"
+      },
+      {
+        "name": "MLFG_UPGRADE",
+        "description": "Enables FSR4 MLFG upgrade to use redstone frame generation. Can be used in tandom with FSR4-I8 on RDNA3 using DXIL_SPIRV_CONFIG=wmma_rdna3_workaround.",
+        "type": "bool",
+        "source": "etaash"
+      },
+      {
+        "name": "PROTON_EMULATE_STEAMINPUT",
+        "description": "Emulate Steam Input hooks with SDL input. This does not emulate the ISteamInput interface used by a handful of games on Steam (https://partner.steamgames.com/doc/api/isteaminput). Emulation for that interface is beyond my scope, since it would just be easier to hack steam overlay to make it work on wayland native apps.",
+        "type": "unknown",
+        "source": "etaash"
+      },
+      {
+        "name": "PROTON_ENABLE_WAYLAND",
+        "description": "Enables the winewayland driver",
+        "type": "bool",
+        "source": "etaash"
+      },
+      {
+        "name": "PROTON_USE_SDL",
+        "description": "Uses SDL2/3 for gamepad input instead of steam input",
+        "type": "unknown",
+        "source": "etaash"
+      },
+      {
+        "name": "WAYLANDDRV_PRIMARY_MONITOR",
+        "description": "Tell the wayland driver what the primary monitor name is (Example: eDP-1). This is a workaround for a missing Wayland Protocol.",
+        "type": "unknown",
+        "source": "etaash"
+      }
+    ],
+    "scrapedAt": "2026-07-20T11:21:11.336Z",
     "etag": "W/\"766bddc776911fbb0b8c305a8aa011eb850e0ac49fe056ef0c1f880e01efd5c6\""
   },
   {
@@ -78,8 +688,111 @@
     "displayName": "Proton GE",
     "repoUrl": "https://github.com/GloriousEggroll/proton-ge-custom",
     "readmeUrl": "https://raw.githubusercontent.com/GloriousEggroll/proton-ge-custom/HEAD/README.md",
-    "options": [],
-    "scrapedAt": "2026-07-20T11:20:24.093Z",
+    "options": [
+      {
+        "name": "FUTEX_WAIT_MULTIPLE",
+        "description": "Do not use futex-based in-process synchronization primitives. (Automatically disabled on systems with no FUTEX_WAIT_MULTIPLE support.)",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "LC_ALL",
+        "description": "Set value to a locale to override all other system locale settings for a game.  This variable should be used instead of LC_ALL.",
+        "type": "unknown",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_DLSS_INDICATOR",
+        "description": "Enable the DLSS overlay at the bottom left portion of the screen. This is exactly the same as FSR4_WATERMARK=1",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_DLSS_UPGRADE",
+        "description": "g).dll DLLs. Version to download can be specified by supplying it as a value, like so PROTON_DLSS_UPGRADE=\"310.2\", instead of 1, to download version 310.2.1.0. This option also sets DXVK_NVAPI_DRS_SETTINGS` to use the latest preset. If you provide your own config for it through this environment variable, your configuration is going to be applied..",
+        "type": "unknown",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_ENABLE_MEDIACONV",
+        "description": "Enable media converter for winegstreamer. This is not needed for winedmo, since the mediaconverter implementation of the codecs doesn't override the underlying implementation.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_FSR3_UPGRADE",
+        "description": "PROTON_FSR3_UPGRADE",
+        "type": "unknown",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_FSR4_INDICATOR",
+        "description": "Enable the FSR4 watermark at the top left portion of the screen.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_FSR4_RDNA3_UPGRADE",
+        "description": "Identical to PROTON_FSR4_UPGRADE but for RDNA3 GPUs. Enables some required compatibility options and downloads version 4.0.0 of the DLL by default.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_FSR4_UPGRADE",
+        "description": "Automatically download amdxcffx64.dll and upgrade games with FSR 3.1 to use FSR 4. Version to download can be specified by supplying it as a value, like so PROTON_FSR4_UPGRADE=\"4.0.1\", instead of 1. Downloads version 4.0.2 of the required DLL by default. This option also disables AMD Anti-Lag 2 currently due to various issues.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_USE_SDL",
+        "description": "Uses SDL input instead of HIDRAW/Steam Input.",
+        "type": "unknown",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_USE_WAYLAND",
+        "description": "Enables the Wayland driver.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_USE_WINED3D11",
+        "description": "Use OpenGL-based wined3d instead of Vulkan-based DXVK for d3d11 and d3d10. This used to be called PROTON_USE_WINED3D11, which is now an alias for this same option.",
+        "type": "unknown",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_USE_WOW64",
+        "description": "Enables wow64.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_XESS_UPGRADE",
+        "description": "PROTON_XESS_UPGRADE",
+        "type": "unknown",
+        "source": "ge"
+      },
+      {
+        "name": "WAYLANDDRV_PRIMARY_MONITOR",
+        "description": "Specify primary monitor where the value is something like eDP-1. Requires the Wayland driver.",
+        "type": "unknown",
+        "source": "ge"
+      },
+      {
+        "name": "WAYLANDDRV_RAWINPUT",
+        "description": "A value of 0 disables unaccelerated input and uses accelerated input. Any positive real number (like 0.5) adjusts the sensitivity of rawinput. Requires the Wayland driver.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "WINE_FULLSCREEN_FSR_STRENGTH",
+        "description": "Enable AMD FidelityFX Super Resolution (FSR), use in conjunction with WINE_FULLSCREEN_FSR_STRENGTH. Only works in Vulkan games (DXVK and VKD3D-Proton included).",
+        "type": "bool",
+        "source": "ge"
+      }
+    ],
+    "scrapedAt": "2026-07-20T11:21:11.336Z",
     "etag": "W/\"a19c57609ee7d7e0c1583f372cbb67fb127af0efab83c4f1c8ea89a44e54ad6a\""
   },
   {
@@ -89,9 +802,132 @@
     "readmeUrl": "https://dawn.wine/dawn-winery/dwproton/raw/branch/main/README.md",
     "options": [
       {
+        "name": "HOST_LC_ALL",
+        "description": "Set value to a locale to override all other system locale settings for a game.  This variable should be used instead of LC_ALL.",
+        "type": "unknown",
+        "source": "dwproton"
+      },
+      {
         "name": "LICENSE",
         "description": "See the LICENSE files here, as well as the LICENSE, COPYING, etc files in each submodule and directory for details. If you distribute a built version of Proton to other users, you must adhere to the terms of these licenses.",
         "type": "path",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_CRASH_REPORT_DIR",
+        "description": "Write crash logs into this directory. Does not clean up old logs, so may eat all your disk space eventually.",
+        "type": "path",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_DISABLE_NVAPI",
+        "description": "Disable NVIDIA's NVAPI GPU support library.",
+        "type": "bool",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_DXVK_D3D8",
+        "description": "Use DXVK's d3d8.dll.",
+        "type": "unknown",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_FORCE_LARGE_ADDRESS_AWARE",
+        "description": "Force Wine to enable the LARGE_ADDRESS_AWARE flag for all executables. Enabled by default.",
+        "type": "bool",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_HEAP_DELAY_FREE",
+        "description": "Delay freeing some memory, to work around application use-after-free bugs.",
+        "type": "unknown",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_HIDE_NVIDIA_GPU",
+        "description": "Force Nvidia GPUs to always be reported as AMD GPUs. Some games require this if they depend on Windows-only Nvidia driver functionality. See also DXVK's nvapiHack config, which only affects reporting from Direct3D.",
+        "type": "unknown",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_LOG",
+        "description": "Convenience method for dumping a useful debug log to $PROTON_LOG_DIR/steam-$APPID.log. Set to 1 to enable default logging, or set to a string to be appended to the default WINEDEBUG channels.",
+        "type": "bool",
+        "default": "logging",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_LOG_DIR",
+        "description": "Output log files into the directory specified. Defaults to your home directory.",
+        "type": "path",
+        "default": "your",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_NO_D3D10",
+        "description": "Disable d3d10.dll and dxgi.dll, for d3d10 games which can fall back to and run better with d3d9.",
+        "type": "bool",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_NO_D3D11",
+        "description": "Disable d3d11.dll, for d3d11 games which can fall back to and run better with d3d9.",
+        "type": "bool",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_NO_ESYNC",
+        "description": "Do not use eventfd-based in-process synchronization primitives.",
+        "type": "unknown",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_NO_FSYNC",
+        "description": "Do not use futex-based in-process synchronization primitives. (Automatically disabled on systems with no FUTEX_WAIT_MULTIPLE support.)",
+        "type": "bool",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_OLD_GL_STRING",
+        "description": "Set some driver overrides to limit the length of the GL extension string, for old games that crash on very long extension strings.",
+        "type": "unknown",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_SET_GAME_DRIVE",
+        "description": "Create an S: drive which points to the Steam Library which contains the game.",
+        "type": "unknown",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_USE_D9VK",
+        "description": "Note: Obsoleted in Proton 5.0. In older versions, use Vulkan-based DXVK instead of OpenGL-based wined3d for d3d9.",
+        "type": "unknown",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_USE_SECCOMP",
+        "description": "Note: Obsoleted in Proton 5.13. In older versions, enable seccomp-bpf filter to emulate native syscalls, required for some DRM protections to work.",
+        "type": "bool",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_USE_WINED3D",
+        "description": "Use OpenGL-based wined3d instead of Vulkan-based DXVK for d3d11, d3d10, and d3d9.",
+        "type": "unknown",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_USE_XALIA",
+        "description": "Enable Xalia, a program that can add a gamepad UI for some keyboard/mouse interfaces, or set to 0 to disable. The default is to enable it dynamically based on window contents.",
+        "type": "bool",
+        "default": "is",
+        "source": "dwproton"
+      },
+      {
+        "name": "PROTON_WAIT_ATTACH",
+        "description": "Wait for a debugger to attach to steam.exe before launching the game process. To attach to the game process at startup, debuggers should be set to follow child processes.",
+        "type": "unknown",
         "source": "dwproton"
       },
       {
@@ -99,9 +935,33 @@
         "description": "some options for known games using the STEAM_COMPAT_CONFIG variable. You can override these options using the environment variables described below. The best way to set these environment overrides for all games is by renaming user_settings.sample.py to user_settings.py and modifying it appropriately. This file is located in the Proton installation directory in your Steam library",
         "type": "path",
         "source": "dwproton"
+      },
+      {
+        "name": "VKD3D_CONFIG",
+        "description": "Put force_bindless_texel_buffer into VKD3D_CONFIG.",
+        "type": "unknown",
+        "source": "dwproton"
+      },
+      {
+        "name": "WINE_DISABLE_VULKAN_OPWR",
+        "description": "Enable hack to disable Vulkan other process window rendering which sometimes causes issues on Wayland due to blit being one frame behind.",
+        "type": "bool",
+        "source": "dwproton"
+      },
+      {
+        "name": "WINE_DO_NOT_CREATE_DXGI_DEVICE_MANAGER",
+        "description": "Enable hack to work around video issues in some games due to incomplete IMFDXGIDeviceManager support.",
+        "type": "bool",
+        "source": "dwproton"
+      },
+      {
+        "name": "WINE_FULLSCREEN_INTEGER_SCALING",
+        "description": "Enable integer scaling mode, to give sharp pixels when upscaling.",
+        "type": "bool",
+        "source": "dwproton"
       }
     ],
-    "scrapedAt": "2026-07-20T11:20:24.093Z",
+    "scrapedAt": "2026-07-20T11:21:11.336Z",
     "etag": "W/\"54362e4c92d26a054a7d5b2d88272143d2d54cff\"",
     "lastModified": "Wed, 15 Jul 2026 17:03:37 GMT"
   }
