@@ -14,7 +14,7 @@ export const VARIANTS: VariantRef[] = [
     readmeUrl: "https://raw.githubusercontent.com/CachyOS/proton-cachyos/HEAD/README.md",
   },
   {
-    id: "etaash",
+    id: "em",
     displayName: "Proton EM",
     repoUrl: "https://github.com/Etaash-mathamsetty/Proton",
     readmeUrl: "https://raw.githubusercontent.com/Etaash-mathamsetty/Proton/HEAD/README.md",

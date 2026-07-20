@@ -632,7 +632,7 @@
     "etag": "W/\"35b72a6af7928c3ecac9d9f0bcbc030ca5da28ba97486607cecfafd8d22ab917\""
   },
   {
-    "id": "etaash",
+    "id": "em",
     "displayName": "Proton EM",
     "repoUrl": "https://github.com/Etaash-mathamsetty/Proton",
     "readmeUrl": "https://raw.githubusercontent.com/Etaash-mathamsetty/Proton/HEAD/README.md",
@@ -641,43 +641,43 @@
         "name": "FSR_WATERMARK",
         "description": "Enables watermarks for FSR Upscaling and FG. FG watermark is incorrect on 4.1.1 (reports MLFG even when FP8 is not supported). Upscaling watermark works correctly. You can use this to determine which FSR3/4 type you are using (I8 or FP8)",
         "type": "bool",
-        "source": "etaash"
+        "source": "em"
       },
       {
         "name": "FSR4_UPGRADE",
         "description": "Upgrade FSR3/4 to newer FSR4 (FP8 or I8) using AMD's FSR 4.1.1 amdxcffx64.dll taken from Proton Experimental. This option is not needed on RDNA2-4 discrete GPUs",
         "type": "unknown",
-        "source": "etaash"
+        "source": "em"
       },
       {
         "name": "MLFG_UPGRADE",
         "description": "Enables FSR4 MLFG upgrade to use redstone frame generation. Can be used in tandom with FSR4-I8 on RDNA3 using DXIL_SPIRV_CONFIG=wmma_rdna3_workaround.",
         "type": "bool",
-        "source": "etaash"
+        "source": "em"
       },
       {
         "name": "PROTON_EMULATE_STEAMINPUT",
         "description": "Emulate Steam Input hooks with SDL input. This does not emulate the ISteamInput interface used by a handful of games on Steam (https://partner.steamgames.com/doc/api/isteaminput). Emulation for that interface is beyond my scope, since it would just be easier to hack steam overlay to make it work on wayland native apps.",
         "type": "bool",
-        "source": "etaash"
+        "source": "em"
       },
       {
         "name": "PROTON_ENABLE_WAYLAND",
         "description": "Enables the winewayland driver",
         "type": "bool",
-        "source": "etaash"
+        "source": "em"
       },
       {
         "name": "PROTON_USE_SDL",
         "description": "Uses SDL2/3 for gamepad input instead of steam input",
         "type": "bool",
-        "source": "etaash"
+        "source": "em"
       },
       {
         "name": "WAYLANDDRV_PRIMARY_MONITOR",
         "description": "Tell the wayland driver what the primary monitor name is (Example: eDP-1). This is a workaround for a missing Wayland Protocol.",
         "type": "unknown",
-        "source": "etaash"
+        "source": "em"
       }
     ],
     "scrapedAt": "2026-07-20T11:37:29.284Z",
