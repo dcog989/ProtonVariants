@@ -10,9 +10,15 @@
         "description": "See the LICENSE files here, as well as the LICENSE, COPYING, etc files in each submodule and directory for details. If you distribute a built version of Proton to other users, you must adhere to the terms of these licenses.",
         "type": "path",
         "source": "valve"
+      },
+      {
+        "name": "STEAM_COMPAT_CONFIG",
+        "description": "some options for known games using the STEAM_COMPAT_CONFIG variable. You can override these options using the environment variables described below. The best way to set these environment overrides for all games is by renaming user_settings.sample.py to user_settings.py and modifying it appropriately. This file is located in the Proton installation directory in your Steam library",
+        "type": "path",
+        "source": "valve"
       }
     ],
-    "scrapedAt": "2026-07-20T11:19:57.650Z",
+    "scrapedAt": "2026-07-20T11:20:24.093Z",
     "etag": "W/\"ede1ede7595a7180522a8cea3b3ee3a65ab9411b284673051def764f2bb59725\""
   },
   {
@@ -35,13 +41,27 @@
         "source": "cachyos"
       },
       {
+        "name": "PROTON_OPTISCALER_NAME",
+        "description": "control the DLL that should be injected. Three names are supported for PROTON_OPTISCALER_NAME, dxgi.dll, d3d12.dll and dbghelp.dll and defaults to dxgi.dll unless explictly set. * You can use PROTON_OPTISCALER_CONFIG write arbitrary configuration in OptiScaler.ini. The config is a semicolon ( ;) separated string of individual options. The template for each option is {section}.{option}={value}, for example PROTON_OPTISCALER_CONFIG=\"Upscalers.Dx11Upscaler=fsr31;Upscalers.Dx12Upscaler=dlss\". To avoid mistakes, only config options that already exist in Optiscaler.ini can be modified.",
+        "type": "unknown",
+        "default": "dxgi.dll",
+        "source": "cachyos"
+      },
+      {
         "name": "STEAM_COMPAT_CONFIG",
         "description": "some options for known games using the STEAM_COMPAT_CONFIG variable. You can override these options using the environment variables described below. The best way to set these environment overrides for all games is by renaming user_settings.sample.py to user_settings.py and modifying it appropriately. This file is located in the Proton installation directory in your Steam library",
         "type": "path",
         "source": "cachyos"
+      },
+      {
+        "name": "WINE_AUDIO_DRIVER",
+        "description": "* You can also use WINE_AUDIO_DRIVER to set the list of audio drivers for wine to choose from. The default list is pipewire,pulse,alsa. For example WINE_AUDIO_DRIVER=pulse will use winepulse.drv exclusively. * When reporting issues with winepipewire.drv remember to use PROTON_LOG=warn+pipewire,warn+mmdevapi %command% to create meaningful logs. Make sure to leep the logging level at warn+ as shown. Full tracing (+pipewire,+mmdevapi) floods the log and perturbs audio timing enough to cause crackling, so only use it for a short capture and remove it for normal play.",
+        "type": "enum",
+        "default": "list",
+        "source": "cachyos"
       }
     ],
-    "scrapedAt": "2026-07-20T11:19:57.650Z",
+    "scrapedAt": "2026-07-20T11:20:24.093Z",
     "etag": "W/\"35b72a6af7928c3ecac9d9f0bcbc030ca5da28ba97486607cecfafd8d22ab917\""
   },
   {
@@ -50,7 +70,7 @@
     "repoUrl": "https://github.com/Etaash-mathamsetty/Proton",
     "readmeUrl": "https://raw.githubusercontent.com/Etaash-mathamsetty/Proton/HEAD/README.md",
     "options": [],
-    "scrapedAt": "2026-07-20T11:19:57.650Z",
+    "scrapedAt": "2026-07-20T11:20:24.093Z",
     "etag": "W/\"766bddc776911fbb0b8c305a8aa011eb850e0ac49fe056ef0c1f880e01efd5c6\""
   },
   {
@@ -59,7 +79,7 @@
     "repoUrl": "https://github.com/GloriousEggroll/proton-ge-custom",
     "readmeUrl": "https://raw.githubusercontent.com/GloriousEggroll/proton-ge-custom/HEAD/README.md",
     "options": [],
-    "scrapedAt": "2026-07-20T11:19:57.650Z",
+    "scrapedAt": "2026-07-20T11:20:24.093Z",
     "etag": "W/\"a19c57609ee7d7e0c1583f372cbb67fb127af0efab83c4f1c8ea89a44e54ad6a\""
   },
   {
@@ -73,9 +93,15 @@
         "description": "See the LICENSE files here, as well as the LICENSE, COPYING, etc files in each submodule and directory for details. If you distribute a built version of Proton to other users, you must adhere to the terms of these licenses.",
         "type": "path",
         "source": "dwproton"
+      },
+      {
+        "name": "STEAM_COMPAT_CONFIG",
+        "description": "some options for known games using the STEAM_COMPAT_CONFIG variable. You can override these options using the environment variables described below. The best way to set these environment overrides for all games is by renaming user_settings.sample.py to user_settings.py and modifying it appropriately. This file is located in the Proton installation directory in your Steam library",
+        "type": "path",
+        "source": "dwproton"
       }
     ],
-    "scrapedAt": "2026-07-20T11:19:57.650Z",
+    "scrapedAt": "2026-07-20T11:20:24.093Z",
     "etag": "W/\"54362e4c92d26a054a7d5b2d88272143d2d54cff\"",
     "lastModified": "Wed, 15 Jul 2026 17:03:37 GMT"
   }
