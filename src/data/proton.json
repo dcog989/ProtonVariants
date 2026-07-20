@@ -174,8 +174,9 @@
         "source": "valve"
       }
     ],
-    "scrapedAt": "2026-07-20T13:09:00.692Z",
-    "etag": "W/\"ede1ede7595a7180522a8cea3b3ee3a65ab9411b284673051def764f2bb59725\""
+    "scrapedAt": "2026-07-20T13:17:25.823Z",
+    "etag": "W/\"ede1ede7595a7180522a8cea3b3ee3a65ab9411b284673051def764f2bb59725\"",
+    "release": "proton-11.0-1"
   },
   {
     "id": "cachyos",
@@ -616,8 +617,9 @@
         "source": "cachyos"
       }
     ],
-    "scrapedAt": "2026-07-20T13:09:00.692Z",
-    "etag": "W/\"35b72a6af7928c3ecac9d9f0bcbc030ca5da28ba97486607cecfafd8d22ab917\""
+    "scrapedAt": "2026-07-20T13:17:25.823Z",
+    "etag": "W/\"35b72a6af7928c3ecac9d9f0bcbc030ca5da28ba97486607cecfafd8d22ab917\"",
+    "release": "cachyos-11.0-20260702-slr"
   },
   {
     "id": "em",
@@ -668,8 +670,9 @@
         "source": "em"
       }
     ],
-    "scrapedAt": "2026-07-20T13:09:00.692Z",
-    "etag": "W/\"766bddc776911fbb0b8c305a8aa011eb850e0ac49fe056ef0c1f880e01efd5c6\""
+    "scrapedAt": "2026-07-20T13:17:25.823Z",
+    "etag": "W/\"766bddc776911fbb0b8c305a8aa011eb850e0ac49fe056ef0c1f880e01efd5c6\"",
+    "release": "EM-10.0-37-HDR"
   },
   {
     "id": "ge",
@@ -780,8 +783,9 @@
         "source": "ge"
       }
     ],
-    "scrapedAt": "2026-07-20T13:09:00.692Z",
-    "etag": "W/\"a19c57609ee7d7e0c1583f372cbb67fb127af0efab83c4f1c8ea89a44e54ad6a\""
+    "scrapedAt": "2026-07-20T13:17:25.823Z",
+    "etag": "W/\"a19c57609ee7d7e0c1583f372cbb67fb127af0efab83c4f1c8ea89a44e54ad6a\"",
+    "release": "GE-Proton11-1"
   },
   {
     "id": "dwproton",
@@ -946,8 +950,9 @@
         "source": "dwproton"
       }
     ],
-    "scrapedAt": "2026-07-20T13:09:00.692Z",
+    "scrapedAt": "2026-07-20T13:17:25.823Z",
     "etag": "W/\"54362e4c92d26a054a7d5b2d88272143d2d54cff\"",
-    "lastModified": "Wed, 15 Jul 2026 17:03:37 GMT"
+    "lastModified": "Wed, 15 Jul 2026 17:03:37 GMT",
+    "release": "15.0.3"
   }
 ]

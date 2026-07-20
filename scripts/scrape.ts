@@ -48,6 +48,24 @@ function loadPrevious(): Variant[] {
   }
 }
 
+async function fetchRelease(releaseUrl: string): Promise<string | undefined> {
+  try {
+    const res = await fetch(releaseUrl, {
+      headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    });
+    if (!res.ok) return undefined;
+    const body = await res.text();
+    if (releaseUrl.includes("api.github.com")) {
+      return (JSON.parse(body) as { tag_name?: string }).tag_name;
+    }
+    const match = body.match(/(?:version|release|v)\s*[:=]?\s*([0-9]+\.[0-9]+(?:\.[0-9]+)?)/i);
+    return match?.[1];
+  } catch {
+    return undefined;
+  }
+}
+
 async function main() {
   mkdirSync(DATA_DIR, { recursive: true });
   const previous = await loadPrevious();
@@ -64,13 +82,9 @@ async function main() {
 
     const { markdown, etag, lastModified, changed } = await fetchReadme(ref.readmeUrl, cacheEntry);
 
-    if (!changed && cached) {
-      results.push(cached);
-      console.log(`[skip] ${ref.id} unchanged (${cached.options.length} vars)`);
-      continue;
-    }
+    const options = !changed && cached ? cached.options : parseEnvVars(markdown, ref.id);
+    const release = ref.releaseUrl ? await fetchRelease(ref.releaseUrl) : undefined;
 
-    const options = parseEnvVars(markdown, ref.id);
     const variant: Variant = {
       id: ref.id,
       displayName: ref.displayName,
@@ -80,10 +94,11 @@ async function main() {
       scrapedAt: now,
       ...(etag ? { etag } : {}),
       ...(lastModified ? { lastModified } : {}),
+      ...(release ? { release } : {}),
     };
     results.push(variant);
-    changedAny = true;
-    console.log(`[ok] ${ref.id}: ${options.length} env vars`);
+    if (changed) changedAny = true;
+    console.log(`[${changed ? "ok" : "skip"}] ${ref.id}: ${options.length} env vars${release ? ` (${release})` : ""}`);
   }
 
   writeFileSync(DATA_FILE, `${JSON.stringify(results, null, 2)}\n`);

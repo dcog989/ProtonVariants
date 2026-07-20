@@ -21,6 +21,7 @@ export interface Variant {
   scrapedAt: string;
   etag?: string;
   lastModified?: string;
+  release?: string;
 }
 
 export interface VariantRef {
@@ -28,4 +29,5 @@ export interface VariantRef {
   displayName: string;
   repoUrl: string;
   readmeUrl: string;
+  releaseUrl?: string;
 }
