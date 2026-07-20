@@ -50,7 +50,7 @@
       {
         "name": "PROTON_HIDE_NVIDIA_GPU",
         "description": "Force Nvidia GPUs to always be reported as AMD GPUs. Some games require this if they depend on Windows-only Nvidia driver functionality. See also DXVK's nvapiHack config, which only affects reporting from Direct3D.",
-        "type": "unknown",
+        "type": "bool",
         "source": "valve"
       },
       {
@@ -82,7 +82,7 @@
       {
         "name": "PROTON_NO_ESYNC",
         "description": "Note: Obsoleted in Proton 11.0. In older versions, do not use eventfd-based in-process synchronization primitives.",
-        "type": "unknown",
+        "type": "bool",
         "source": "valve"
       },
       {
@@ -94,7 +94,7 @@
       {
         "name": "PROTON_NO_NTSYNC",
         "description": "Do not use ntsync.",
-        "type": "unknown",
+        "type": "bool",
         "source": "valve"
       },
       {
@@ -106,13 +106,13 @@
       {
         "name": "PROTON_SET_GAME_DRIVE",
         "description": "Create an S: drive which points to the Steam Library which contains the game.",
-        "type": "unknown",
+        "type": "bool",
         "source": "valve"
       },
       {
         "name": "PROTON_USE_D9VK",
         "description": "Note: Obsoleted in Proton 5.0. In older versions, use Vulkan-based DXVK instead of OpenGL-based wined3d for d3d9.",
-        "type": "unknown",
+        "type": "bool",
         "source": "valve"
       },
       {
@@ -124,7 +124,7 @@
       {
         "name": "PROTON_USE_WINED3D",
         "description": "Use OpenGL-based wined3d instead of Vulkan-based DXVK for d3d11, d3d10, and d3d9.",
-        "type": "unknown",
+        "type": "bool",
         "source": "valve"
       },
       {
@@ -177,7 +177,7 @@
         "source": "valve"
       }
     ],
-    "scrapedAt": "2026-07-20T11:21:11.336Z",
+    "scrapedAt": "2026-07-20T11:25:27.839Z",
     "etag": "W/\"ede1ede7595a7180522a8cea3b3ee3a65ab9411b284673051def764f2bb59725\""
   },
   {
@@ -346,7 +346,7 @@
       {
         "name": "PROTON_HIDE_NVIDIA_GPU",
         "description": "Force Nvidia GPUs to always be reported as AMD GPUs. Some games require this if they depend on Windows-only Nvidia driver functionality. See also DXVK's nvapiHack config, which only affects reporting from Direct3D.",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
@@ -409,7 +409,7 @@
       {
         "name": "PROTON_NO_STEAMINPUT",
         "description": "PROTON_NO_STEAMINPUT",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
@@ -476,19 +476,19 @@
       {
         "name": "PROTON_PREFER_SDL",
         "description": "Uses SDL input instead of HIDRAW/Steam Input",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
         "name": "PROTON_SET_GAME_DRIVE",
         "description": "Create an S: drive which points to the Steam Library which contains the game.",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
         "name": "PROTON_USE_D9VK",
         "description": "Note: Obsoleted in Proton 5.0. In older versions, use Vulkan-based DXVK instead of OpenGL-based wined3d for d3d9.",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
@@ -507,7 +507,7 @@
       {
         "name": "PROTON_USE_SDL",
         "description": "Alias of PROTON_PREFER_SDL",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
@@ -525,7 +525,7 @@
       {
         "name": "PROTON_USE_WINED3D",
         "description": "Use OpenGL-based wined3d instead of Vulkan-based DXVK for d3d11, d3d10, and d3d9.",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
@@ -628,7 +628,7 @@
         "source": "cachyos"
       }
     ],
-    "scrapedAt": "2026-07-20T11:21:11.336Z",
+    "scrapedAt": "2026-07-20T11:25:27.839Z",
     "etag": "W/\"35b72a6af7928c3ecac9d9f0bcbc030ca5da28ba97486607cecfafd8d22ab917\""
   },
   {
@@ -658,7 +658,7 @@
       {
         "name": "PROTON_EMULATE_STEAMINPUT",
         "description": "Emulate Steam Input hooks with SDL input. This does not emulate the ISteamInput interface used by a handful of games on Steam (https://partner.steamgames.com/doc/api/isteaminput). Emulation for that interface is beyond my scope, since it would just be easier to hack steam overlay to make it work on wayland native apps.",
-        "type": "unknown",
+        "type": "bool",
         "source": "etaash"
       },
       {
@@ -670,7 +670,7 @@
       {
         "name": "PROTON_USE_SDL",
         "description": "Uses SDL2/3 for gamepad input instead of steam input",
-        "type": "unknown",
+        "type": "bool",
         "source": "etaash"
       },
       {
@@ -680,7 +680,7 @@
         "source": "etaash"
       }
     ],
-    "scrapedAt": "2026-07-20T11:21:11.336Z",
+    "scrapedAt": "2026-07-20T11:25:27.839Z",
     "etag": "W/\"766bddc776911fbb0b8c305a8aa011eb850e0ac49fe056ef0c1f880e01efd5c6\""
   },
   {
@@ -746,7 +746,7 @@
       {
         "name": "PROTON_USE_SDL",
         "description": "Uses SDL input instead of HIDRAW/Steam Input.",
-        "type": "unknown",
+        "type": "bool",
         "source": "ge"
       },
       {
@@ -758,7 +758,7 @@
       {
         "name": "PROTON_USE_WINED3D11",
         "description": "Use OpenGL-based wined3d instead of Vulkan-based DXVK for d3d11 and d3d10. This used to be called PROTON_USE_WINED3D11, which is now an alias for this same option.",
-        "type": "unknown",
+        "type": "bool",
         "source": "ge"
       },
       {
@@ -792,7 +792,7 @@
         "source": "ge"
       }
     ],
-    "scrapedAt": "2026-07-20T11:21:11.336Z",
+    "scrapedAt": "2026-07-20T11:25:27.839Z",
     "etag": "W/\"a19c57609ee7d7e0c1583f372cbb67fb127af0efab83c4f1c8ea89a44e54ad6a\""
   },
   {
@@ -846,7 +846,7 @@
       {
         "name": "PROTON_HIDE_NVIDIA_GPU",
         "description": "Force Nvidia GPUs to always be reported as AMD GPUs. Some games require this if they depend on Windows-only Nvidia driver functionality. See also DXVK's nvapiHack config, which only affects reporting from Direct3D.",
-        "type": "unknown",
+        "type": "bool",
         "source": "dwproton"
       },
       {
@@ -878,7 +878,7 @@
       {
         "name": "PROTON_NO_ESYNC",
         "description": "Do not use eventfd-based in-process synchronization primitives.",
-        "type": "unknown",
+        "type": "bool",
         "source": "dwproton"
       },
       {
@@ -896,13 +896,13 @@
       {
         "name": "PROTON_SET_GAME_DRIVE",
         "description": "Create an S: drive which points to the Steam Library which contains the game.",
-        "type": "unknown",
+        "type": "bool",
         "source": "dwproton"
       },
       {
         "name": "PROTON_USE_D9VK",
         "description": "Note: Obsoleted in Proton 5.0. In older versions, use Vulkan-based DXVK instead of OpenGL-based wined3d for d3d9.",
-        "type": "unknown",
+        "type": "bool",
         "source": "dwproton"
       },
       {
@@ -914,7 +914,7 @@
       {
         "name": "PROTON_USE_WINED3D",
         "description": "Use OpenGL-based wined3d instead of Vulkan-based DXVK for d3d11, d3d10, and d3d9.",
-        "type": "unknown",
+        "type": "bool",
         "source": "dwproton"
       },
       {
@@ -961,7 +961,7 @@
         "source": "dwproton"
       }
     ],
-    "scrapedAt": "2026-07-20T11:21:11.336Z",
+    "scrapedAt": "2026-07-20T11:25:27.839Z",
     "etag": "W/\"54362e4c92d26a054a7d5b2d88272143d2d54cff\"",
     "lastModified": "Wed, 15 Jul 2026 17:03:37 GMT"
   }
