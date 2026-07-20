@@ -3,7 +3,7 @@ import { base } from "$app/paths";
 import { page } from "$app/stores";
 </script>
 
-<svelte:head><title>Not found — ProtonNexus</title></svelte:head>
+<svelte:head><title>Not found — Proton Variants</title></svelte:head>
 
 <div class="py-16 text-center">
   <h1 class="text-3xl font-bold">404</h1>

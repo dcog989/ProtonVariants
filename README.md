@@ -1,6 +1,6 @@
-# ProtonNexus
+# Proton Variants
 
-*ProtonNexus* is a web app reference that compiles the features and runtime options for each variant of Proton, the Steam compatibility layer from Valve.
+*Proton Variants* is a web app reference that compiles the features and runtime options for each variant of Proton, the Steam compatibility layer from Valve.
 
 The runtime options for each are scraped from their respective README files at build time and regenerated on a 24-hour cadence via CI. The output is a prerendered static site with no runtime backend.
 

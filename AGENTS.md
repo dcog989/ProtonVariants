@@ -1,6 +1,6 @@
 # AGENTS.md
 
-*ProtonNexus* is a web app reference that compiles the features and runtime options for each variant of Proton, the Steam compatibility layer from Valve.
+*Proton Variants* is a web app reference that compiles the features and runtime options for each variant of Proton, the Steam compatibility layer from Valve.
 
 ## Dev Environment
 

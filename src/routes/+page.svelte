@@ -4,7 +4,7 @@ import { base } from "$app/paths";
 let { data } = $props();
 </script>
 
-<svelte:head><title>ProtonNexus — Variants</title></svelte:head>
+<svelte:head><title>Proton Variants</title></svelte:head>
 
 <h1 class="mb-2 text-2xl font-bold">Proton Variants</h1>
 <p class="mb-6 text-sm text-neutral-600 dark:text-neutral-400">

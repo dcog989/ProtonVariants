@@ -20,7 +20,7 @@ function optionFor(variantId: string, name: string) {
 }
 </script>
 
-<svelte:head><title>Compare — ProtonNexus</title></svelte:head>
+<svelte:head><title>Compare — Proton Variants</title></svelte:head>
 
 <a href="{base}/" class="text-xs text-sky-400 hover:underline">← All variants</a>
 <h1 class="mb-1 mt-2 text-2xl font-bold">Compare Variants</h1>

@@ -8,7 +8,7 @@ let { children } = $props();
 <div class="min-h-screen bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
   <header class="border-b border-neutral-200 dark:border-neutral-800">
     <nav class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-      <a href="{base}/" class="text-lg font-semibold tracking-tight">ProtonNexus</a>
+      <a href="{base}/" class="text-lg font-semibold tracking-tight">Proton Variants</a>
       <div class="flex gap-4 text-sm text-neutral-500 dark:text-neutral-400">
         <a href="{base}/" class="hover:text-neutral-900 dark:hover:text-neutral-100">Variants</a>
         <a href="{base}/compare" class="hover:text-neutral-900 dark:hover:text-neutral-100">Compare</a>
@@ -20,6 +20,6 @@ let { children } = $props();
     {@render children()}
   </main>
   <footer class="border-t border-neutral-200 dark:border-neutral-800 py-4 text-center text-xs text-neutral-500">
-    ProtonNexus — compiled runtime options for Proton variants.
+    Proton Variants — compiled runtime options for Proton variants.
   </footer>
 </div>

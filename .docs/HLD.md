@@ -1,8 +1,8 @@
-# High-Level Design: ProtonNexus
+# High-Level Design: Proton Variants
 
 ## 1. Overview
 
-ProtonNexus is a static web reference that compiles the features and runtime
+Proton Variants is a static web reference that compiles the features and runtime
 options for each variant of Proton, Valve's Steam compatibility layer. Content
 is sourced from the upstream README files of each Proton variant and regenerated
 on a 24-hour cadence at build time. No runtime database or server-side scraping
