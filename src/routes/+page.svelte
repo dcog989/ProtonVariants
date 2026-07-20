@@ -37,9 +37,10 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
         <a href={`${base}/variant/${ref.id}`} class="text-base font-semibold hover:underline">
           {ref.displayName}
         </a>
-        <p class="mt-1 text-xs text-neutral-500">
-          {v ? `${v.options.length} env vars` : "pending scrape"}{releaseOf(ref.id) ? ` · ${releaseOf(ref.id)}` : ""}
-        </p>
+        {#if releaseOf(ref.id)}
+          <p class="mt-1 text-xs text-neutral-400">{releaseOf(ref.id)}</p>
+        {/if}
+        <p class="mt-1 text-xs text-neutral-500">{v ? `${v.options.length} env vars` : "pending scrape"}</p>
         <a
           href={ref.repoUrl}
           target="_blank"
