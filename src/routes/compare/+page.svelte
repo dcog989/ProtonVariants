@@ -26,7 +26,7 @@ const displayName = (id: string) => data.registry.find((r) => r.id === id)?.disp
 
 const nameCounts = $derived.by(() => {
   const counts = new Map<string, number>();
-  for (const v of visibleVariants) {
+  for (const v of data.variants) {
     for (const o of v.options) counts.set(o.name, (counts.get(o.name) ?? 0) + 1);
   }
   return counts;
