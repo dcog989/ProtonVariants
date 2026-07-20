@@ -89,12 +89,7 @@ function optionFor(variantId: string, name: string) {
               {#if opt}
                 {opt.type}
               {:else}
-                <span
-                  class:text-neutral-400={!unique}
-                  class:dark:text-neutral-700={!unique}
-                  class:text-amber-600={unique}
-                  class:dark:text-amber-400={unique}
-                >—</span>
+                <span class="text-neutral-400 dark:text-neutral-700">—</span>
               {/if}
             </td>
           {/each}
