@@ -11,6 +11,13 @@ const types: Array<OptionType | "all"> = ["all", "bool", "string", "int", "enum"
 
 const typeLabel = (t: OptionType | "all") => (t === "unknown" ? "other" : t);
 
+const formatDate = (iso: string) => {
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime())
+    ? iso
+    : d.toLocaleDateString("en-GB", { year: "numeric", month: "short", day: "numeric" });
+};
+
 const filtered = $derived(
   data.options.filter((o) => {
     if (typeFilter !== "all" && o.type !== typeFilter) return false;
@@ -30,7 +37,7 @@ const filtered = $derived(
 </nav>
 <p class="mb-4 text-xs text-neutral-500">
   {data.options.length} env vars · {data.uniqueCount} unique to this variant · scraped
-  {data.variant?.scrapedAt ?? "n/a"}
+  {data.variant?.scrapedAt ? formatDate(data.variant.scrapedAt) : "n/a"}
 </p>
 
 <div class="mb-4 flex flex-wrap items-center gap-3">
