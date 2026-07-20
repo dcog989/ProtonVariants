@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "check": "biome check . && bun run typecheck",
+    "check": "biome check . && svelte-check --tsconfig ./tsconfig.json",
     "clean": "rm -rf .context node_modules .vitest bun.lock",
     "dev": "vite dev",
     "format": "biome format --write .",
