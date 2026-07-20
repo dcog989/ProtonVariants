@@ -1,5 +1,6 @@
 import { error } from "@sveltejs/kit";
 import { loadVariants } from "$lib/data";
+import type { RuntimeOptionView } from "$lib/types";
 import { uniqueNames } from "$lib/unique";
 import { getVariant } from "$lib/variants";
 
@@ -11,10 +12,14 @@ export async function load({ params }: { params: { id: string } }) {
   const all = loadVariants();
   const variant = all.find((v) => v.id === params.id);
   const uniques = uniqueNames(all);
+  const options: RuntimeOptionView[] = (variant?.options ?? []).map((o) => ({
+    ...o,
+    unique: uniques.has(o.name),
+  }));
   return {
     ref,
     variant,
-    options: (variant?.options ?? []).map((o) => ({ ...o, unique: uniques.has(o.name) })),
-    uniqueCount: variant?.options.filter((o) => uniques.has(o.name)).length ?? 0,
+    options,
+    uniqueCount: options.filter((o) => o.unique).length,
   };
 }

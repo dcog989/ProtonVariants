@@ -7,7 +7,10 @@ export interface RuntimeOption {
   default?: string;
   values?: string[];
   source: string;
-  unique?: boolean;
+}
+
+export interface RuntimeOptionView extends RuntimeOption {
+  unique: boolean;
 }
 
 export interface Variant {
