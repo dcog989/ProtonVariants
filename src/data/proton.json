@@ -32,7 +32,7 @@
       {
         "name": "PROTON_DXVK_D3D8",
         "description": "Use DXVK's d3d8.dll.",
-        "type": "unknown",
+        "type": "bool",
         "source": "valve"
       },
       {
@@ -44,7 +44,7 @@
       {
         "name": "PROTON_HEAP_DELAY_FREE",
         "description": "Delay freeing some memory, to work around application use-after-free bugs.",
-        "type": "unknown",
+        "type": "bool",
         "source": "valve"
       },
       {
@@ -100,7 +100,7 @@
       {
         "name": "PROTON_OLD_GL_STRING",
         "description": "Set some driver overrides to limit the length of the GL extension string, for old games that crash on very long extension strings.",
-        "type": "unknown",
+        "type": "bool",
         "source": "valve"
       },
       {
@@ -137,7 +137,7 @@
       {
         "name": "PROTON_WAIT_ATTACH",
         "description": "Wait for a debugger to attach to steam.exe before launching the game process. To attach to the game process at startup, debuggers should be set to follow child processes.",
-        "type": "unknown",
+        "type": "bool",
         "source": "valve"
       },
       {
@@ -177,7 +177,7 @@
         "source": "valve"
       }
     ],
-    "scrapedAt": "2026-07-20T11:25:27.839Z",
+    "scrapedAt": "2026-07-20T11:37:29.284Z",
     "etag": "W/\"ede1ede7595a7180522a8cea3b3ee3a65ab9411b284673051def764f2bb59725\""
   },
   {
@@ -206,7 +206,7 @@
       },
       {
         "name": "GST_GL_WINDOW",
-        "description": "GST_GL_WINDOW",
+        "description": "",
         "type": "unknown",
         "source": "cachyos"
       },
@@ -238,7 +238,7 @@
       {
         "name": "PROTON_D7VK_DDRAW",
         "description": "Use ddraw.dll from the D7VK project for DirectX 7-or-lower games.",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
@@ -262,13 +262,13 @@
       {
         "name": "PROTON_DLSS_UPGRADE",
         "description": "g).dll DLLs. Version to download can be specified by supplying it as a value, like so PROTON_DLSS_UPGRADE=\"310.2\", instead of 1, to download version 310.2.1.0. This option also sets DXVK_NVAPI_DRS_SETTINGS` to use the latest preset. If you provide your own configuration through this environment variable, your configuration will override the defaults.",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
         "name": "PROTON_DXVK_D3D8",
         "description": "Use DXVK's d3d8.dll.",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
@@ -280,7 +280,7 @@
       {
         "name": "PROTON_DXVK_SAREK",
         "description": "Use the dxvk-sarek fork as DXVK replacement for older GPUs that don't properly support Vulkan 1.3 (supported Vulkan 1.1.x to 1.2.x). It is using the async branch, so it SHOULD NOT to be used with games using anti-cheat or multiplayer games in general. You have been warned.",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
@@ -303,14 +303,14 @@
       },
       {
         "name": "PROTON_FFX3_UPGRADE",
-        "description": "PROTON_FFX3_UPGRADE",
-        "type": "unknown",
+        "description": "",
+        "type": "bool",
         "source": "cachyos"
       },
       {
         "name": "PROTON_FFX4_UPGRADE",
-        "description": "PROTON_FFX4_UPGRADE",
-        "type": "unknown",
+        "description": "",
+        "type": "bool",
         "source": "cachyos"
       },
       {
@@ -328,19 +328,19 @@
       {
         "name": "PROTON_FSR4_UPGRADE",
         "description": "Automatically download amdxcffx64.dll and upgrade games with FSR 3.1 to use FSR 4. Version to download can be specified by supplying it as a value, like so PROTON_FSR4_UPGRADE=\"4.0.1\", instead of 1. Downloads the latest available and known-good version of the required DLL by default.",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
         "name": "PROTON_GST_VIDEO_ORIENTATION",
         "description": "Change the orientation (rotation) of videos rendered using gstreamer. The accepted values are the same as gstreamer's videoflip plugin",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
         "name": "PROTON_HEAP_DELAY_FREE",
         "description": "Delay freeing some memory, to work around application use-after-free bugs.",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
@@ -373,13 +373,13 @@
       {
         "name": "PROTON_MEDIA_FORCE_GST",
         "description": "Fixes video/audio playback in cutscenes in some cases.",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
         "name": "PROTON_MEDIA_USE_GST",
         "description": "Fixes video/audio playback in cutscenes in some cases.",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
@@ -408,7 +408,7 @@
       },
       {
         "name": "PROTON_NO_STEAMINPUT",
-        "description": "PROTON_NO_STEAMINPUT",
+        "description": "",
         "type": "bool",
         "source": "cachyos"
       },
@@ -457,19 +457,19 @@
       {
         "name": "PROTON_OLD_GL_STRING",
         "description": "Set some driver overrides to limit the length of the GL extension string, for old games that crash on very long extension strings.",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
         "name": "PROTON_OPTISCALER_CONFIG",
         "description": "* You can use PROTON_OPTISCALER_CONFIG write arbitrary configuration in OptiScaler.ini. The config is a semicolon ( ;) separated string of individual options. The template for each option is {section}.{option}={value}, for example PROTON_OPTISCALER_CONFIG=\"Upscalers.Dx11Upscaler=fsr31;Upscalers.Dx12Upscaler=dlss\". To avoid mistakes, only config options that already exist in Optiscaler.ini can be modified. * The changes to the config are permanent until OptiScaler is upgraded or downgraded to a different version. To modify a setting it has to either be manually edited or altered by applying a different config through the environment",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
         "name": "PROTON_OPTISCALER_NAME",
         "description": "control the DLL that should be injected. Three names are supported for PROTON_OPTISCALER_NAME, dxgi.dll, d3d12.dll and dbghelp.dll and defaults to dxgi.dll unless explictly set. * You can use PROTON_OPTISCALER_CONFIG write arbitrary configuration in OptiScaler.ini. The config is a semicolon ( ;) separated string of individual options. The template for each option is {section}.{option}={value}, for example PROTON_OPTISCALER_CONFIG=\"Upscalers.Dx11Upscaler=fsr31;Upscalers.Dx12Upscaler=dlss\". To avoid mistakes, only config options that already exist in Optiscaler.ini can be modified.",
-        "type": "unknown",
+        "type": "bool",
         "default": "dxgi.dll",
         "source": "cachyos"
       },
@@ -538,7 +538,7 @@
       {
         "name": "PROTON_VKD3D_HEAP",
         "description": "N/A",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
@@ -550,13 +550,13 @@
       {
         "name": "PROTON_WAIT_ATTACH",
         "description": "Wait for a debugger to attach to steam.exe before launching the game process. To attach to the game process at startup, debuggers should be set to follow child processes.",
-        "type": "unknown",
+        "type": "bool",
         "source": "cachyos"
       },
       {
         "name": "PROTON_XESS_UPGRADE",
-        "description": "PROTON_XESS_UPGRADE",
-        "type": "unknown",
+        "description": "",
+        "type": "bool",
         "source": "cachyos"
       },
       {
@@ -628,7 +628,7 @@
         "source": "cachyos"
       }
     ],
-    "scrapedAt": "2026-07-20T11:25:27.839Z",
+    "scrapedAt": "2026-07-20T11:37:29.284Z",
     "etag": "W/\"35b72a6af7928c3ecac9d9f0bcbc030ca5da28ba97486607cecfafd8d22ab917\""
   },
   {
@@ -680,7 +680,7 @@
         "source": "etaash"
       }
     ],
-    "scrapedAt": "2026-07-20T11:25:27.839Z",
+    "scrapedAt": "2026-07-20T11:37:29.284Z",
     "etag": "W/\"766bddc776911fbb0b8c305a8aa011eb850e0ac49fe056ef0c1f880e01efd5c6\""
   },
   {
@@ -710,7 +710,7 @@
       {
         "name": "PROTON_DLSS_UPGRADE",
         "description": "g).dll DLLs. Version to download can be specified by supplying it as a value, like so PROTON_DLSS_UPGRADE=\"310.2\", instead of 1, to download version 310.2.1.0. This option also sets DXVK_NVAPI_DRS_SETTINGS` to use the latest preset. If you provide your own config for it through this environment variable, your configuration is going to be applied..",
-        "type": "unknown",
+        "type": "bool",
         "source": "ge"
       },
       {
@@ -721,8 +721,8 @@
       },
       {
         "name": "PROTON_FSR3_UPGRADE",
-        "description": "PROTON_FSR3_UPGRADE",
-        "type": "unknown",
+        "description": "",
+        "type": "bool",
         "source": "ge"
       },
       {
@@ -769,8 +769,8 @@
       },
       {
         "name": "PROTON_XESS_UPGRADE",
-        "description": "PROTON_XESS_UPGRADE",
-        "type": "unknown",
+        "description": "",
+        "type": "bool",
         "source": "ge"
       },
       {
@@ -792,7 +792,7 @@
         "source": "ge"
       }
     ],
-    "scrapedAt": "2026-07-20T11:25:27.839Z",
+    "scrapedAt": "2026-07-20T11:37:29.284Z",
     "etag": "W/\"a19c57609ee7d7e0c1583f372cbb67fb127af0efab83c4f1c8ea89a44e54ad6a\""
   },
   {
@@ -828,7 +828,7 @@
       {
         "name": "PROTON_DXVK_D3D8",
         "description": "Use DXVK's d3d8.dll.",
-        "type": "unknown",
+        "type": "bool",
         "source": "dwproton"
       },
       {
@@ -840,7 +840,7 @@
       {
         "name": "PROTON_HEAP_DELAY_FREE",
         "description": "Delay freeing some memory, to work around application use-after-free bugs.",
-        "type": "unknown",
+        "type": "bool",
         "source": "dwproton"
       },
       {
@@ -890,7 +890,7 @@
       {
         "name": "PROTON_OLD_GL_STRING",
         "description": "Set some driver overrides to limit the length of the GL extension string, for old games that crash on very long extension strings.",
-        "type": "unknown",
+        "type": "bool",
         "source": "dwproton"
       },
       {
@@ -927,7 +927,7 @@
       {
         "name": "PROTON_WAIT_ATTACH",
         "description": "Wait for a debugger to attach to steam.exe before launching the game process. To attach to the game process at startup, debuggers should be set to follow child processes.",
-        "type": "unknown",
+        "type": "bool",
         "source": "dwproton"
       },
       {
@@ -961,7 +961,7 @@
         "source": "dwproton"
       }
     ],
-    "scrapedAt": "2026-07-20T11:25:27.839Z",
+    "scrapedAt": "2026-07-20T11:37:29.284Z",
     "etag": "W/\"54362e4c92d26a054a7d5b2d88272143d2d54cff\"",
     "lastModified": "Wed, 15 Jul 2026 17:03:37 GMT"
   }
