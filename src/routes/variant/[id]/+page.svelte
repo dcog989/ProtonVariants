@@ -6,6 +6,7 @@ let { data } = $props();
 let query = $state("");
 let typeFilter = $state<OptionType | "all">("all");
 let hasDefault = $state(false);
+let uniqueOnly = $state(false);
 
 const types: Array<OptionType | "all"> = ["all", "bool", "string", "int", "enum", "path", "unknown"];
 
@@ -15,6 +16,7 @@ const filtered = $derived(
   data.options.filter((o) => {
     if (typeFilter !== "all" && o.type !== typeFilter) return false;
     if (hasDefault && !o.default) return false;
+    if (uniqueOnly && !o.unique) return false;
     if (query && !`${o.name} ${o.description}`.toLowerCase().includes(query.toLowerCase())) return false;
     return true;
   }),
@@ -47,6 +49,9 @@ const filtered = $derived(
   </select>
   <label class="flex items-center gap-1.5 text-sm text-neutral-300">
     <input type="checkbox" bind:checked={hasDefault} /> has default
+  </label>
+  <label class="flex items-center gap-1.5 text-sm text-neutral-300">
+    <input type="checkbox" bind:checked={uniqueOnly} /> unique only
   </label>
 </div>
 
