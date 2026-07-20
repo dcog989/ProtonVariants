@@ -31,11 +31,20 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
         class="mt-1"
         aria-label={`Select ${ref.displayName}`}
       />
-      <a href={`${base}/variant/${ref.id}`} class="min-w-0 flex-1">
-        <h3 class="text-base font-semibold">{ref.displayName}</h3>
+      <div class="min-w-0 flex-1">
+        <a href={`${base}/variant/${ref.id}`} class="text-base font-semibold hover:underline">
+          {ref.displayName}
+        </a>
         <p class="mt-1 text-xs text-neutral-500">{v ? `${v.options.length} env vars` : "pending scrape"}</p>
-        <p class="mt-2 truncate text-xs text-sky-400">{ref.repoUrl}</p>
-      </a>
+        <a
+          href={ref.repoUrl}
+          target="_blank"
+          rel="noreferrer"
+          class="mt-2 block truncate text-xs text-sky-400 hover:underline"
+        >
+          {ref.repoUrl}
+        </a>
+      </div>
     </div>
   {/each}
 </div>
