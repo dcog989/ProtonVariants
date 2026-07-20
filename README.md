@@ -1,6 +1,6 @@
 # Proton Variants
 
-*Proton Variants* is a web app reference that compiles the features and runtime environment variables for each variant of Proton, the Steam compatibility layer from Valve.
+*Proton Variants* is a web app reference that compiles the runtime environment variables for each variant of Proton, the Steam compatibility layer from Valve. It allows you to compare and explore the environment variables for each variant.
 
 The runtime environment variables for each are scraped from their respective README files at build time and regenerated on a 24-hour cadence via CI. The output is a prerendered static site with no runtime backend.
 
