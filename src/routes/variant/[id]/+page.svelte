@@ -26,7 +26,8 @@ const filtered = $derived(
 <a href="{base}/" class="text-xs text-sky-400 hover:underline">← All variants</a>
 <h1 class="mb-1 mt-2 text-2xl font-bold">{data.ref.displayName}</h1>
 <p class="mb-4 text-xs text-neutral-500">
-  {data.options.length} env vars · scraped {data.variant?.scrapedAt ?? "n/a"}
+  {data.options.length} env vars · {data.uniqueCount} unique to this variant · scraped
+  {data.variant?.scrapedAt ?? "n/a"}
 </p>
 
 <div class="mb-4 flex flex-wrap items-center gap-3">
@@ -63,8 +64,13 @@ const filtered = $derived(
     </thead>
     <tbody>
       {#each filtered as o (o.name)}
-        <tr class="border-b border-neutral-900 align-top">
-          <td class="py-2 pr-4 font-mono text-sky-300">{o.name}</td>
+        <tr class="border-b border-neutral-900 align-top" class:text-amber-400={o.unique}>
+          <td class="py-2 pr-4 font-mono text-sky-300">
+            {o.name}
+            {#if o.unique}
+              <span class="ml-2 rounded bg-amber-400/15 px-1.5 py-0.5 text-[10px] font-medium text-amber-400">unique</span>
+            {/if}
+          </td>
           <td class="py-2 pr-4 text-neutral-400">{o.type}</td>
           <td class="py-2 pr-4 font-mono text-neutral-300">{o.default ?? "—"}</td>
           <td class="py-2 text-neutral-300">{o.description}</td>

@@ -7,6 +7,7 @@ export interface RuntimeOption {
   default?: string;
   values?: string[];
   source: string;
+  unique?: boolean;
 }
 
 export interface Variant {
