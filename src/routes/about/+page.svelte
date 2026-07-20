@@ -1,10 +1,15 @@
 <script lang="ts">
+import { base } from "$app/paths";
 import { VARIANTS } from "$lib/variants";
 </script>
 
 <svelte:head><title>About — Proton Variants</title></svelte:head>
 
-<h1 class="mb-4 text-2xl font-bold">About</h1>
+<nav class="mb-2 text-2xl text-neutral-500 dark:text-neutral-400">
+  <a href="{base}/" class="text-sky-400 hover:underline">All variants</a>
+  <span class="px-2">→</span>
+  <span class="font-bold text-neutral-900 dark:text-neutral-100">About</span>
+</nav>
 
 <section class="space-y-3 text-sm text-neutral-700 dark:text-neutral-300">
   <p>
