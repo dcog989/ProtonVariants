@@ -69,7 +69,9 @@ function optionFor(variantId: string, name: string) {
         {@const unique = data.uniqueNames.includes(name)}
         <tr class="border-b border-neutral-200 align-top dark:border-neutral-900">
           <td
-            class="py-2 pr-4 font-mono text-neutral-900 dark:text-neutral-100"
+            class="py-2 pr-4 font-mono"
+            class:text-neutral-900={!unique}
+            class:dark:text-neutral-100={!unique}
             class:text-amber-600={unique}
             class:dark:text-amber-400={unique}
           >
@@ -78,14 +80,21 @@ function optionFor(variantId: string, name: string) {
           {#each visibleVariants as v (v.id)}
             {@const opt = optionFor(v.id, name)}
             <td
-              class="py-2 pr-4 text-neutral-700 dark:text-neutral-300"
+              class="py-2 pr-4"
+              class:text-neutral-700={!unique}
+              class:dark:text-neutral-300={!unique}
               class:text-amber-600={unique}
               class:dark:text-amber-400={unique}
             >
               {#if opt}
                 {opt.type}
               {:else}
-                <span class="text-neutral-400 dark:text-neutral-700" class:text-amber-600={unique} class:dark:text-amber-400={unique}>—</span>
+                <span
+                  class:text-neutral-400={!unique}
+                  class:dark:text-neutral-700={!unique}
+                  class:text-amber-600={unique}
+                  class:dark:text-amber-400={unique}
+                >—</span>
               {/if}
             </td>
           {/each}
