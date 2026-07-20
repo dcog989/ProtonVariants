@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+import { page } from "$app/stores";
 </script>
 
 <svelte:head><title>Not found — ProtonNexus</title></svelte:head>

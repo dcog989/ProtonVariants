@@ -27,11 +27,12 @@ Repository: <https://github.com/dcog989/ProtonNexus>
 ## Tech Stack
 
 - SvelteKit (prerendered via `adapter-static`)
-- TypeScript
-- Tailwind CSS
+- TypeScript 6
+- Tailwind CSS 4
+- Biome (lint + format)
 - bun (dev, build, package scripts)
 - lefthook (local + CI git hooks)
-- Static hosting (GitHub Pages / Cloudflare Pages / Netlify)
+- Static hosting (GitHub Pages)
 
 ## Build & Deploy
 

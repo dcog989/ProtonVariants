@@ -1,7 +1,6 @@
 import { error } from "@sveltejs/kit";
 import { loadVariants } from "$lib/data";
 import { getVariant } from "$lib/variants";
-import type { OptionType } from "$lib/types";
 
 export const prerender = true;
 

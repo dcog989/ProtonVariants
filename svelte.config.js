@@ -10,10 +10,10 @@ const config = {
       assets: "build",
       fallback: undefined,
       precompress: false,
-      strict: true
+      strict: true,
     }),
-    prerender: { entries: ["*"] }
-  }
+    prerender: { entries: ["*"] },
+  },
 };
 
 export default config;

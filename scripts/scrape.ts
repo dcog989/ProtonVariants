@@ -1,8 +1,8 @@
-import { writeFileSync, mkdirSync, readFileSync } from "node:fs";
 import { execSync } from "node:child_process";
-import { VARIANTS } from "../src/lib/variants";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { parseEnvVars } from "../src/lib/parse";
 import type { Variant } from "../src/lib/types";
+import { VARIANTS } from "../src/lib/variants";
 
 const DATA_DIR = "src/data";
 const DATA_FILE = `${DATA_DIR}/proton.json`;
@@ -17,7 +17,7 @@ interface CacheEntry {
 
 async function fetchReadme(
   url: string,
-  cached?: CacheEntry
+  cached?: CacheEntry,
 ): Promise<{ markdown: string; etag?: string; lastModified?: string; changed: boolean }> {
   const headers: Record<string, string> = { "User-Agent": USER_AGENT };
   if (cached?.etag) headers["If-None-Match"] = cached.etag;
@@ -37,7 +37,7 @@ async function fetchReadme(
     markdown,
     etag: res.headers.get("etag") ?? undefined,
     lastModified: res.headers.get("last-modified") ?? undefined,
-    changed: true
+    changed: true,
   };
 }
 
@@ -80,24 +80,27 @@ async function main() {
       options,
       scrapedAt: now,
       ...(etag ? { etag } : {}),
-      ...(lastModified ? { lastModified } : {})
+      ...(lastModified ? { lastModified } : {}),
     };
     results.push(variant);
     changedAny = true;
     console.log(`[ok] ${ref.id}: ${options.length} env vars`);
   }
 
-  writeFileSync(DATA_FILE, JSON.stringify(results, null, 2) + "\n");
+  writeFileSync(DATA_FILE, `${JSON.stringify(results, null, 2)}\n`);
   console.log(`Wrote ${DATA_FILE}`);
 
   if (changedAny) {
     try {
       execSync(`git add ${DATA_FILE} && git commit -m "chore: scrape Proton env vars (${now})"`, {
-        stdio: "inherit"
+        stdio: "inherit",
       });
       console.log("Committed updated data.");
     } catch (err) {
-      console.warn("Auto-commit skipped (no git repo or nothing to commit):", (err as Error).message);
+      console.warn(
+        "Auto-commit skipped (no git repo or nothing to commit):",
+        (err as Error).message,
+      );
     }
   } else {
     console.log("No upstream changes; data unchanged.");

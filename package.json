@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "scrape": "bun run scripts/scrape.ts",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check": "biome check .",
+    "format": "biome format --write .",
     "prepare": "svelte-kit sync"
   },
   "devDependencies": {
@@ -17,11 +18,11 @@
     "@sveltejs/vite-plugin-svelte": "^6.0.0",
     "lefthook": "^2.1.10",
     "svelte": "^5.56.6",
-    "svelte-check": "^4.0.0",
     "tailwindcss": "^4.3.3",
+    "@biomejs/biome": "^2.0.0",
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^22.0.0",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.3",
     "vite": "^8.1.5"
   }
 }

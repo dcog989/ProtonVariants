@@ -9,8 +9,9 @@ Linux CachyOS / KDE Plasma 6 + Firefox, Zed code editor, fish shell with Ghostty
 ## Tech Stack
 
 - SvelteKit (prerendered via `adapter-static`)
-- TypeScript
-- Tailwind CSS
+- TypeScript 6
+- Tailwind CSS 4
+- Biome (lint + format)
 - bun (dev, build, package scripts)
 - lefthook (local + CI git hooks)
 

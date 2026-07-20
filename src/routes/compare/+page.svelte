@@ -1,18 +1,18 @@
 <script lang="ts">
-  let { data } = $props();
+let { data } = $props();
 
-  const variantById = new Map(data.variants.map((v) => [v.id, v]));
-  const displayName = (id: string) => data.registry.find((r) => r.id === id)?.displayName ?? id;
+const variantById = new Map(data.variants.map((v) => [v.id, v]));
+const displayName = (id: string) => data.registry.find((r) => r.id === id)?.displayName ?? id;
 
-  function isUnique(name: string): boolean {
-    return (data.nameToVariants.get(name)?.length ?? 0) === 1;
-  }
-  function owner(name: string): string {
-    return data.nameToVariants.get(name)?.[0] ?? "";
-  }
-  function optionFor(variantId: string, name: string) {
-    return variantById.get(variantId)?.options.find((o) => o.name === name);
-  }
+function isUnique(name: string): boolean {
+  return (data.nameToVariants.get(name)?.length ?? 0) === 1;
+}
+function owner(name: string): string {
+  return data.nameToVariants.get(name)?.[0] ?? "";
+}
+function optionFor(variantId: string, name: string) {
+  return variantById.get(variantId)?.options.find((o) => o.name === name);
+}
 </script>
 
 <svelte:head><title>Compare — ProtonNexus</title></svelte:head>

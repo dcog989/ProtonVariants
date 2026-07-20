@@ -4,7 +4,7 @@ const TYPE_HINTS: Array<[RegExp, OptionType]> = [
   [/bool|boolean|toggle|enable|disable|on\/off/i, "bool"],
   [/integer|int\b|\bcount\b|number/i, "int"],
   [/\bpath\b|directory|folder|file\b/i, "path"],
-  [/enum|one of|comma[- ]separated list|list of/i, "enum"]
+  [/enum|one of|comma[- ]separated list|list of/i, "enum"],
 ];
 
 function inferType(text: string): OptionType {
@@ -34,7 +34,8 @@ export function parseEnvVars(markdown: string, source: string): RuntimeOption[] 
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    const codeMatch = line.match(/`([A-Z][A-Z0-9_]{2,})`/) || line.match(/\*\*([A-Z][A-Z0-9_]{2,})\*\*/);
+    const codeMatch =
+      line.match(/`([A-Z][A-Z0-9_]{2,})`/) || line.match(/\*\*([A-Z][A-Z0-9_]{2,})\*\*/);
     const name = codeMatch?.[1];
 
     if (!name || seen.has(name)) continue;
@@ -54,7 +55,7 @@ export function parseEnvVars(markdown: string, source: string): RuntimeOption[] 
       type,
       default: def,
       values,
-      source
+      source,
     });
   }
 
@@ -64,7 +65,10 @@ export function parseEnvVars(markdown: string, source: string): RuntimeOption[] 
 function collectDescription(lines: string[], i: number): string {
   const parts: string[] = [];
   for (let j = i; j < Math.min(i + 6, lines.length); j++) {
-    const text = lines[j].replace(/`([^`]+)`/g, "$1").replace(/\*\*([^*]+)\*\*/g, "$1").trim();
+    const text = lines[j]
+      .replace(/`([^`]+)`/g, "$1")
+      .replace(/\*\*([^*]+)\*\*/g, "$1")
+      .trim();
     if (text) parts.push(text);
   }
   return parts.join(" ").replace(/\s+/g, " ");

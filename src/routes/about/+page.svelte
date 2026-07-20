@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { VARIANTS } from "$lib/variants";
+import { VARIANTS } from "$lib/variants";
 </script>
 
 <svelte:head><title>About — ProtonNexus</title></svelte:head>

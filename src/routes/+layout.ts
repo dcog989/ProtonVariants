@@ -1,5 +1,5 @@
-import { VARIANTS } from "$lib/variants";
 import { loadVariants } from "$lib/data";
+import { VARIANTS } from "$lib/variants";
 
 export const prerender = true;
 

@@ -34,12 +34,13 @@ Proton variants covered (configurable list):
 
 ## 3. Tech Stack
 
-- **Framework:** SvelteKit + TypeScript
+- **Framework:** SvelteKit + TypeScript 6
 - **Runtime / tooling:** bun (dev, build, package scripts)
-- **Styling:** Tailwind CSS
+- **Styling:** Tailwind CSS 4
+- **Lint/Format:** Biome 2.5
 - **Output:** Prerendered static site (`adapter-static`)
 - **Scheduling:** External cron / CI job triggers `bun run build` every 24h
-- **Hosting:** Any static host (GitHub Pages, Cloudflare Pages, Netlify)
+- **Hosting:** GitHub Pages
 
 ## 4. Architecture
 
