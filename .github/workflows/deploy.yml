@@ -37,12 +37,14 @@ jobs:
             git commit -m "chore: scrape Proton env vars"
             git push
           fi
-      - name: Lint & format check (lefthook)
-        run: bun lefthook run pre-commit
-      - name: Build (lefthook)
+      - name: Lint & format check
+        run: bun run check
+      - name: Sync SvelteKit
+        run: bunx svelte-kit sync
+      - name: Build
         env:
           BASE_PATH: /proton-variants
-        run: bun lefthook run pre-push
+        run: bun run build
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
