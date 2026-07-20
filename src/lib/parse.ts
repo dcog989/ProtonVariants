@@ -115,4 +115,3 @@ function stripMarkdown(text: string): string {
     .replace(/<[^>]+>/g, "")
     .trim();
 }
-

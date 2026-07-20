@@ -57,14 +57,12 @@
         "name": "PROTON_LOG",
         "description": "Convenience method for dumping a useful debug log to $PROTON_LOG_DIR/steam-$APPID.log. Set to 1 to enable default logging, or set to a string to be appended to the default WINEDEBUG channels.",
         "type": "bool",
-        "default": "logging",
         "source": "valve"
       },
       {
         "name": "PROTON_LOG_DIR",
         "description": "Output log files into the directory specified. Defaults to your home directory.",
         "type": "path",
-        "default": "your",
         "source": "valve"
       },
       {
@@ -131,7 +129,6 @@
         "name": "PROTON_USE_XALIA",
         "description": "Enable Xalia, a program that can add a gamepad UI for some keyboard/mouse interfaces, or set to 0 to disable. The default is to enable it dynamically based on window contents.",
         "type": "bool",
-        "default": "is",
         "source": "valve"
       },
       {
@@ -177,7 +174,7 @@
         "source": "valve"
       }
     ],
-    "scrapedAt": "2026-07-20T11:37:29.284Z",
+    "scrapedAt": "2026-07-20T13:09:00.692Z",
     "etag": "W/\"ede1ede7595a7180522a8cea3b3ee3a65ab9411b284673051def764f2bb59725\""
   },
   {
@@ -226,7 +223,6 @@
         "name": "PIPEWIRE_LATENCY",
         "description": "Setting PIPEWIRE_LATENCY does nothing here, use the quantum above. * Choose output device - games follow your PipeWire default sink. Change it in your sound settings, pavucontrol (Playback tab), or wpctl set-default . The game shows up named after itself or as winepipewire. * You can make sure the game uses winepipewire.drv either through pw-top or by looking at the audio device names in the game itself which should include (Pipewire) in their name.",
         "type": "unknown",
-        "default": "sink.",
         "source": "cachyos"
       },
       {
@@ -353,21 +349,18 @@
         "name": "PROTON_LOCAL_SHADER_CACHE",
         "description": "Enable per-game shader cache even if \"Shader Pre-caching\" is disabled. Any configuration set by this option can be overriden, i.e. if one of the environment variables is already set, the user-set value will be used. The default configuration is set up to mimic Steam's \"Shader Pre-Caching\", with shaders being cached under /shadercache/ for each game.",
         "type": "bool",
-        "default": "configuration",
         "source": "cachyos"
       },
       {
         "name": "PROTON_LOG",
         "description": "Convenience method for dumping a useful debug log to $PROTON_LOG_DIR/steam-$APPID.log. Set to 1 to enable default logging, or set to a string to be appended to the default WINEDEBUG channels.",
         "type": "bool",
-        "default": "logging",
         "source": "cachyos"
       },
       {
         "name": "PROTON_LOG_DIR",
         "description": "Output log files into the directory specified. Defaults to your home directory.",
         "type": "path",
-        "default": "your",
         "source": "cachyos"
       },
       {
@@ -470,7 +463,6 @@
         "name": "PROTON_OPTISCALER_NAME",
         "description": "control the DLL that should be injected. Three names are supported for PROTON_OPTISCALER_NAME, dxgi.dll, d3d12.dll and dbghelp.dll and defaults to dxgi.dll unless explictly set. * You can use PROTON_OPTISCALER_CONFIG write arbitrary configuration in OptiScaler.ini. The config is a semicolon ( ;) separated string of individual options. The template for each option is {section}.{option}={value}, for example PROTON_OPTISCALER_CONFIG=\"Upscalers.Dx11Upscaler=fsr31;Upscalers.Dx12Upscaler=dlss\". To avoid mistakes, only config options that already exist in Optiscaler.ini can be modified.",
         "type": "bool",
-        "default": "dxgi.dll",
         "source": "cachyos"
       },
       {
@@ -501,7 +493,6 @@
         "name": "PROTON_USE_PIPEWIRE",
         "description": "Enable the winepipewire.drv audio driver. This audio driver is enabled by default and can be disabled with PROTON_USE_PIPEWIRE=0. For more information and further configuration refer to this section",
         "type": "bool",
-        "default": "and",
         "source": "cachyos"
       },
       {
@@ -532,7 +523,6 @@
         "name": "PROTON_USE_XALIA",
         "description": "Enable Xalia, a program that can add a gamepad UI for some keyboard/mouse interfaces, or set to 0 to disable. The default is to enable it dynamically based on window contents.",
         "type": "bool",
-        "default": "is",
         "source": "cachyos"
       },
       {
@@ -575,7 +565,6 @@
         "name": "WINE_AUDIO_DRIVER",
         "description": "Comma-separated list of audio drivers for wine to choose from. The default list is pipewire,pulse,alsa. For example WINE_AUDIO_DRIVER=pulse will use winepulse.drv exclusively.",
         "type": "enum",
-        "default": "list",
         "source": "cachyos"
       },
       {
@@ -624,11 +613,10 @@
         "name": "WINEPULSE_FAST_POLLING",
         "description": "Can help eliminate crackling with the default audio driver. Use 1 to enable, 0 to disable (default). Can cause rare crackling in God of War Ragnarok with the power of two quants (e.g. 512/768/1024)",
         "type": "bool",
-        "default": "audio",
         "source": "cachyos"
       }
     ],
-    "scrapedAt": "2026-07-20T11:37:29.284Z",
+    "scrapedAt": "2026-07-20T13:09:00.692Z",
     "etag": "W/\"35b72a6af7928c3ecac9d9f0bcbc030ca5da28ba97486607cecfafd8d22ab917\""
   },
   {
@@ -680,7 +668,7 @@
         "source": "em"
       }
     ],
-    "scrapedAt": "2026-07-20T11:37:29.284Z",
+    "scrapedAt": "2026-07-20T13:09:00.692Z",
     "etag": "W/\"766bddc776911fbb0b8c305a8aa011eb850e0ac49fe056ef0c1f880e01efd5c6\""
   },
   {
@@ -792,7 +780,7 @@
         "source": "ge"
       }
     ],
-    "scrapedAt": "2026-07-20T11:37:29.284Z",
+    "scrapedAt": "2026-07-20T13:09:00.692Z",
     "etag": "W/\"a19c57609ee7d7e0c1583f372cbb67fb127af0efab83c4f1c8ea89a44e54ad6a\""
   },
   {
@@ -853,14 +841,12 @@
         "name": "PROTON_LOG",
         "description": "Convenience method for dumping a useful debug log to $PROTON_LOG_DIR/steam-$APPID.log. Set to 1 to enable default logging, or set to a string to be appended to the default WINEDEBUG channels.",
         "type": "bool",
-        "default": "logging",
         "source": "dwproton"
       },
       {
         "name": "PROTON_LOG_DIR",
         "description": "Output log files into the directory specified. Defaults to your home directory.",
         "type": "path",
-        "default": "your",
         "source": "dwproton"
       },
       {
@@ -921,7 +907,6 @@
         "name": "PROTON_USE_XALIA",
         "description": "Enable Xalia, a program that can add a gamepad UI for some keyboard/mouse interfaces, or set to 0 to disable. The default is to enable it dynamically based on window contents.",
         "type": "bool",
-        "default": "is",
         "source": "dwproton"
       },
       {
@@ -961,7 +946,7 @@
         "source": "dwproton"
       }
     ],
-    "scrapedAt": "2026-07-20T12:48:10.409Z",
+    "scrapedAt": "2026-07-20T13:09:00.692Z",
     "etag": "W/\"54362e4c92d26a054a7d5b2d88272143d2d54cff\"",
     "lastModified": "Wed, 15 Jul 2026 17:03:37 GMT"
   }
