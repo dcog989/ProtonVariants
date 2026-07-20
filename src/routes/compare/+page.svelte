@@ -1,13 +1,25 @@
 <script lang="ts">
+import { browser } from "$app/environment";
 import { base } from "$app/paths";
 import { page } from "$app/stores";
 
 let { data } = $props();
 
 let query = $state("");
+let selectedIds = $state<string[] | null>(null);
 
-const selectedIds = $derived($page.url.searchParams.get("ids")?.split(",").filter(Boolean) ?? null);
-const visibleVariants = $derived(selectedIds ? data.variants.filter((v) => selectedIds.includes(v.id)) : data.variants);
+if (browser) {
+  $effect(() => {
+    const ids = $page.url.searchParams.get("ids")?.split(",").filter(Boolean) ?? null;
+    selectedIds = ids;
+  });
+}
+
+const visibleVariants = $derived.by(() => {
+  const ids = selectedIds;
+  if (!ids) return data.variants;
+  return data.variants.filter((v) => ids.includes(v.id));
+});
 
 const variantById = $derived(new Map(visibleVariants.map((v) => [v.id, v])));
 const displayName = (id: string) => data.registry.find((r) => r.id === id)?.displayName ?? id;
