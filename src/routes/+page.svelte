@@ -19,7 +19,7 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
   {#each data.registry as ref (ref.id)}
     {@const v = data.variants.find((x) => x.id === ref.id)}
     <div
-      class="flex items-start gap-3 rounded-lg border border-neutral-200 bg-neutral-100 p-4 dark:border-neutral-800 dark:bg-neutral-900"
+      class="relative flex items-start gap-3 rounded-lg border border-neutral-200 bg-neutral-100 p-4 transition hover:border-neutral-400 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-600"
     >
       <input
         type="checkbox"
@@ -30,13 +30,12 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
           else next.delete(ref.id);
           selected = next;
         }}
-        class="mt-1"
+        class="relative z-10 mt-1"
         aria-label={`Select ${ref.displayName}`}
       />
       <div class="min-w-0 flex-1">
-        <a href={`${base}/variant/${ref.id}`} class="text-base font-semibold hover:underline">
-          {ref.displayName}
-        </a>
+        <a href={`${base}/variant/${ref.id}`} class="absolute inset-0" aria-label={ref.displayName}></a>
+        <h3 class="text-base font-semibold">{ref.displayName}</h3>
         {#if releaseOf(ref.id)}
           <p class="mt-1 text-xs text-neutral-400">{releaseOf(ref.id)}</p>
         {/if}
@@ -45,7 +44,7 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
           href={ref.repoUrl}
           target="_blank"
           rel="noreferrer"
-          class="mt-2 block truncate text-xs text-sky-400 hover:underline"
+          class="relative z-10 mt-2 block truncate text-xs text-sky-400 hover:underline"
         >
           {ref.repoUrl}
         </a>
