@@ -67,8 +67,14 @@ function optionFor(variantId: string, name: string) {
     <tbody>
       {#each filteredNames as name (name)}
         {@const unique = data.uniqueNames.includes(name)}
-        <tr class="border-b border-neutral-200 align-top dark:border-neutral-900" class:text-amber-600={unique} class:dark:text-amber-400={unique}>
-          <td class="py-2 pr-4 font-mono text-neutral-900 dark:text-neutral-100">{name}</td>
+        <tr class="border-b border-neutral-200 align-top dark:border-neutral-900">
+          <td
+            class="py-2 pr-4 font-mono text-neutral-900 dark:text-neutral-100"
+            class:text-amber-600={unique}
+            class:dark:text-amber-400={unique}
+          >
+            {name}
+          </td>
           {#each visibleVariants as v (v.id)}
             {@const opt = optionFor(v.id, name)}
             <td class="py-2 pr-4 text-neutral-700 dark:text-neutral-300">
