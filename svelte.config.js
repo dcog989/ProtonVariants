@@ -16,6 +16,7 @@ const config = {
       strict: true,
     }),
     prerender: { entries: ["*"] },
+    alias: { $data: "src/data" },
   },
 };
 
