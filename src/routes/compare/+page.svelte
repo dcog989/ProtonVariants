@@ -24,21 +24,10 @@ const visibleVariants = $derived.by(() => {
 const variantById = $derived(new Map(visibleVariants.map((v) => [v.id, v])));
 const displayName = (id: string) => data.registry.find((r) => r.id === id)?.displayName ?? id;
 
-const nameCounts = $derived.by(() => {
-  const counts = new Map<string, number>();
-  for (const v of data.variants) {
-    for (const o of v.options) counts.set(o.name, (counts.get(o.name) ?? 0) + 1);
-  }
-  return counts;
-});
-
 const filteredNames = $derived(
   data.allNames.filter((name) => !query || name.toLowerCase().includes(query.toLowerCase())),
 );
 
-function isUnique(name: string): boolean {
-  return (nameCounts.get(name) ?? 0) === 1;
-}
 function optionFor(variantId: string, name: string) {
   return variantById.get(variantId)?.options.find((o) => o.name === name);
 }
@@ -77,7 +66,7 @@ function optionFor(variantId: string, name: string) {
     </thead>
     <tbody>
       {#each filteredNames as name (name)}
-        {@const unique = isUnique(name)}
+        {@const unique = data.uniqueNames.includes(name)}
         <tr class="border-b border-neutral-200 align-top dark:border-neutral-900" class:text-amber-600={unique} class:dark:text-amber-400={unique}>
           <td class="py-2 pr-4 font-mono text-neutral-900 dark:text-neutral-100">{name}</td>
           {#each visibleVariants as v (v.id)}
@@ -101,7 +90,7 @@ function optionFor(variantId: string, name: string) {
   <ul class="space-y-1">
     {#each visibleVariants as v (v.id)}
       {@const uniques = v.options.filter(
-        (o) => isUnique(o.name) && (!query || o.name.toLowerCase().includes(query.toLowerCase())),
+        (o) => data.uniqueNames.includes(o.name) && (!query || o.name.toLowerCase().includes(query.toLowerCase())),
       )}
       <li>
         <span class="font-medium text-neutral-900 dark:text-neutral-200">{displayName(v.id)}:</span>
