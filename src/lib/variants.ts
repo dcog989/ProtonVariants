@@ -15,7 +15,7 @@ export const VARIANTS: VariantRef[] = [
   },
   {
     id: "etaash",
-    displayName: "Etaash Proton",
+    displayName: "Proton EM",
     repoUrl: "https://github.com/Etaash-mathamsetty/Proton",
     readmeUrl: "https://raw.githubusercontent.com/Etaash-mathamsetty/Proton/HEAD/README.md",
   },
