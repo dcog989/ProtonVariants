@@ -22,6 +22,7 @@ export interface Variant {
   etag?: string;
   lastModified?: string;
   release?: string;
+  releaseDate?: string;
 }
 
 export interface VariantRef {

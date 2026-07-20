@@ -48,7 +48,7 @@ function loadPrevious(): Variant[] {
   }
 }
 
-async function fetchRelease(releaseUrl: string): Promise<string | undefined> {
+async function fetchRelease(releaseUrl: string): Promise<{ tag: string; publishedAt?: string } | undefined> {
   try {
     const res = await fetch(releaseUrl, {
       headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
@@ -57,10 +57,14 @@ async function fetchRelease(releaseUrl: string): Promise<string | undefined> {
     if (!res.ok) return undefined;
     const body = await res.text();
     if (releaseUrl.includes("api.github.com")) {
-      return (JSON.parse(body) as { tag_name?: string }).tag_name;
+      const json = JSON.parse(body) as { tag_name?: string; published_at?: string };
+      if (!json.tag_name) return undefined;
+      return { tag: json.tag_name, publishedAt: json.published_at };
     }
     const match = body.match(/(?:version|release|v)\s*[:=]?\s*([0-9]+\.[0-9]+(?:\.[0-9]+)?)/i);
-    return match?.[1];
+    if (!match) return undefined;
+    const dateMatch = body.match(/(\d{4}-\d{2}-\d{2})/);
+    return { tag: match[1], publishedAt: dateMatch?.[1] };
   } catch {
     return undefined;
   }
@@ -92,13 +96,15 @@ async function main() {
       readmeUrl: ref.readmeUrl,
       options,
       scrapedAt: now,
+      ...(release ? { release: release.tag, releaseDate: release.publishedAt } : {}),
       ...(etag ? { etag } : {}),
       ...(lastModified ? { lastModified } : {}),
-      ...(release ? { release } : {}),
     };
     results.push(variant);
     if (changed) changedAny = true;
-    console.log(`[${changed ? "ok" : "skip"}] ${ref.id}: ${options.length} env vars${release ? ` (${release})` : ""}`);
+    console.log(
+      `[${changed ? "ok" : "skip"}] ${ref.id}: ${options.length} env vars${release ? ` (${release.tag})` : ""}`,
+    );
   }
 
   writeFileSync(DATA_FILE, `${JSON.stringify(results, null, 2)}\n`);

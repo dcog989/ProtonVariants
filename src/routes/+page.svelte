@@ -3,7 +3,7 @@ import { base } from "$app/paths";
 
 let { data } = $props();
 
-const releaseOf = (id: string) => data.variants.find((x) => x.id === id)?.release;
+const variantOf = (id: string) => data.variants.find((x) => x.id === id);
 
 let selected = $state<Set<string>>(new Set(data.registry.map((r) => r.id)));
 
@@ -36,8 +36,11 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
       <div class="min-w-0 flex-1">
         <a href={`${base}/variant/${ref.id}`} class="absolute inset-0" aria-label={ref.displayName}></a>
         <h3 class="text-base font-semibold">{ref.displayName}</h3>
-        {#if releaseOf(ref.id)}
-          <p class="mt-1 text-xs text-neutral-400">{releaseOf(ref.id)}</p>
+        {#if variantOf(ref.id)?.release}
+          {@const vInfo = variantOf(ref.id)!}
+          <p class="mt-1 text-xs text-neutral-400">
+            {vInfo.release}{vInfo.releaseDate ? ` · ${vInfo.releaseDate}` : ""}
+          </p>
         {/if}
         <p class="mt-1 text-xs text-neutral-500">{v ? `${v.options.length} env vars` : "pending scrape"}</p>
         <a
