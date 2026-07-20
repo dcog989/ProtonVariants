@@ -3,7 +3,7 @@ import { base } from "$app/paths";
 
 let { data } = $props();
 
-const variantById = new Map(data.variants.map((v) => [v.id, v]));
+const variantById = $derived(new Map(data.variants.map((v) => [v.id, v])));
 const displayName = (id: string) => data.registry.find((r) => r.id === id)?.displayName ?? id;
 
 function isUnique(name: string): boolean {
