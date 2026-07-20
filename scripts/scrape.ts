@@ -7,7 +7,7 @@ import { VARIANTS } from "../src/lib/variants";
 const DATA_DIR = "src/data";
 const DATA_FILE = `${DATA_DIR}/proton.json`;
 const FETCH_TIMEOUT_MS = 30_000;
-const USER_AGENT = "ProtonNexus/0.1 (+https://github.com/dcog989/ProtonNexus)";
+const USER_AGENT = "ProtonVariants/0.1 (+https://github.com/dcog989/proton-variants)";
 
 interface CacheEntry {
   etag?: string;

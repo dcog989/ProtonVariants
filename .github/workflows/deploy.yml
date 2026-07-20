@@ -30,7 +30,7 @@ jobs:
         run: bun lefthook run pre-commit
       - name: Build (lefthook)
         env:
-          BASE_PATH: /ProtonNexus
+          BASE_PATH: /proton-variants
         run: bun lefthook run pre-push
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

@@ -120,7 +120,7 @@ Search/filter is client-side over the prerendered JSON (no server).
 ## 7. Project Layout
 
 ```text
-ProtonNexus/
+proton-variants/
 ├── scripts/
 │   └── scrape.ts          # build-time scraper
 ├── src/
@@ -175,4 +175,4 @@ ProtonNexus/
 - **Tooling:** TypeScript 6, Biome 2.5 for lint/format, lefthook for local and
   CI git hooks. CI runs `lefthook run pre-commit` (biome) and
   `lefthook run pre-push` (build) instead of invoking bun scripts directly.
-- **Hosting:** GitHub Pages, base path `/ProtonNexus/`.
+- **Hosting:** GitHub Pages, base path `/proton-variants/`.
