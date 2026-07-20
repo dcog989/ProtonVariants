@@ -3,14 +3,17 @@ import { base } from "$app/paths";
 
 let { data } = $props();
 
+let query = $state("");
+
 const variantById = $derived(new Map(data.variants.map((v) => [v.id, v])));
 const displayName = (id: string) => data.registry.find((r) => r.id === id)?.displayName ?? id;
 
+const filteredNames = $derived(
+  data.allNames.filter((name) => !query || name.toLowerCase().includes(query.toLowerCase())),
+);
+
 function isUnique(name: string): boolean {
   return (data.nameToVariants.get(name)?.length ?? 0) === 1;
-}
-function owner(name: string): string {
-  return data.nameToVariants.get(name)?.[0] ?? "";
 }
 function optionFor(variantId: string, name: string) {
   return variantById.get(variantId)?.options.find((o) => o.name === name);
@@ -26,6 +29,15 @@ function optionFor(variantId: string, name: string) {
   <span class="text-amber-400">amber</span> are unique to a single variant.
 </p>
 
+<div class="mb-4">
+  <input
+    type="search"
+    bind:value={query}
+    placeholder="Filter by variable name…"
+    class="w-72 rounded border border-neutral-700 bg-neutral-900 px-3 py-1.5 text-sm outline-none focus:border-sky-500"
+  />
+</div>
+
 <div class="overflow-x-auto">
   <table class="w-full border-collapse text-sm">
     <thead>
@@ -37,7 +49,7 @@ function optionFor(variantId: string, name: string) {
       </tr>
     </thead>
     <tbody>
-      {#each data.allNames as name (name)}
+      {#each filteredNames as name (name)}
         {@const unique = isUnique(name)}
         <tr class="border-b border-neutral-900 align-top" class:text-amber-400={unique}>
           <td class="py-2 pr-4 font-mono">{name}</td>
@@ -61,7 +73,9 @@ function optionFor(variantId: string, name: string) {
   <h2 class="mb-2 font-semibold text-neutral-200">Unique per variant</h2>
   <ul class="space-y-1">
     {#each data.variants as v (v.id)}
-      {@const uniques = v.options.filter((o) => isUnique(o.name))}
+      {@const uniques = v.options.filter(
+        (o) => isUnique(o.name) && (!query || o.name.toLowerCase().includes(query.toLowerCase())),
+      )}
       <li>
         <span class="font-medium text-neutral-200">{displayName(v.id)}:</span>
         {#if uniques.length}
