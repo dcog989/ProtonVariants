@@ -1,4 +1,3 @@
-import { execSync } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { parseEnvVars } from "../src/lib/parse";
 import type { Variant } from "../src/lib/types";
@@ -91,14 +90,7 @@ async function main() {
   console.log(`Wrote ${DATA_FILE}`);
 
   if (changedAny) {
-    try {
-      execSync(`git add ${DATA_FILE} && git commit -m "chore: scrape Proton env vars (${now})"`, {
-        stdio: "inherit",
-      });
-      console.log("Committed updated data.");
-    } catch (err) {
-      console.warn("Auto-commit skipped (no git repo or nothing to commit):", (err as Error).message);
-    }
+    console.log("Data changed; commit via CI.");
   } else {
     console.log("No upstream changes; data unchanged.");
   }
