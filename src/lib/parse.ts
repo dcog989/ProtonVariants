@@ -7,11 +7,15 @@ const TYPE_HINTS: Array<[RegExp, OptionType]> = [
   [/enum|one of|comma[- ]separated list|list of/i, "enum"],
 ];
 
-function inferType(text: string): OptionType {
+const BOOL_NAME = /^(PROTON_)?(NO_|USE_|ENABLE_|DISABLE_|HIDE_|SET_|FORCE_|PREFER_|EMULATE_|ALLOW_|REQUIRE_)/;
+
+function inferType(name: string, description: string): OptionType {
+  const text = `${name} ${description}`;
   for (const [re, type] of TYPE_HINTS) {
     if (re.test(text)) return type;
   }
-  if (/\b(true|false)\b/i.test(text)) return "bool";
+  if (/set to `?(1|0|true|false)`?|=1\b|=0\b|when set|if set|if enabled/i.test(text)) return "bool";
+  if (BOOL_NAME.test(name)) return "bool";
   return "unknown";
 }
 
@@ -44,7 +48,7 @@ export function parseEnvVars(markdown: string, source: string): RuntimeOption[] 
     if (!description.trim()) continue;
 
     seen.add(name);
-    const type = inferType(`${name} ${description}`);
+    const type = inferType(name, description);
     const values = type === "enum" ? extractValues(description) : undefined;
     const def = extractDefault(description);
 

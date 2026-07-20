@@ -9,6 +9,8 @@ let hasDefault = $state(false);
 
 const types: Array<OptionType | "all"> = ["all", "bool", "string", "int", "enum", "path", "unknown"];
 
+const typeLabel = (t: OptionType | "all") => (t === "unknown" ? "other" : t);
+
 const filtered = $derived(
   data.options.filter((o) => {
     if (typeFilter !== "all" && o.type !== typeFilter) return false;
@@ -39,7 +41,7 @@ const filtered = $derived(
     class="rounded border border-neutral-700 bg-neutral-900 px-2 py-1.5 text-sm"
   >
     {#each types as t}
-      <option value={t}>{t === "all" ? "All types" : t}</option>
+      <option value={t}>{t === "all" ? "All types" : typeLabel(t)}</option>
     {/each}
   </select>
   <label class="flex items-center gap-1.5 text-sm text-neutral-300">
