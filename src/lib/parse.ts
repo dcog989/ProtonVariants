@@ -30,18 +30,18 @@ export function parseEnvVars(markdown: string, source: string): RuntimeOption[] 
   const options: RuntimeOption[] = [];
   const seen = new Set<string>();
 
-  const envRe = /\b([A-Z][A-Z0-9_]{2,})\b/g;
+  const envRe = /\b[A-Z][A-Z0-9_]{2,}\b/;
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    const codeMatch = line.match(/`([A-Z][A-Z0-9_]{2,})`/) || line.match(/\*\*([A-Z][A-Z0-9_]{2,})\*\*/);
-    const name = codeMatch?.[1];
+    if (isTableSeparator(line)) continue;
 
+    const name = extractName(line);
     if (!name || seen.has(name)) continue;
     if (!envRe.test(name)) continue;
 
-    const description = collectDescription(lines, i);
-    if (!description) continue;
+    const description = collectDescription(lines, i, line);
+    if (!description.trim()) continue;
 
     seen.add(name);
     const type = inferType(`${name} ${description}`);
@@ -61,16 +61,53 @@ export function parseEnvVars(markdown: string, source: string): RuntimeOption[] 
   return options.sort((a, b) => a.name.localeCompare(b.name));
 }
 
-function collectDescription(lines: string[], i: number): string {
+function isTableSeparator(line: string): boolean {
+  return /^\s*\|?[\s:|-]+\|?\s*$/.test(line) && line.includes("-");
+}
+
+function extractName(line: string): string | undefined {
+  if (isTableRow(line)) {
+    const cells = line.split("|").map((c) => c.trim());
+    for (const cell of cells) {
+      const m = cell.match(/`([A-Z][A-Z0-9_]{2,})`/) || cell.match(/\*\*([A-Z][A-Z0-9_]{2,})\*\*/);
+      if (m) return m[1];
+    }
+    return undefined;
+  }
+  const m = line.match(/`([A-Z][A-Z0-9_]{2,})`/) || line.match(/\*\*([A-Z][A-Z0-9_]{2,})\*\*/);
+  return m?.[1];
+}
+
+function isTableRow(line: string): boolean {
+  return line.trim().startsWith("|") && line.includes("|", 1);
+}
+
+function collectDescription(lines: string[], i: number, line: string): string {
+  if (isTableRow(line)) {
+    const cells = line
+      .split("|")
+      .map((c) => c.trim())
+      .filter(Boolean);
+    const last = cells[cells.length - 1] ?? "";
+    return stripMarkdown(last);
+  }
+
   const parts: string[] = [];
   for (let j = i; j < Math.min(i + 6, lines.length); j++) {
-    const text = lines[j]
-      .replace(/`([^`]+)`/g, "$1")
-      .replace(/\*\*([^*]+)\*\*/g, "$1")
-      .trim();
+    if (isTableRow(lines[j]) || isTableSeparator(lines[j])) continue;
+    const text = stripMarkdown(lines[j]).trim();
     if (text) parts.push(text);
   }
   return parts.join(" ").replace(/\s+/g, " ");
+}
+
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/<[^>]+>/g, "")
+    .trim();
 }
 
 function extractDefault(description: string): string | undefined {
