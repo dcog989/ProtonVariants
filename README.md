@@ -4,8 +4,6 @@
 
 The runtime environment variables for each are scraped from their respective README files at build time and regenerated on a 24-hour cadence via CI. The output is a prerendered static site with no runtime backend.
 
-Repository: <https://github.com/dcog989/proton-variants>
-
 ---
 
 ## Proton Variants
