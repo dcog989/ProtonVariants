@@ -1,8 +1,8 @@
 # Proton Variants
 
-*Proton Variants* is a web app reference that compiles the features and runtime options for each variant of Proton, the Steam compatibility layer from Valve.
+*Proton Variants* is a web app reference that compiles the features and runtime environment variables for each variant of Proton, the Steam compatibility layer from Valve.
 
-The runtime options for each are scraped from their respective README files at build time and regenerated on a 24-hour cadence via CI. The output is a prerendered static site with no runtime backend.
+The runtime environment variables for each are scraped from their respective README files at build time and regenerated on a 24-hour cadence via CI. The output is a prerendered static site with no runtime backend.
 
 Repository: <https://github.com/dcog989/proton-variants>
 
@@ -19,7 +19,7 @@ Repository: <https://github.com/dcog989/proton-variants>
 ## Features
 
 - Landing page listing all Proton variants with summary cards.
-- Per-variant page with a full, filterable runtime-options table.
+- Per-variant page with a full, filterable env-var table.
 - Client-side search/filter over prerendered data (no server).
 - Provenance and update-cadence disclosure on an About page.
 - Static output: fast load, cheap to host, no runtime database.
