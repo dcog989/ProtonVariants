@@ -97,10 +97,7 @@ async function main() {
       });
       console.log("Committed updated data.");
     } catch (err) {
-      console.warn(
-        "Auto-commit skipped (no git repo or nothing to commit):",
-        (err as Error).message,
-      );
+      console.warn("Auto-commit skipped (no git repo or nothing to commit):", (err as Error).message);
     }
   } else {
     console.log("No upstream changes; data unchanged.");

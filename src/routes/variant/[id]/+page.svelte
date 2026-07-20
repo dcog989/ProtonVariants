@@ -7,22 +7,13 @@ let query = $state("");
 let typeFilter = $state<OptionType | "all">("all");
 let hasDefault = $state(false);
 
-const types: Array<OptionType | "all"> = [
-  "all",
-  "bool",
-  "string",
-  "int",
-  "enum",
-  "path",
-  "unknown",
-];
+const types: Array<OptionType | "all"> = ["all", "bool", "string", "int", "enum", "path", "unknown"];
 
 const filtered = $derived(
   data.options.filter((o) => {
     if (typeFilter !== "all" && o.type !== typeFilter) return false;
     if (hasDefault && !o.default) return false;
-    if (query && !`${o.name} ${o.description}`.toLowerCase().includes(query.toLowerCase()))
-      return false;
+    if (query && !`${o.name} ${o.description}`.toLowerCase().includes(query.toLowerCase())) return false;
     return true;
   }),
 );

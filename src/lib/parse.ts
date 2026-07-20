@@ -34,8 +34,7 @@ export function parseEnvVars(markdown: string, source: string): RuntimeOption[] 
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    const codeMatch =
-      line.match(/`([A-Z][A-Z0-9_]{2,})`/) || line.match(/\*\*([A-Z][A-Z0-9_]{2,})\*\*/);
+    const codeMatch = line.match(/`([A-Z][A-Z0-9_]{2,})`/) || line.match(/\*\*([A-Z][A-Z0-9_]{2,})\*\*/);
     const name = codeMatch?.[1];
 
     if (!name || seen.has(name)) continue;
