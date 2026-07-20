@@ -24,12 +24,20 @@ const visibleVariants = $derived.by(() => {
 const variantById = $derived(new Map(visibleVariants.map((v) => [v.id, v])));
 const displayName = (id: string) => data.registry.find((r) => r.id === id)?.displayName ?? id;
 
+const nameCounts = $derived.by(() => {
+  const counts = new Map<string, number>();
+  for (const v of visibleVariants) {
+    for (const o of v.options) counts.set(o.name, (counts.get(o.name) ?? 0) + 1);
+  }
+  return counts;
+});
+
 const filteredNames = $derived(
   data.allNames.filter((name) => !query || name.toLowerCase().includes(query.toLowerCase())),
 );
 
 function isUnique(name: string): boolean {
-  return (data.nameToVariants.get(name) ?? 0) === 1;
+  return (nameCounts.get(name) ?? 0) === 1;
 }
 function optionFor(variantId: string, name: string) {
   return variantById.get(variantId)?.options.find((o) => o.name === name);
