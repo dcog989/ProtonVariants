@@ -26,7 +26,11 @@ function optionFor(variantId: string, name: string) {
 
 <svelte:head><title>Compare — Proton Variants</title></svelte:head>
 
-<a href="{base}/" class="text-xs text-sky-400 hover:underline">← All variants</a>
+<nav class="mb-2 text-xs text-neutral-500 dark:text-neutral-400">
+  <a href="{base}/" class="text-sky-400 hover:underline">All variants</a>
+  <span class="px-1">→</span>
+  <span class="text-neutral-700 dark:text-neutral-300">Compare</span>
+</nav>
 <h1 class="mb-1 mt-2 text-2xl font-bold">Compare Variants</h1>
 <p class="mb-4 text-sm text-neutral-600 dark:text-neutral-400">
   All {data.allNames.length} environment variables across variants. Rows highlighted in

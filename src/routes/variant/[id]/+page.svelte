@@ -23,7 +23,11 @@ const filtered = $derived(
 
 <svelte:head><title>{data.ref.displayName} — Proton Variants</title></svelte:head>
 
-<a href="{base}/" class="text-xs text-sky-400 hover:underline">← All variants</a>
+<nav class="mb-2 text-xs text-neutral-500 dark:text-neutral-400">
+  <a href="{base}/" class="text-sky-400 hover:underline">All variants</a>
+  <span class="px-1">→</span>
+  <span class="text-neutral-700 dark:text-neutral-300">{data.ref.displayName}</span>
+</nav>
 <h1 class="mb-1 mt-2 text-2xl font-bold">{data.ref.displayName}</h1>
 <p class="mb-4 text-xs text-neutral-500">
   {data.options.length} env vars · {data.uniqueCount} unique to this variant · scraped
