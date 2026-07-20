@@ -30,7 +30,7 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
           else next.delete(ref.id);
           selected = next;
         }}
-        class="mt-1 cursor-pointer"
+        class="mt-1"
         aria-label={`Select ${ref.displayName}`}
       />
       <div class="min-w-0 flex-1">
