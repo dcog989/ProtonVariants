@@ -8,5 +8,7 @@ pre-commit:
 
 pre-push:
   commands:
+    scrape:
+      run: bun run scrape
     build:
       run: bun run build
