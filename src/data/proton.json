@@ -174,7 +174,7 @@
         "source": "valve"
       }
     ],
-    "scrapedAt": "2026-07-21T01:47:34.000Z",
+    "scrapedAt": "2026-07-21T09:43:36.724Z",
     "release": "proton-11.0-1",
     "releaseDate": "2026-07-07T20:55:03Z",
     "etag": "W/\"ede1ede7595a7180522a8cea3b3ee3a65ab9411b284673051def764f2bb59725\""
@@ -618,7 +618,7 @@
         "source": "cachyos"
       }
     ],
-    "scrapedAt": "2026-07-21T01:47:34.000Z",
+    "scrapedAt": "2026-07-21T09:43:36.724Z",
     "release": "cachyos-11.0-20260702-slr",
     "releaseDate": "2026-07-12T13:17:12Z",
     "etag": "W/\"35b72a6af7928c3ecac9d9f0bcbc030ca5da28ba97486607cecfafd8d22ab917\""
@@ -672,7 +672,7 @@
         "source": "em"
       }
     ],
-    "scrapedAt": "2026-07-21T01:47:34.000Z",
+    "scrapedAt": "2026-07-21T09:43:36.724Z",
     "release": "EM-10.0-37-HDR",
     "releaseDate": "2026-04-11T18:58:28Z",
     "etag": "W/\"846a705cd0ac2becbbee262156ef557d2e8ceb7b9fb9b3870620354aca389807\""
@@ -684,15 +684,21 @@
     "readmeUrl": "https://raw.githubusercontent.com/GloriousEggroll/proton-ge-custom/HEAD/README.md",
     "options": [
       {
-        "name": "FUTEX_WAIT_MULTIPLE",
-        "description": "Do not use futex-based in-process synchronization primitives. (Automatically disabled on systems with no FUTEX_WAIT_MULTIPLE support.)",
+        "name": "COPYPREFIX",
+        "description": "Set to 1 to enable. If -steamdeck is used on steam (or SteamDeck=1 is set), copies the game's prefix and shader cache from the game partition to the local steam steamapps folder. Logic is reversed if -steamdeck not enabled (or SteamDeck=0)",
         "type": "bool",
         "source": "ge"
       },
       {
-        "name": "LC_ALL",
+        "name": "HOST_LC_ALL",
         "description": "Set value to a locale to override all other system locale settings for a game.  This variable should be used instead of LC_ALL.",
         "type": "unknown",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_DEBUG_DIR",
+        "description": "Root directory for the Proton debug scripts, /tmp by default.",
+        "type": "path",
         "source": "ge"
       },
       {
@@ -708,8 +714,26 @@
         "source": "ge"
       },
       {
+        "name": "PROTON_DUMP_DEBUG_COMMANDS",
+        "description": "When running a game, Proton will write some useful debug scripts for that game into $PROTON_DEBUG_DIR/proton_$USER/.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
         "name": "PROTON_ENABLE_MEDIACONV",
         "description": "Enable media converter for winegstreamer. This is not needed for winedmo, since the mediaconverter implementation of the codecs doesn't override the underlying implementation.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_ENABLE_NVAPI",
+        "description": "Enable NVIDIA's NVAPI GPU support library.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_FORCE_LARGE_ADDRESS_AWARE",
+        "description": "Force Wine to enable the LARGE_ADDRESS_AWARE flag for all executables.",
         "type": "bool",
         "source": "ge"
       },
@@ -738,8 +762,80 @@
         "source": "ge"
       },
       {
+        "name": "PROTON_HEAP_DELAY_FREE",
+        "description": "Delay freeing some memory, to work around application use-after-free bugs.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_LOG",
+        "description": "Convenience method for dumping a useful debug log to $HOME/steam-$APPID.log. For more thorough logging, use user_settings.py.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_NO_D3D10",
+        "description": "Disables DX10.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_NO_D3D11",
+        "description": "Disables DX11.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_NO_D3D12",
+        "description": "Disables DX12.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_NO_D3D9",
+        "description": "Disables DX9.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_NO_ESYNC",
+        "description": "Do not use eventfd-based in-process synchronization primitives.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_NO_FSYNC",
+        "description": "Do not use futex-based in-process synchronization primitives. (Automatically disabled on systems with no FUTEX_WAIT_MULTIPLE support.)",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_NO_NTSYNC",
+        "description": "Do not use the ntsync kernel module for in-process synchronization primitives.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_NO_WRITE_WATCH",
+        "description": "Disable support for memory write watches in ntdll. This should only be applied if you have verified that the game can operate without write watches. This can improves performance for some very specific games.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_OLD_GL_STRING",
+        "description": "Set some driver overrides to limit the length of the GL extension string, for old games that crash on very long extension strings.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
         "name": "PROTON_USE_SDL",
         "description": "Uses SDL input instead of HIDRAW/Steam Input.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_USE_SECCOMP",
+        "description": "Enable seccomp-bpf filter to emulate native syscalls, required for some DRM protections to work.",
         "type": "bool",
         "source": "ge"
       },
@@ -750,7 +846,7 @@
         "source": "ge"
       },
       {
-        "name": "PROTON_USE_WINED3D11",
+        "name": "PROTON_USE_WINED3D",
         "description": "Use OpenGL-based wined3d instead of Vulkan-based DXVK for d3d11 and d3d10. This used to be called PROTON_USE_WINED3D11, which is now an alias for this same option.",
         "type": "bool",
         "source": "ge"
@@ -758,6 +854,12 @@
       {
         "name": "PROTON_USE_WOW64",
         "description": "Enables wow64.",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "PROTON_USE_XALIA",
+        "description": "Enable Xalia, a program that can add a gamepad UI for some keyboard/mouse interfaces, or set to 0 to disable. The default is to enable it dynamically based on window contents.",
         "type": "bool",
         "source": "ge"
       },
@@ -780,13 +882,31 @@
         "source": "ge"
       },
       {
-        "name": "WINE_FULLSCREEN_FSR_STRENGTH",
+        "name": "WINE_DO_NOT_CREATE_DXGI_DEVICE_MANAGER",
+        "description": "Set to 1 to enable. Required for video playback in some games to not be miscolored (usually tinted pink)",
+        "type": "bool",
+        "source": "ge"
+      },
+      {
+        "name": "WINE_FULLSCREEN_FSR",
         "description": "Enable AMD FidelityFX Super Resolution (FSR), use in conjunction with WINE_FULLSCREEN_FSR_STRENGTH. Only works in Vulkan games (DXVK and VKD3D-Proton included).",
         "type": "bool",
         "source": "ge"
+      },
+      {
+        "name": "WINE_FULLSCREEN_FSR_CUSTOM_MODE",
+        "description": "Set fake resolution of the screen. This can be useful in games that render in native resolution regardless of the selected resolution. Parameter WIDTHxHEIGHT",
+        "type": "unknown",
+        "source": "ge"
+      },
+      {
+        "name": "WINE_FULLSCREEN_FSR_STRENGTH",
+        "description": "AMD FidelityFX Super Resolution (FSR) strength, the default sharpening of 5 is enough without needing modification, but can be changed with 0-5 if wanted. 0 is the maximum sharpness, higher values mean less sharpening. 2 is the AMD recommended default and is set by GE-Proton by default.",
+        "type": "unknown",
+        "source": "ge"
       }
     ],
-    "scrapedAt": "2026-07-21T01:47:34.000Z",
+    "scrapedAt": "2026-07-21T09:43:36.724Z",
     "release": "GE-Proton11-1",
     "releaseDate": "2026-06-24T02:06:49Z",
     "etag": "W/\"a19c57609ee7d7e0c1583f372cbb67fb127af0efab83c4f1c8ea89a44e54ad6a\""
@@ -954,10 +1074,148 @@
         "source": "dwproton"
       }
     ],
-    "scrapedAt": "2026-07-21T01:47:34.000Z",
+    "scrapedAt": "2026-07-21T09:43:36.724Z",
     "release": "15.0.3",
     "releaseDate": "2026-07-15",
     "etag": "W/\"54362e4c92d26a054a7d5b2d88272143d2d54cff\"",
     "lastModified": "Wed, 15 Jul 2026 17:03:37 GMT"
+  },
+  {
+    "id": "rtsp",
+    "displayName": "Proton GE-RTSP",
+    "repoUrl": "https://github.com/SpookySkeletons/proton-ge-rtsp",
+    "readmeUrl": "https://raw.githubusercontent.com/SpookySkeletons/proton-ge-rtsp/HEAD/README.md",
+    "options": [
+      {
+        "name": "PROTON_DEBUG_DIR",
+        "description": "Root directory for the Proton debug scripts, /tmp by default.",
+        "type": "path",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_DUMP_DEBUG_COMMANDS",
+        "description": "When running a game, Proton will write some useful debug scripts for that game into $PROTON_DEBUG_DIR/proton_$USER/.",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_ENABLE_NVAPI",
+        "description": "Enable NVIDIA's NVAPI GPU support library.",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_FORCE_LARGE_ADDRESS_AWARE",
+        "description": "Force Wine to enable the LARGE_ADDRESS_AWARE flag for all executables.",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_HEAP_DELAY_FREE",
+        "description": "Delay freeing some memory, to work around application use-after-free bugs.",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_LOG",
+        "description": "Convenience method for dumping a useful debug log to $HOME/steam-$APPID.log. For more thorough logging, use user_settings.py.",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_NO_D3D10",
+        "description": "Disables DX10.",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_NO_D3D11",
+        "description": "Disables DX11.",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_NO_D3D12",
+        "description": "Disables DX12.",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_NO_D3D9",
+        "description": "Disables DX9.",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_NO_ESYNC",
+        "description": "Do not use eventfd-based in-process synchronization primitives.",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_NO_FSYNC",
+        "description": "Do not use futex-based in-process synchronization primitives. (Automatically disabled on systems with no FUTEX_WAIT_MULTIPLE support.)",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_NO_WRITE_WATCH",
+        "description": "Disable support for memory write watches in ntdll. This is a very dangerous hack and should only be applied if you have verified that the game can operate without write watches. This improves performance for some very specific games (e.g. CoreRT-based games).",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_NO_XIM",
+        "description": "Enabled by default. Do not attempt to use XIM (X Input Methods) support. XIM support is known to cause crashes with libx11 older than version 1.7.",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_OLD_GL_STRING",
+        "description": "Set some driver overrides to limit the length of the GL extension string, for old games that crash on very long extension strings.",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_USE_SECCOMP",
+        "description": "Enable seccomp-bpf filter to emulate native syscalls, required for some DRM protections to work.",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "PROTON_USE_WINED3D",
+        "description": "Use OpenGL-based wined3d instead of Vulkan-based DXVK for d3d11 and d3d10. This used to be called PROTON_USE_WINED3D11, which is now an alias for this same option.",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "WINE_DO_NOT_CREATE_DXGI_DEVICE_MANAGER",
+        "description": "Set to 1 to enable. Required for video playback in some games to not be miscolored (usually tinted pink)",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "WINE_FULLSCREEN_FSR",
+        "description": "Enable AMD FidelityFX Super Resolution (FSR) 1, use in conjunction with WINE_FULLSCREEN_FSR_STRENGTH. Only works in Vulkan games (DXVK and VKD3D-Proton included). Enabled by default since GE-Proton7-29",
+        "type": "bool",
+        "source": "rtsp"
+      },
+      {
+        "name": "WINE_FULLSCREEN_FSR_CUSTOM_MODE",
+        "description": "Set fake resolution of the screen. This can be useful in games that render in native resolution regardless of the selected resolution. Parameter WIDTHxHEIGHT",
+        "type": "unknown",
+        "source": "rtsp"
+      },
+      {
+        "name": "WINE_FULLSCREEN_FSR_STRENGTH",
+        "description": "AMD FidelityFX Super Resolution (FSR) strength, the default sharpening of 5 is enough without needing modification, but can be changed with 0-5 if wanted. 0 is the maximum sharpness, higher values mean less sharpening. 2 is the AMD recommended default and is set by GE-Proton by default.",
+        "type": "unknown",
+        "source": "rtsp"
+      }
+    ],
+    "scrapedAt": "2026-07-21T09:43:36.724Z",
+    "release": "proton-rtsp-11.0-20260609-1",
+    "releaseDate": "2026-06-26T05:17:16Z",
+    "etag": "W/\"f8289b1dd5accd03e34e2d84ea3b710c8e1cdecbe6cb27c87c30e7a948407ce5\""
   }
 ]

@@ -73,12 +73,18 @@ function extractName(line: string): string | undefined {
   if (isTableRow(line)) {
     const cells = line.split("|").map((c) => c.trim());
     for (const cell of cells) {
-      const m = cell.match(/`([A-Z][A-Z0-9_]{2,})`/) || cell.match(/\*\*([A-Z][A-Z0-9_]{2,})\*\*/);
+      const m =
+        cell.match(/`([A-Z][A-Z0-9_]{2,})`/) ||
+        cell.match(/\*\*([A-Z][A-Z0-9_]{2,})\*\*/) ||
+        cell.match(/<tt>([A-Z][A-Z0-9_]{2,})<\/tt>/);
       if (m) return m[1];
     }
     return undefined;
   }
-  const m = line.match(/`([A-Z][A-Z0-9_]{2,})`/) || line.match(/\*\*([A-Z][A-Z0-9_]{2,})\*\*/);
+  const m =
+    line.match(/`([A-Z][A-Z0-9_]{2,})`/) ||
+    line.match(/\*\*([A-Z][A-Z0-9_]{2,})\*\*/) ||
+    line.match(/<tt>([A-Z][A-Z0-9_]{2,})<\/tt>/);
   return m?.[1];
 }
 

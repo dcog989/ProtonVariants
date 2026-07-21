@@ -36,6 +36,13 @@ export const VARIANTS: VariantRef[] = [
     readmeUrl: "https://dawn.wine/dawn-winery/dwproton/raw/branch/main/README.md",
     releaseUrl: "https://dawn.wine/dawn-winery/dwproton",
   },
+  {
+    id: "rtsp",
+    displayName: "Proton GE-RTSP",
+    repoUrl: "https://github.com/SpookySkeletons/proton-ge-rtsp",
+    readmeUrl: "https://raw.githubusercontent.com/SpookySkeletons/proton-ge-rtsp/HEAD/README.md",
+    releaseUrl: "https://api.github.com/repos/SpookySkeletons/proton-ge-rtsp/releases/latest",
+  },
 ];
 
 export function getVariant(id: string): VariantRef | undefined {
