@@ -9,7 +9,7 @@ pre-commit:
 pre-push:
   parallel: false
   commands:
-    scrape:
+    01_scrape:
       run: bun run scrape
-    build:
+    02_build:
       run: bun run build
