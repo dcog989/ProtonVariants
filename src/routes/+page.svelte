@@ -1,5 +1,6 @@
 <script lang="ts">
 import { base } from "$app/paths";
+import { VARIANTS } from "$lib/variants";
 
 let { data } = $props();
 
@@ -76,3 +77,12 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
     Compare {selectedIds.length} selected
   </a>
 </div>
+
+<hr class="mt-8 border-neutral-200 dark:border-neutral-800">
+
+<section class="mt-8 space-y-3 text-sm text-neutral-700 dark:text-neutral-300">
+  <h2 class="text-base font-semibold text-neutral-900 dark:text-neutral-100">What is this?</h2>
+  <p>Proton is Steam's compatibility layer, produced by Valve Software, that allows you to run Windows games on Linux. There are numerous variants of this base Proton version.</p>
+  <p>This web app compiles and lists the runtime environment variables for each variant of Proton. It allows you to compare and explore those environment variables. The data is scraped daily from the respective README files for each Proton variant. </p>
+  <p>The Proton variants are referenced from <a href="https://wiki.cachyos.org/configuration/gaming/" class="text-sky-400 hover:underline">CachyOS Gaming Wiki</a> and <a href="https://github.com/Vysp3r/protonplus" class="text-sky-400 hover:underline">ProtonPlus</a>.</p>
+</section>
