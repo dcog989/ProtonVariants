@@ -10,13 +10,3 @@ pre-push:
   commands:
     build:
       run: bun run build
-
-post-merge:
-  commands:
-    scrape:
-      run: bun run scrape
-
-post-rewrite:
-  commands:
-    scrape:
-      run: bun run scrape
