@@ -1,15 +1,9 @@
 <script lang="ts">
 import { base } from "$app/paths";
-import type { OptionType } from "$lib/types";
 
 let { data } = $props();
 let query = $state("");
-let typeFilter = $state<OptionType | "all">("all");
 let uniqueOnly = $state(false);
-
-const types: Array<OptionType | "all"> = ["all", "bool", "string", "int", "enum", "path", "unknown"];
-
-const typeLabel = (t: OptionType | "all") => (t === "unknown" ? "other" : t);
 
 const formatDate = (iso: string) => {
   const d = new Date(iso);
@@ -20,7 +14,6 @@ const formatDate = (iso: string) => {
 
 const filtered = $derived(
   data.options.filter((o) => {
-    if (typeFilter !== "all" && o.type !== typeFilter) return false;
     if (uniqueOnly && !o.unique) return false;
     if (query && !`${o.name} ${o.description}`.toLowerCase().includes(query.toLowerCase())) return false;
     return true;
@@ -47,14 +40,6 @@ const filtered = $derived(
     placeholder="Filter by name or description…"
     class="w-64 rounded border border-neutral-300 bg-white px-3 py-1.5 text-sm outline-none focus:border-sky-500 dark:border-neutral-700 dark:bg-neutral-900"
   />
-  <select
-    bind:value={typeFilter}
-    class="rounded border border-neutral-300 bg-white px-2 py-1.5 text-sm dark:border-neutral-700 dark:bg-neutral-900"
-  >
-    {#each types as t}
-      <option value={t}>{t === "all" ? "All types" : typeLabel(t)}</option>
-    {/each}
-  </select>
   <label class="flex items-center gap-1.5 text-sm text-neutral-700 dark:text-neutral-300">
     <input type="checkbox" bind:checked={uniqueOnly} /> unique only
   </label>

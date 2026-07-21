@@ -41,8 +41,7 @@ function optionFor(variantId: string, name: string) {
   <span class="font-bold text-neutral-900 dark:text-neutral-100">Compare</span>
 </nav>
 <p class="mb-4 text-sm text-neutral-600 dark:text-neutral-400">
-  All {data.allNames.length} environment variables across variants. Rows highlighted in
-  <span class="text-amber-600 dark:text-amber-400">amber</span> are unique to a single variant.
+  All {data.allNames.length} environment variables across variants. <span class="text-amber-600 dark:text-amber-400">Amber highlights</span> indicate a unique env var for that Proton variant.
 </p>
 
 <div class="mb-4">

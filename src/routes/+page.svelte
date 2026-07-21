@@ -71,7 +71,7 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
 <div class="mt-6">
   <a
     href={compareHref}
-    class="inline-block rounded bg-sky-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-sky-500"
+    class="inline-block rounded bg-neutral-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-neutral-400"
   >
     Compare {selectedIds.length} selected
   </a>
