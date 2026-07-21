@@ -1,6 +1,4 @@
-!.env.example
 .docs
-.DS_Store
 .env
 .env.*
 /.svelte-kit
