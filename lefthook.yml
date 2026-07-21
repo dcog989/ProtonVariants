@@ -7,6 +7,7 @@ pre-commit:
       stage_fixed: true
 
 pre-push:
+  parallel: false
   commands:
     scrape:
       run: bun run scrape
