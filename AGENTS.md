@@ -20,7 +20,7 @@ Linux CachyOS / KDE Plasma 6 + Firefox, Zed code editor, fish shell with Ghostty
 - Build-time scrape: `scripts/scrape.ts` fetches each variant's README, parses runtime options into a normalized schema, and writes `src/data/proton.json`. Fail-fast on fetch/parse errors.
 - Prerender stage: SvelteKit prerenders all public routes from the generated JSON via `adapter-static`. No runtime data fetching.
 - Scheduled CI (`cron: "0 0 * * *"`) runs scrape + build and publishes the static output.
-- Routes: `/` (variant list), `/variant/[id]` (option table with client-side filter/search), `/about` (provenance, cadence, sources).
+- Routes: `/` (variant list + about info), `/variant/[id]` (option table with client-side filter/search), `/compare` (cross-variant comparison).
 - See `.docs/HLD.md` for the full high-level design.
 
 ## Coding Principles
