@@ -33,9 +33,11 @@ end_of_line = crlf
 indent_size = unset
 trim_trailing_whitespace = unset
 end_of_line = unset
+insert_final_newline = unset
 
 # Do not touch lock files
 [{*.lock,package-lock.json,pnpm-lock.yaml}]
 indent_size = unset
 trim_trailing_whitespace = unset
 end_of_line = unset
+insert_final_newline = unset
