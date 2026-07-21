@@ -1,8 +1,10 @@
 # Proton Variants
 
-*Proton Variants* is a web app reference that compiles the runtime environment variables for each variant of Proton, the Steam compatibility layer from Valve. It allows you to compare and explore the environment variables for each variant.
+This web app allows you to compare and query the numerous variants of Proton, the Steam compatibility layer produced by Valve Software.
 
-The runtime environment variables for each are scraped from their respective README files at build time and regenerated on a 24-hour cadence via CI. The output is a prerendered static site with no runtime backend.
+It compiles and lists the runtime environment variables for each variant of Proton. It allows you to compare and explore those environment variables. The data is scraped daily from the respective README files for each Proton variant.
+
+The Proton variants are referenced from [CachyOS Gaming Wiki](https://wiki.cachyos.org/configuration/gaming/) and [ProtonPlus](https://github.com/Vysp3r/protonplus).
 
 ---
 
@@ -11,8 +13,9 @@ The runtime environment variables for each are scraped from their respective REA
 - <https://github.com/ValveSoftware/Proton>
 - <https://github.com/CachyOS/proton-cachyos>
 - <https://github.com/Etaash-mathamsetty/Proton>
-- <https://github.com/GloriousEggroll/proton-ge-custom/>
+- <https://github.com/GloriousEggroll/proton-ge-custom>
 - <https://dawn.wine/dawn-winery/dwproton>
+- <https://github.com/SpookySkeletons/proton-ge-rtsp>
 
 ## Features
 
