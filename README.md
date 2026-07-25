@@ -1,6 +1,6 @@
 # Proton Variants
 
-Proton is Steam's compatibility layer, produced by Valve Software, that allows you to run Windows games on Linux. There are numerous variants of this base Proton version.
+Proton is Steam's compatibility layer, produced by Valve Software, which allows you to run Windows games on Linux. There are numerous variants of this base Proton version.
 
 This web app compiles and lists the runtime environment variables for each variant of Proton. It allows you to compare and explore those environment variables. The data is scraped daily from the respective README files for each Proton variant.
 
