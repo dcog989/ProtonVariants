@@ -41,7 +41,9 @@ function optionFor(variantId: string, name: string) {
   <span class="font-bold text-neutral-900 dark:text-neutral-100">Compare</span>
 </nav>
 <p class="mb-4 text-sm text-neutral-600 dark:text-neutral-400">
-  All {data.allNames.length} environment variables across variants. <span class="text-amber-600 dark:text-amber-400">Amber highlights</span> indicate a unique env var for that Proton variant.
+  All {data.allNames.length} environment variables across variants.
+  <span class="text-amber-600 dark:text-amber-400">Amber highlights</span>
+  indicate a unique env var for that Proton variant.
 </p>
 
 <div class="mb-4">
@@ -50,7 +52,7 @@ function optionFor(variantId: string, name: string) {
     bind:value={query}
     placeholder="Filter by variable name…"
     class="w-72 rounded border border-neutral-300 bg-white px-3 py-1.5 text-sm outline-none focus:border-sky-500 dark:border-neutral-700 dark:bg-neutral-900"
-  />
+  >
 </div>
 
 <div class="overflow-x-auto">
@@ -67,7 +69,7 @@ function optionFor(variantId: string, name: string) {
       {#each filteredNames as name (name)}
         {@const unique = data.uniqueNames.includes(name)}
         <tr class="border-b border-neutral-200 align-top dark:border-neutral-900">
-           <td
+          <td
             class="py-2 pr-4 font-mono"
             class:text-neutral-900={!unique}
             class:dark:text-neutral-100={!unique}
@@ -82,13 +84,24 @@ function optionFor(variantId: string, name: string) {
                   aria-label={data.descriptions[name]}
                   role="note"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4">
-                    <path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM7.25 5.25a.75.75 0 0 0 1.5 0 .75.75 0 0 0-1.5 0ZM8 7a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 7Z" clip-rule="evenodd" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    class="h-4 w-4"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM7.25 5.25a.75.75 0 0 0 1.5 0 .75.75 0 0 0-1.5 0ZM8 7a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 7Z"
+                      clip-rule="evenodd"
+                    />
                   </svg>
                 </span>
                 <span
                   class="pointer-events-none absolute left-0 top-full z-10 mt-1 hidden w-64 rounded bg-neutral-900 px-2 py-1 text-xs font-normal normal-case text-neutral-100 shadow-lg group-hover:block dark:bg-neutral-700"
-                >{data.descriptions[name]}</span>
+                  >{data.descriptions[name]}</span
+                >
               {/if}
             </span>
           </td>

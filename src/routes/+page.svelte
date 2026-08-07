@@ -6,6 +6,11 @@ let { data } = $props();
 
 const variantOf = (id: string) => data.variants.find((x) => x.id === id);
 
+const releaseInfo = (id: string) => {
+  const v = variantOf(id);
+  return { release: v?.release, releaseDate: v?.releaseDate };
+};
+
 const formatDate = (iso: string) => {
   const d = new Date(iso);
   return Number.isNaN(d.getTime())
@@ -44,15 +49,17 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
         }}
         class="relative z-10 mt-1"
         aria-label={`Select ${ref.displayName}`}
-      />
+      >
       <div class="min-w-0 flex-1">
         <a href={`${base}/variant/${ref.id}`} class="absolute inset-0" aria-label={ref.displayName}></a>
         <h3 class="text-base font-semibold">{ref.displayName}</h3>
-        {#if variantOf(ref.id)?.release}
-          {@const vInfo = variantOf(ref.id)!}
-          <p class="mt-1 text-xs text-neutral-400">{vInfo.release}</p>
-          {#if vInfo.releaseDate}
-            <p class="text-xs text-neutral-500">{formatDate(vInfo.releaseDate)}</p>
+        {#if variantOf(ref.id)}
+          {@const vInfo = releaseInfo(ref.id)}
+          {#if vInfo.release}
+            <p class="mt-1 text-xs text-neutral-400">{vInfo.release}</p>
+            {#if vInfo.releaseDate}
+              <p class="text-xs text-neutral-500">{formatDate(vInfo.releaseDate)}</p>
+            {/if}
           {/if}
         {/if}
         <p class="mt-1 text-xs text-neutral-500">{v ? `${v.options.length} env vars` : "pending scrape"}</p>
@@ -82,7 +89,19 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
 
 <section class="mt-8 space-y-3 text-sm text-neutral-700 dark:text-neutral-300">
   <h2 class="text-base font-semibold text-neutral-900 dark:text-neutral-100">What is this?</h2>
-  <p>Proton is Steam's compatibility layer, produced by Valve Software, which allows you to run Windows games on Linux. There are numerous variants of this base Proton version.</p>
-  <p>This web app scrapes the runtime environment variables for each variant of Proton from their respective README files on a daily schedule. It then allows you to compare and explore those environment variables.</p>
-  <p>The Proton variants are referenced from <a href="https://wiki.cachyos.org/configuration/gaming/" class="text-sky-400 hover:underline">CachyOS Gaming Wiki</a> and <a href="https://github.com/Vysp3r/protonplus" class="text-sky-400 hover:underline">ProtonPlus</a>.</p>
+  <p>
+    Proton is Steam's compatibility layer, produced by Valve Software, which allows you to run Windows games on Linux.
+    There are numerous variants of this base Proton version.
+  </p>
+  <p>
+    This web app scrapes the runtime environment variables for each variant of Proton from their respective README files
+    on a daily schedule. It then allows you to compare and explore those environment variables.
+  </p>
+  <p>
+    The Proton variants are referenced from
+    <a href="https://wiki.cachyos.org/configuration/gaming/" class="text-sky-400 hover:underline"
+      >CachyOS Gaming Wiki</a
+    >
+    and <a href="https://github.com/Vysp3r/protonplus" class="text-sky-400 hover:underline">ProtonPlus</a>.
+  </p>
 </section>

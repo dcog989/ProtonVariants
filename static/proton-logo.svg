@@ -1,18 +1,26 @@
-<svg version="1.1" id="Layer_2_1_" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 491 491" style="enable-background:new 0 0 491 491;">
-<title>Proton Logo</title>
+<svg
+  version="1.1"
+  id="Layer_2_1_"
+  xmlns="http://www.w3.org/2000/svg"
+  x="0px"
+  y="0px"
+  viewBox="0 0 491 491"
+  style="enable-background:new 0 0 491 491;"
+>
+  <title>Proton Logo</title>
   <style type="text/css">
-.st0 {
-  fill: #1a2233;
-}
-.st1 {
-  fill: #f50057;
-}
-.st2 {
-  fill: #ffffff;
-}
+  .st0 {
+    fill: #1a2233;
+  }
+  .st1 {
+    fill: #f50057;
+  }
+  .st2 {
+    fill: #ffffff;
+  }
   </style>
-<g>
-  <path
+  <g>
+    <path
       class="st1"
       d="M470.5,245.5c0-29.8-37.3-58.1-94.6-75.6c13.2-58.3,7.3-104.7-18.5-119.6c-6-3.5-12.9-5.1-20.5-5.1v20.5
   c4.2,0,7.6,0.8,10.5,2.4c12.5,7.2,17.9,34.4,13.7,69.4c-1,8.6-2.7,17.7-4.7,27c-18-4.4-37.6-7.8-58.2-10
@@ -39,8 +47,8 @@
   c-7.9,3.4-16.5,6.4-25.4,9.3c-5.2-18-12.1-36.7-20.6-55.9c8.4-19.1,15.2-37.7,20.4-55.6c9.1,2.8,17.7,6,25.8,9.4
   c32.5,13.9,53.5,32,53.5,46.4C450,259.9,429,278.2,396.6,292z"
     />
-  <path class="st1" d="M153.6,45.5L153.6,45.5L153.6,45.5z" />
-  <circle class="st2" cx="245.4" cy="245.5" r="41.9" />
-  <path class="st1" d="M336.8,45.2L336.8,45.2L336.8,45.2z" />
-</g>
+    <path class="st1" d="M153.6,45.5L153.6,45.5L153.6,45.5z" />
+    <circle class="st2" cx="245.4" cy="245.5" r="41.9" />
+    <path class="st1" d="M336.8,45.2L336.8,45.2L336.8,45.2z" />
+  </g>
 </svg>
