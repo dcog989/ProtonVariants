@@ -25,14 +25,18 @@ Linux CachyOS / KDE Plasma 6 + Firefox, Zed code editor, fish shell with Ghostty
 
 ## Coding Principles
 
-- Use current coding standards and patterns
-- KISS, DRY, YAGNI, SoC, SOLID Principles, Composition Over Inheritance, Rule of Three, POLA, Fail Fast
-- Optimize for actual and perceived performance
-- Self-documenting code via clear naming
-- Comments only for workarounds/complex logic - do NOT add comments as running dev commentary.
-- No magic numbers
-- Decompose files of 500+ lines
-- **Do NOT create docs files** (summary, reference, testing, etc.) unless explicitly requested
+- Keep modifications minimal and scoped. Ask before architectural changes.
+- Do not delete files or make destructive changes without confirmation.
+- Do not create documentation files unless explicitly requested.
+- Prefer incremental improvements over rewrites.
+- Use explicit types and named constants (no magic numbers).
+- Return explicit error types; do not suppress exceptions.
+- Follow standard repository linting and formatting configs (Biome, rustfmt, .editorconfig).
+- Decompose files over 400 lines if they mix concerns.
+- Never run git mutations (commit, push, reset, rebase, amend) unless explicitly asked.
+- Self-documenting code via clear naming. Use comments only for complex workarounds or issues that need noting - why, not what.
+- Do not run full `bun run check`/`bun run test` on trivial changes (constant tweaks, one-line edits, CSS value changes). Only run the full suite on real logic changes.
+- On completion of an update or fix, print a concise conventional commit message in a fenced code block.
 
 ## File System Access
 
@@ -48,7 +52,6 @@ Linux CachyOS / KDE Plasma 6 + Firefox, Zed code editor, fish shell with Ghostty
 
 ## Interaction Style
 
-- do not pretend to understand how the user feels. no "You're right to be frustrated." etc.
 - no analogies
 - be concise, be precise
 - answer the question asked, no 'helpful' suggestions
