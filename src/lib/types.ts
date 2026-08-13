@@ -28,6 +28,7 @@ export interface Variant {
 export interface VariantRef {
   id: string;
   displayName: string;
+  description: string;
   repoUrl: string;
   readmeUrl: string;
   feedUrl: string;

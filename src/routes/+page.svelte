@@ -1,5 +1,6 @@
 <script lang="ts">
 import { base } from "$app/paths";
+import Tooltip from "$lib/Tooltip.svelte";
 import { VARIANTS } from "$lib/variants";
 
 let { data } = $props();
@@ -52,7 +53,15 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
       >
       <div class="min-w-0 flex-1">
         <a href={`${base}/variant/${ref.id}`} class="absolute inset-0" aria-label={ref.displayName}></a>
-        <h3 class="text-base font-semibold">{ref.displayName}</h3>
+        <h3 class="text-base font-semibold">
+          <Tooltip text={ref.description}>
+            <span
+              class="cursor-help text-neutral-900 underline decoration-dotted underline-offset-2 dark:text-neutral-100"
+            >
+              {ref.displayName}
+            </span>
+          </Tooltip>
+        </h3>
         {#if variantOf(ref.id)}
           {@const vInfo = releaseInfo(ref.id)}
           {#if vInfo.release}
@@ -90,15 +99,19 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
 <section class="mt-8 space-y-3 text-sm text-neutral-700 dark:text-neutral-300">
   <h2 class="text-base font-semibold text-neutral-900 dark:text-neutral-100">What is this?</h2>
   <p>
-    Proton is Steam's compatibility layer, produced by Valve Software, which allows you to run Windows games on Linux.
-    There are numerous variants of this base Proton version.
+    This web app polls the release status of various
+    <Tooltip
+      text="Proton is Steam’s compatibility layer, produced by Valve Software, which allows you to run Windows games on Linux. There are numerous variants of this base Proton version."
+    >
+      <span class="cursor-help text-neutral-900 underline decoration-dotted underline-offset-2 dark:text-neutral-100"
+        >Proton</span
+      >
+    </Tooltip>
+    variants every 6 hours. It then scrapes the runtime environment variables from their respective README files if
+    updates available. It then allows you to compare and explore those environment variables.
   </p>
   <p>
-    This web app scrapes the runtime environment variables for each variant of Proton from their respective README files
-    on a daily schedule. It then allows you to compare and explore those environment variables.
-  </p>
-  <p>
-    The Proton variants are referenced from
+    The Proton variants listed above are referenced from
     <a href="https://wiki.cachyos.org/configuration/gaming/" class="text-sky-400 hover:underline"
       >CachyOS Gaming Wiki</a
     >
