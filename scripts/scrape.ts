@@ -1,5 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { parseEnvVars } from "../src/lib/parse";
+import { fetchLatestRelease } from "../src/lib/releases";
 import type { Variant } from "../src/lib/types";
 import { VARIANTS } from "../src/lib/variants";
 
@@ -48,28 +49,6 @@ function loadPrevious(): Variant[] {
   }
 }
 
-async function fetchRelease(releaseUrl: string): Promise<{ tag: string; publishedAt?: string } | undefined> {
-  try {
-    const res = await fetch(releaseUrl, {
-      headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
-      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
-    });
-    if (!res.ok) return undefined;
-    const body = await res.text();
-    if (releaseUrl.includes("api.github.com")) {
-      const json = JSON.parse(body) as { tag_name?: string; published_at?: string };
-      if (!json.tag_name) return undefined;
-      return { tag: json.tag_name, publishedAt: json.published_at };
-    }
-    const match = body.match(/(?:version|release|v)\s*[:=]?\s*([0-9]+\.[0-9]+(?:\.[0-9]+)?)/i);
-    if (!match) return undefined;
-    const dateMatch = body.match(/(\d{4}-\d{2}-\d{2})/);
-    return { tag: match[1], publishedAt: dateMatch?.[1] };
-  } catch {
-    return undefined;
-  }
-}
-
 async function main() {
   mkdirSync(DATA_DIR, { recursive: true });
   const previous = await loadPrevious();
@@ -87,7 +66,7 @@ async function main() {
     const { markdown, etag, lastModified, changed } = await fetchReadme(ref.readmeUrl, cacheEntry);
 
     const options = !changed && cached ? cached.options : parseEnvVars(markdown, ref.id);
-    const release = ref.releaseUrl ? await fetchRelease(ref.releaseUrl) : undefined;
+    const release = await fetchLatestRelease(ref.feedUrl);
 
     const variant: Variant = {
       id: ref.id,
@@ -96,7 +75,11 @@ async function main() {
       readmeUrl: ref.readmeUrl,
       options,
       scrapedAt: now,
-      ...(release ? { release: release.tag, releaseDate: release.publishedAt } : {}),
+      ...(release
+        ? { release: release.tag, releaseDate: release.publishedAt }
+        : cached?.release
+          ? { release: cached.release, releaseDate: cached.releaseDate }
+          : {}),
       ...(etag ? { etag } : {}),
       ...(lastModified ? { lastModified } : {}),
     };

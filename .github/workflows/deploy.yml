@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 */6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -17,30 +17,61 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  check-releases:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.releases.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Restore data cache
+        uses: actions/cache/restore@v4
+        id: data-cache
+        with:
+          path: src/data/proton.json
+          key: proton-data
+          restore-keys: |
+            proton-data-
+      - uses: oven-sh/setup-bun@v2
+      - name: Install
+        run: bun install --frozen-lockfile
+      - name: Check release feeds
+        id: releases
+        run: |
+          if bun run check-releases | grep -q UPDATE; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
   build:
+    needs: check-releases
+    if: always() && (github.event_name != 'schedule' || needs.check-releases.outputs.changed == 'true')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - name: Restore data cache
+        uses: actions/cache/restore@v4
+        id: data-cache
         with:
-          fetch-depth: 0
+          path: src/data/proton.json
+          key: proton-data
+          restore-keys: |
+            proton-data-
       - uses: oven-sh/setup-bun@v2
       - name: Install
         run: bun install --frozen-lockfile
       - name: Scrape
         run: bun run scrape
-      - name: Commit scraped data
-        run: |
-          if ! git diff --quiet -- src/data/proton.json; then
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add src/data/proton.json
-            git commit -m "chore: scrape Proton env vars"
-            git push
-          fi
       - name: Lint & format check
         run: bun run check
       - name: Sync SvelteKit
         run: bunx svelte-kit sync
+      - name: Save data cache
+        uses: actions/cache/save@v4
+        with:
+          path: src/data/proton.json
+          key: proton-data-${{ github.run_id }}
       - name: Build
         env:
           BASE_PATH: /proton-variants
@@ -52,6 +83,7 @@ jobs:
 
   deploy:
     needs: build
+    if: always() && needs.build.result == 'success'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

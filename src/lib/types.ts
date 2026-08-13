@@ -30,5 +30,5 @@ export interface VariantRef {
   displayName: string;
   repoUrl: string;
   readmeUrl: string;
-  releaseUrl?: string;
+  feedUrl: string;
 }

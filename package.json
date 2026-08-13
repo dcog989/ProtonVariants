@@ -6,6 +6,7 @@
   "scripts": {
     "build": "vite build",
     "check": "biome check . && svelte-check --tsconfig ./tsconfig.json",
+    "check-releases": "bun run scripts/check-releases.ts",
     "clean": "rm -rf .context node_modules .vitest bun.lock",
     "dev": "vite dev",
     "format": "biome format --write .",
