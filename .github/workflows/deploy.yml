@@ -23,9 +23,9 @@ jobs:
     outputs:
       changed: ${{ steps.releases.outputs.changed }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Restore data cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         id: data-cache
         with:
           path: src/data/proton.json
@@ -49,9 +49,9 @@ jobs:
     if: always() && (github.event_name != 'schedule' || needs.check-releases.outputs.changed == 'true')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Restore data cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         id: data-cache
         with:
           path: src/data/proton.json
@@ -68,7 +68,7 @@ jobs:
       - name: Sync SvelteKit
         run: bunx svelte-kit sync
       - name: Save data cache
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: src/data/proton.json
           key: proton-data-${{ github.run_id }}
