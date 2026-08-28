@@ -8,8 +8,8 @@ pre-commit:
 
 commit-msg:
   commands:
-    commitlint:
-      run: bunx commitlint --edit {1}
+    cocogitto:
+      run: cog verify --file {1}
 
 pre-push:
   parallel: false

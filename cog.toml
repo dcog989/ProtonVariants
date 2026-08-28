@@ -1,0 +1,7 @@
+disable_changelog = true
+
+tag_prefix = "v"
+
+pre_bump_hooks = [
+  "npm version {{version}} --no-git-tag-version --allow-same-version",
+]

@@ -14,6 +14,7 @@ Linux CachyOS / KDE Plasma 6 + Firefox, Zed code editor, fish shell with Ghostty
 - Biome (lint + format)
 - bun (dev, build, package scripts)
 - lefthook (local + CI git hooks)
+- cocogitto (commit verification via lefthook; `bun run release` bumps version and tags)
 
 ## Architecture
 
