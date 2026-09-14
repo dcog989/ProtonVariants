@@ -1,6 +1,8 @@
 tag_prefix = "v"
 
 pre_bump_hooks = [
+  "bun run scrape",
+  "bun run build",
   "npm version {{version}} --no-git-tag-version --allow-same-version",
 ]
 
