@@ -52,7 +52,9 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
         aria-label={`Select ${ref.displayName}`}
       >
       <div class="min-w-0 flex-1">
-        <a href={`${base}/variant/${ref.id}`} class="absolute inset-0" aria-label={ref.displayName}></a>
+        <a href={`${base}/variant/${ref.id}`} class="absolute inset-0" aria-label={ref.displayName}>
+          <span class="sr-only">{ref.displayName}</span>
+        </a>
         <h3 class="text-base font-semibold">
           <Tooltip text={ref.description}>
             <span
