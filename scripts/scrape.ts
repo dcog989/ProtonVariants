@@ -22,7 +22,7 @@ async function main() {
   const prevById = new Map(previous.map((v) => [v.id, v]));
   const now = new Date().toISOString();
   const results: Variant[] = [];
-  let changedAny = false;
+  let dataChanged = false;
 
   for (const ref of VARIANTS) {
     const cached = prevById.get(ref.id);
@@ -31,6 +31,11 @@ async function main() {
 
     const options = !changed && cached ? cached.options : parseEnvVars(markdown, ref.id);
     const release = await fetchVariantRelease(ref);
+    const releaseChanged = release !== undefined && release.tag !== cached?.release;
+    // A 200 only means the host served the body; when the host ignores
+    // conditional requests, confirm the parsed data actually differs.
+    const optionsChanged = changed && JSON.stringify(options) !== JSON.stringify(cached?.options);
+    const variantChanged = optionsChanged || releaseChanged;
 
     const variant: Variant = {
       id: ref.id,
@@ -38,7 +43,9 @@ async function main() {
       repoUrl: ref.repoUrl,
       readmeUrl: ref.readmeUrl,
       options,
-      scrapedAt: now,
+      // Only advance the timestamp when the variant's data actually changes, so
+      // it reflects when the data last changed, not when CI last ran.
+      scrapedAt: variantChanged ? now : (cached?.scrapedAt ?? now),
       ...(release
         ? { release: release.tag, releaseDate: release.publishedAt }
         : cached?.release
@@ -48,16 +55,16 @@ async function main() {
       ...(lastModified ? { lastModified } : {}),
     };
     results.push(variant);
-    if (changed) changedAny = true;
+    if (variantChanged) dataChanged = true;
     console.log(
-      `[${changed ? "ok" : "skip"}] ${ref.id}: ${options.length} env vars${release ? ` (${release.tag})` : ""}`,
+      `[${variantChanged ? "ok" : "skip"}] ${ref.id}: ${options.length} env vars${release ? ` (${release.tag})` : ""}`,
     );
   }
 
   writeFileSync(DATA_FILE, `${JSON.stringify(results, null, 2)}\n`);
   console.log(`Wrote ${DATA_FILE}`);
 
-  if (changedAny) {
+  if (dataChanged) {
     console.log("Data changed; commit via CI.");
   } else {
     console.log("No upstream changes; data unchanged.");
