@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.6.4 - 2026-10-09
+#### Bug Fixes
+- (**releases**) read release date for Valve git-tag versions - (ae6ac4a) - dcog989
+
+- - -
+
 ## v0.6.3 - 2026-10-09
 #### Bug Fixes
 - (**ci**) rebuild when a variant README changes without a release - (89ac225) - dcog989
