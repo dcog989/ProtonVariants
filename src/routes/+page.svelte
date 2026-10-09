@@ -111,7 +111,7 @@ const compareHref = $derived(
         >Proton</span
       >
     </Tooltip>
-    variants every 6 hours. It then scrapes the runtime environment variables from their respective README files if
+    variants every 8 hours. It then scrapes the runtime environment variables from their respective README files if
     updates available. It then allows you to compare and explore those environment variables.
   </p>
   <p>
