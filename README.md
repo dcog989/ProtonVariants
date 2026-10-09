@@ -28,11 +28,10 @@ The Proton variants are referenced from [CachyOS Gaming Wiki](https://wiki.cachy
 ## Tech Stack
 
 - SvelteKit (pre-rendered via `adapter-static`)
-- TypeScript 6
-- Tailwind CSS 4
+- TypeScript + Tailwind
 - Biome (lint + format)
 - bun (dev, build, package scripts)
-- lefthook (local + CI git hooks)
+- Lefthook (local + CI git hooks)
 
 ## Build & Deploy
 
