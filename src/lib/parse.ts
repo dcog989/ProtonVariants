@@ -45,6 +45,9 @@ export function parseEnvVars(markdown: string, source: string): RuntimeOption[] 
     const name = extractName(line);
     if (!name || seen.has(name)) continue;
     if (!envRe.test(name)) continue;
+    // Prose backticks name files and words too (e.g. `LICENSE`); real vars in
+    // prose contain an underscore. Table rows are definitions, so trust them.
+    if (!isTableRow(line) && !name.includes("_")) continue;
 
     const description = collectDescription(lines, i, line, name);
     if (!name) continue;
