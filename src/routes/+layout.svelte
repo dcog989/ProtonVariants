@@ -1,6 +1,6 @@
 <script lang="ts">
 import "../app.css";
-import { base } from "$app/paths";
+import { resolve } from "$app/paths";
 import { version } from "../../package.json";
 
 let { children } = $props();
@@ -9,7 +9,7 @@ let { children } = $props();
 <div class="min-h-screen bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
   <header class="border-b border-neutral-200 dark:border-neutral-800">
     <nav class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-      <a href="{base}/" class="flex items-center gap-2 text-2xl font-semibold tracking-tight text-[#f50057]">
+      <a href={resolve("/")} class="flex items-center gap-2 text-2xl font-semibold tracking-tight text-[#f50057]">
         <svg
           class="size-7"
           viewBox="0 0 491 491"

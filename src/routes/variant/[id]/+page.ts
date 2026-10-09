@@ -1,8 +1,8 @@
 import { error } from "@sveltejs/kit";
-import { loadVariants } from "$lib/data";
-import type { RuntimeOptionView } from "$lib/types";
-import { uniqueNames } from "$lib/unique";
-import { getVariant } from "$lib/variants";
+import { loadVariants } from "#lib/data.js";
+import type { RuntimeOptionView } from "#lib/types.js";
+import { uniqueNames } from "#lib/unique.js";
+import { getVariant } from "#lib/variants.js";
 
 export const prerender = true;
 

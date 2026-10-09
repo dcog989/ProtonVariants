@@ -1,7 +1,7 @@
-import { loadVariants } from "$lib/data";
-import type { Variant } from "$lib/types";
-import { uniqueNames } from "$lib/unique";
-import { VARIANTS } from "$lib/variants";
+import { loadVariants } from "#lib/data.js";
+import type { Variant } from "#lib/types.js";
+import { uniqueNames } from "#lib/unique.js";
+import { VARIANTS } from "#lib/variants.js";
 
 export const prerender = true;
 

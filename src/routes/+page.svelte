@@ -1,7 +1,7 @@
 <script lang="ts">
-import { base } from "$app/paths";
-import Tooltip from "$lib/Tooltip.svelte";
-import { VARIANTS } from "$lib/variants";
+import Tooltip from "#lib/Tooltip.svelte";
+import { VARIANTS } from "#lib/variants.js";
+import { resolve } from "$app/paths";
 
 let { data } = $props();
 
@@ -26,7 +26,9 @@ function initialSelected() {
 let selected = $state(initialSelected());
 
 const selectedIds = $derived([...selected]);
-const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selectedIds.join(",")}` : `${base}/compare`);
+const compareHref = $derived(
+  selectedIds.length ? `${resolve("compare")}?ids=${selectedIds.join(",")}` : resolve("compare"),
+);
 </script>
 
 <svelte:head><title>Proton Variants</title></svelte:head>
@@ -52,7 +54,7 @@ const compareHref = $derived(selectedIds.length ? `${base}/compare?ids=${selecte
         aria-label={`Select ${ref.displayName}`}
       >
       <div class="min-w-0 flex-1">
-        <a href={`${base}/variant/${ref.id}`} class="absolute inset-0" aria-label={ref.displayName}>
+        <a href={resolve("/variant/[id]", { id: ref.id })} class="absolute inset-0" aria-label={ref.displayName}>
           <span class="sr-only">{ref.displayName}</span>
         </a>
         <h3 class="text-base font-semibold">

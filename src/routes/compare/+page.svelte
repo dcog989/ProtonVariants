@@ -1,7 +1,7 @@
 <script lang="ts">
-import { browser } from "$app/environment";
-import { base } from "$app/paths";
-import { page } from "$app/stores";
+import { browser } from "$app/env";
+import { resolve } from "$app/paths";
+import { page } from "$app/state";
 
 let { data } = $props();
 
@@ -10,7 +10,7 @@ let selectedIds = $state<string[] | null>(null);
 
 if (browser) {
   $effect(() => {
-    const ids = $page.url.searchParams.get("ids")?.split(",").filter(Boolean) ?? null;
+    const ids = page.url.searchParams.get("ids")?.split(",").filter(Boolean) ?? null;
     selectedIds = ids;
   });
 }
@@ -36,7 +36,7 @@ function optionFor(variantId: string, name: string) {
 <svelte:head><title>Compare — Proton Variants</title></svelte:head>
 
 <nav class="mb-4 text-2xl text-neutral-500 dark:text-neutral-400">
-  <a href="{base}/" class="text-sky-400 hover:underline">All variants</a>
+  <a href={resolve("/")} class="text-sky-400 hover:underline">All variants</a>
   <span class="px-2">→</span>
   <span class="font-bold text-neutral-900 dark:text-neutral-100">Compare</span>
 </nav>

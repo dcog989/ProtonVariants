@@ -3,6 +3,10 @@
   "version": "0.6.2",
   "private": true,
   "type": "module",
+  "imports": {
+    "#lib/*": "./src/lib/*",
+    "#data/*": "./src/data/*"
+  },
   "scripts": {
     "build": "vite build",
     "bump": "cog bump --auto",
@@ -17,18 +21,18 @@
     "update": "bun update --latest"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.14",
-    "@sveltejs/adapter-static": "^3.0.10",
-    "@sveltejs/kit": "^2.70.3",
-    "@sveltejs/vite-plugin-svelte": "^7.3.0",
+    "@biomejs/biome": "^2.5.15",
+    "@sveltejs/adapter-static": "^4.0.0",
+    "@sveltejs/kit": "^3.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
     "@tailwindcss/vite": "^4.3.3",
-    "@types/node": "^22.20.3",
-    "lefthook": "^2.1.14",
-    "svelte": "^5.57.0",
+    "@types/node": "^26.6.4",
+    "lefthook": "^2.2.1",
+    "svelte": "^5.57.2",
     "svelte-check": "^4.7.6",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
-    "vite": "^8.3.0"
+    "vite": "^8.3.4"
   },
   "overrides": {
     "typescript": "6.0.3"
