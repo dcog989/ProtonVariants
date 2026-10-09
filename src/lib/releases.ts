@@ -47,15 +47,32 @@ export async function fetchLatestTagVersion(tagsUrl: string): Promise<ReleaseInf
   if (!res.ok) {
     throw new Error(`Failed to fetch ${tagsUrl}: ${res.status} ${res.statusText}`);
   }
-  const tags = (await res.json()) as Array<{ name: string }>;
-  let newest: { version: number[]; tag: string } | undefined;
-  for (const { name } of tags) {
+  const tags = (await res.json()) as Array<{ name: string; commit: { url: string } }>;
+  let newest: { version: number[]; tag: string; commitUrl: string } | undefined;
+  for (const { name, commit } of tags) {
     const match = name.match(VERSION_TAG_PATTERN);
     if (!match) continue;
     const version = [Number(match[1]), Number(match[2]), Number(match[3]), match[4] ? match[4].charCodeAt(0) : 0];
-    if (!newest || compareVersions(version, newest.version) > 0) newest = { version, tag: name };
+    if (!newest || compareVersions(version, newest.version) > 0) {
+      newest = { version, tag: name, commitUrl: commit.url };
+    }
   }
-  return newest ? { tag: newest.tag } : undefined;
+  if (!newest) return undefined;
+  // The tags endpoint omits dates, so read the tagged commit's date.
+  const publishedAt = await fetchCommitDate(newest.commitUrl);
+  return { tag: newest.tag, publishedAt };
+}
+
+async function fetchCommitDate(commitUrl: string): Promise<string | undefined> {
+  const res = await fetch(commitUrl, {
+    headers: { "User-Agent": USER_AGENT, Accept: "application/vnd.github+json" },
+    signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+  });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch ${commitUrl}: ${res.status} ${res.statusText}`);
+  }
+  const commit = (await res.json()) as { commit?: { committer?: { date?: string } } };
+  return commit.commit?.committer?.date;
 }
 
 export function fetchVariantRelease(ref: VariantRef): Promise<ReleaseInfo | undefined> {

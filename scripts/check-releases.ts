@@ -33,12 +33,16 @@ async function main() {
     // both the release tag and the README's conditional-fetch validators.
     const [release, readme] = await Promise.all([fetchVariantRelease(ref), fetchReadme(ref.readmeUrl, stored)]);
 
-    const releaseChanged = release !== undefined && release.tag !== stored?.release;
+    const tagChanged = release !== undefined && release.tag !== stored?.release;
+    const dateChanged = release?.publishedAt !== undefined && release.publishedAt !== stored?.releaseDate;
     const readmeChanged = readme.changed && optionsChanged(readme.markdown, ref.id, stored);
 
-    if (releaseChanged) {
+    if (tagChanged) {
       updated.push(ref.id);
       console.log(`[new] ${ref.id}: ${stored?.release ?? "(none)"} -> ${release.tag}`);
+    } else if (dateChanged) {
+      updated.push(ref.id);
+      console.log(`[date] ${ref.id}: ${release.tag} (${release.publishedAt})`);
     } else if (readmeChanged) {
       updated.push(ref.id);
       console.log(`[readme] ${ref.id}: README content changed`);

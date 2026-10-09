@@ -31,7 +31,10 @@ async function main() {
 
     const options = !changed && cached ? cached.options : parseEnvVars(markdown, ref.id);
     const release = await fetchVariantRelease(ref);
-    const releaseChanged = release !== undefined && release.tag !== cached?.release;
+    const releaseChanged =
+      release !== undefined &&
+      (release.tag !== cached?.release ||
+        (release.publishedAt !== undefined && release.publishedAt !== cached?.releaseDate));
     // A 200 only means the host served the body; when the host ignores
     // conditional requests, confirm the parsed data actually differs.
     const optionsChanged = changed && JSON.stringify(options) !== JSON.stringify(cached?.options);
