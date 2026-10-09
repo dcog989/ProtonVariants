@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs";
-import { fetchLatestRelease } from "../src/lib/releases";
+import { fetchVariantRelease } from "../src/lib/releases";
 import type { Variant } from "../src/lib/types";
 import { VARIANTS } from "../src/lib/variants";
 
@@ -19,7 +19,7 @@ async function main() {
   const updated: string[] = [];
 
   for (const ref of VARIANTS) {
-    const release = await fetchLatestRelease(ref.feedUrl);
+    const release = await fetchVariantRelease(ref);
     const stored = prevById.get(ref.id)?.release;
     if (release && release.tag !== stored) {
       updated.push(ref.id);

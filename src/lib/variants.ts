@@ -8,6 +8,7 @@ export const VARIANTS: VariantRef[] = [
     repoUrl: "https://github.com/ValveSoftware/Proton",
     readmeUrl: "https://raw.githubusercontent.com/ValveSoftware/Proton/HEAD/README.md",
     feedUrl: "https://github.com/ValveSoftware/Proton/releases.atom",
+    tagsUrl: "https://api.github.com/repos/ValveSoftware/Proton/tags?per_page=100",
   },
   {
     id: "cachyos",

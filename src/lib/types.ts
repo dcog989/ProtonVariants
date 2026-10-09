@@ -32,4 +32,6 @@ export interface VariantRef {
   repoUrl: string;
   readmeUrl: string;
   feedUrl: string;
+  /** Read the version from git tags instead of the releases feed. */
+  tagsUrl?: string;
 }
