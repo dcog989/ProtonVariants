@@ -4,7 +4,7 @@
 
 ## Dev Environment
 
-Linux CachyOS / KDE Plasma 6 + Firefox, Zed code editor, fish shell with Ghostty + Fresh editor. yay and bun package managers. All software is updated as of today.
+Linux CachyOS / KDE Plasma 6 + Firefox, Zed code editor, fish shell with Ghostty + Fresh editor. yay and bun package managers.
 
 ## Tech Stack
 
@@ -13,8 +13,8 @@ Linux CachyOS / KDE Plasma 6 + Firefox, Zed code editor, fish shell with Ghostty
 - Tailwind CSS 4
 - Biome (lint + format)
 - bun (dev, build, package scripts)
-- lefthook (local + CI git hooks)
-- cocogitto (commit verification via lefthook; `bun run release` bumps version, pushes commit + tag)
+- Lefthook (local + CI git hooks)
+- Cocogitto (commit verification via Lefthook; `bun run release` bumps version, pushes commit + tag)
 
 ## Architecture
 
@@ -22,7 +22,6 @@ Linux CachyOS / KDE Plasma 6 + Firefox, Zed code editor, fish shell with Ghostty
 - Prerender stage: SvelteKit prerenders all public routes from the generated JSON via `adapter-static`. No runtime data fetching.
 - Scheduled CI (`cron: "0 */8 * * *"`) runs scrape + build and publishes the static output.
 - Routes: `/` (variant list + about info), `/variant/[id]` (option table with client-side filter/search), `/compare` (cross-variant comparison).
-- See `.docs/HLD.md` for the full high-level design.
 
 ## Coding Principles
 
@@ -43,13 +42,11 @@ Linux CachyOS / KDE Plasma 6 + Firefox, Zed code editor, fish shell with Ghostty
 
 ### Allowed
 
-- `/home/bubba/Projects/FeedMee/` unless excluded below.
+- `/home/bubba/Projects/ProtonVariants` unless excluded below.
 
 ### Disallowed
 
-- `.assets/`, `.docs/`, `.git/`, `node_modules/`, `.repomix/`
-- `/src-tauri/capabilities`, `/src-tauri/target`, `/src-tauri/gen`, `/src-tauri/Cargo.lock`
-- `repomix.config.json`, `.repomixignore`, `bun.lock`
+- `.docs/`, `.git/`, `node_modules/`
 
 ## Interaction Style
 
