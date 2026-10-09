@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.6.3 - 2026-10-09
+#### Bug Fixes
+- (**ci**) rebuild when a variant README changes without a release - (89ac225) - dcog989
+- (**parse**) ignore prose tokens without underscore as env vars - (77809ca) - dcog989
+- (**releases**) read Valve Proton version from git tags - (fd02435) - dcog989
+- (**scrape**) preserve scrapedAt until variant data actually changes - (2708c97) - dcog989
+- (**ui**) format dates in UTC to prevent timezone day drift - (56533de) - dcog989
+- correct tooltip schedule - (e13cfb2) - dcog989
+#### Documentation
+- add schedule to readme - (cb84766) - dcog989
+- tidy readme + agents.md - (2a12976) - dcog989
+- tidy readme - (42cbd1a) - dcog989
+#### Miscellaneous Chores
+- (**deps**) update, migrate to SvelteKit 3 and adapter-static 4 - (dd8c2c3) - dcog989
+
+- - -
+
 ## v0.6.2 - 2026-09-16
 #### Bug Fixes
 - (**a11y**) add sr-only label content to variant overlay link - (4bf2c57) - dcog989
