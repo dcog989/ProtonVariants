@@ -4,6 +4,14 @@ const FETCH_TIMEOUT_MS = 15_000;
 const USER_AGENT = "ProtonVariants/0.1 (+https://github.com/dcog989/ProtonVariants)";
 const PRERELEASE_PATTERN = /(bleeding-edge|experimental|-beta|-alpha|-rc\d)/i;
 const VERSION_TAG_PATTERN = /^proton-(\d+)\.(\d+)-(\d+)([a-z]?)$/;
+// Unauthenticated GitHub API calls share the runner's IP and hit the 60/hour
+// limit, so send the CI token when one is available.
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_HEADERS = {
+  "User-Agent": USER_AGENT,
+  Accept: "application/vnd.github+json",
+  ...(GITHUB_TOKEN ? { Authorization: `Bearer ${GITHUB_TOKEN}` } : {}),
+};
 
 export interface ReleaseInfo {
   tag: string;
@@ -41,7 +49,7 @@ export async function fetchLatestRelease(feedUrl: string): Promise<ReleaseInfo |
 // tags endpoint by date, so pick the highest version instead of the first entry.
 export async function fetchLatestTagVersion(tagsUrl: string): Promise<ReleaseInfo | undefined> {
   const res = await fetch(tagsUrl, {
-    headers: { "User-Agent": USER_AGENT, Accept: "application/vnd.github+json" },
+    headers: GITHUB_HEADERS,
     signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
   });
   if (!res.ok) {
@@ -65,7 +73,7 @@ export async function fetchLatestTagVersion(tagsUrl: string): Promise<ReleaseInf
 
 async function fetchCommitDate(commitUrl: string): Promise<string | undefined> {
   const res = await fetch(commitUrl, {
-    headers: { "User-Agent": USER_AGENT, Accept: "application/vnd.github+json" },
+    headers: GITHUB_HEADERS,
     signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
   });
   if (!res.ok) {
