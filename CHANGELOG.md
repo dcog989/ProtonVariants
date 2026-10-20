@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.6.5 - 2026-10-20
+#### Bug Fixes
+- (**scrape**) authenticate GitHub API requests to avoid rate limits - (48c30ab) - dcog989
+#### Miscellaneous Chores
+- updates - (6d0976a) - dcog989
+- add logo to root - (20ec465) - dcog989
+
+- - -
+
 ## v0.6.4 - 2026-10-09
 #### Bug Fixes
 - (**releases**) read release date for Valve git-tag versions - (ae6ac4a) - dcog989
